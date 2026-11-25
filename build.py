@@ -28,7 +28,7 @@ SNIP = {
             '<div class="c c1"></div><div class="c c2"></div>'
             '<div class="front">' + DECK_SVG.format(s=56, w=1.2) +
             '<div class="t">The AI<br>Agent Deck</div><div class="bar"></div><div class="s">5 cards + 2 bonus cards</div></div>'
-            '<div class="badge"><small>Launch</small><b>$49</b></div></div>'),
+            '<div class="badge"><small><s>$199</s></small><b>$49</b></div></div>'),
     "BUYFINE": ('By buying, you agree to the <a href="/terms/">Terms</a>. Needs the Claude desktop app and a paid Claude plan '
                 '(Claude Pro is currently $20/month), sold separately by Anthropic. All sales are final.'),
 }
@@ -52,7 +52,7 @@ def card(m):
     return (f'<div class="pcard" style="transform:rotate({tilt})">'
             f'<div class="top"><div class="pip">{pip}</div><div class="tag">{tag}</div></div>'
             f'<h3>{name}</h3><div class="rule"></div><p>{body}</p>'
-            f'<a class="single" href="{url}" data-buy="{re.sub("&amp;", "&", name)}" data-value="19">This card alone: $19</a>'
+            f'<a class="single" href="{url}" data-buy="{re.sub("&amp;", "&", name)}" data-value="19">This card alone: <s>$49</s> $19</a>'
             f'<div class="pip bottom">{num}{DIAMOND.format(s=14)}</div></div>')
 
 def stack_html():

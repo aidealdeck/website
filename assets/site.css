@@ -164,3 +164,6 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 
 .offer .fine,.dark .offer .fine{color:var(--muted2)}.offer .fine a,.dark .offer .fine a{color:var(--navy)}
 .offer .was b{color:var(--navy)}
+
+.strike{color:var(--muted2);font-weight:500;font-size:.5em;vertical-align:middle;margin-right:6px}
+.strike.sm{font-size:.85em;color:inherit;opacity:.7;margin-right:2px}
