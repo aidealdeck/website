@@ -76,6 +76,13 @@ VIDEO = '''<section id="how">
 </div>
 </section>'''
 
+VIDEO2 = '''<section class="dark" id="magic">
+<div class="wrap">
+<div class="center"><div class="eyebrow">Watch &middot; 28 seconds</div><h2 class="h2">Watch the cards go to work</h2></div>
+<video controls playsinline preload="none" poster="/assets/video/cards-go-to-work.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/cards-go-to-work.mp4" type="video/mp4"></video>
+</div>
+</section>'''
+
 def cardgrid_html():
     cards = "".join(card(_M("|".join([n, tag, name, body, URLS[key], tilt]))) for n, tag, name, body, key, tilt in CARD_DEFS)
     deck = ('<div class="pcard deck">' + SNIP["DECKICON"] +
@@ -83,7 +90,14 @@ def cardgrid_html():
             f'<a class="btn block" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></div>')
     fine = ('<p class="center fine" style="margin-top:20px">Each card alone: <s>$49</s> $19 <span data-sale>Black Friday launch price</span> through Nov 30 ($49 is the regular price, starting Dec 1). '
             'The Deck gets you all five plus both bonus cards for $49 now; $199 is the regular price, starting Dec 1.</p>')
-    return f'<div class="cards" id="cards">{cards}{deck}</div>{fine}'
+    allin = ('<label class="allin"><input type="checkbox" data-allin> <span><b>Make it the full Deck: all 5 cards + 2 bonus cards for $49</b>'
+             '<small>Five single cards would be $95. Tick this and every card below takes you to the $49 Deck instead.</small></span></label>')
+    js = ('<script>(function(){document.querySelectorAll("[data-allin]").forEach(function(cb){var box=cb.closest("section")||document;'
+          'cb.addEventListener("change",function(){box.querySelectorAll("a.single").forEach(function(a){'
+          'if(!a.dataset.h0){a.dataset.h0=a.getAttribute("href");a.dataset.b0=a.dataset.buy;a.dataset.t0=a.innerHTML;}'
+          'if(cb.checked){a.setAttribute("href",a.dataset.h0.replace(/\\/l\\/[^?]+/,"/l/the-ai-agent-deck"));a.dataset.buy="The AI Agent Deck";a.dataset.value="49";a.innerHTML="Get all 5 cards + 2 bonuses: $49";a.classList.add("deckd");}'
+          'else{a.setAttribute("href",a.dataset.h0);a.dataset.buy=a.dataset.b0;a.dataset.value="19";a.innerHTML=a.dataset.t0;a.classList.remove("deckd");}});});});})();</script>')
+    return f'{allin}<div class="cards" id="cards">{cards}{deck}</div>{fine}{js}'
 
 def shop_section():
     return ('<section id="shop"><div class="wrap"><div class="center"><div class="eyebrow">Buy one card or the whole deck</div>'
@@ -165,7 +179,7 @@ def shots_section():
     figs = "".join(shot_fig(k) for k in SHOT_CAPTIONS)
     if not figs:
         return ""  # no placeholders on the live site
-    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI Tracker, 23 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p>'
+    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI Tracker, 29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p>'
     return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2>{vid}<div class="shots">{figs}</div></div></section>'
 
 def render(body):
@@ -174,7 +188,7 @@ def render(body):
         body = body.replace("{{" + k + "}}", v)
     body = re.sub(r"\{\{CARD:(.+?)\}\}", card, body)
     body = body.replace("{{CARDGRID}}", cardgrid_html()).replace("{{SHOP}}", shop_section())
-    body = body.replace("{{VIDEO}}", VIDEO)
+    body = body.replace("{{VIDEO2}}", VIDEO2).replace("{{VIDEO}}", VIDEO)
     body = body.replace("{{STACK}}", stack_html()).replace("{{SHOTS}}", shots_section()).replace("{{FAQ}}", faq_html())
     body = re.sub(r"\{\{SHOT:(\w+)\}\}", lambda m: (f'<div class="shots" style="grid-template-columns:1fr">{shot_fig(m.group(1))}</div>' if shot_fig(m.group(1)) else ""), body)
     for k, v in SNIP.items():
