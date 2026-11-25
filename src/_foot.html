@@ -11,6 +11,9 @@
 </nav>
 </div>
 </footer>
+<div id="ckbar" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;color:#13203F;border-top:3px solid #D4AE5C;padding:14px 16px;box-shadow:0 -8px 30px rgba(14,23,48,.3);text-align:center;font-size:15px">We use cookies to count visits and measure our ads. OK? <button type="button" data-ck="yes" style="margin-left:10px;background:#D4AE5C;color:#13203F;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Accept</button> <button type="button" data-ck="no" style="margin-left:6px;background:#fff;color:#13203F;border:1px solid #13203F;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Decline</button> <a href="/privacy/" style="margin-left:8px;color:#5b6477">Privacy</a></div>
+<script>(function(){if(!window.ADD_NEEDS_CONSENT)return;var b=document.getElementById('ckbar');b.hidden=false;b.addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-ck');if(!v)return;try{localStorage.setItem('ck',v);}catch(x){}b.hidden=true;if(v==='yes')location.reload();});})();</script>
+
 <script>(function(){var end=Date.UTC(2026,11,1,6,0,0),ms=end-Date.now();if(ms<=0)return;var d=Math.ceil(ms/864e5),t=d>2?'Ends in '+d+' days (Nov 30).':d===2?'Ends tomorrow night (Nov 30).':'Ends tonight at midnight.';[].forEach.call(document.querySelectorAll('[data-left]'),function(e){e.textContent=t;});})();</script>
 
 </body>

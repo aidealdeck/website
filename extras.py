@@ -279,7 +279,7 @@ def after_free(urls):
 <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
 <button class="btn block" type="submit" style="margin-top:12px">Email me my free cards</button></form>
 <p class="fine" id="offer-msg" aria-live="polite" style="margin-top:10px"></p>
-<p class="fine" style="margin-top:6px">By sending, you agree to our <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy</a>. You get one email with your cards. We will not add you to a list.</p>
+<p class="fine" style="margin-top:6px">By sending, you agree to our <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy</a>. We email your cards, then a few tips and offers. Unsubscribe in one click.</p>
 </div>
 <div data-step="deck" hidden>
 <div class="eyebrow">Sent. Check your email in a minute.</div>
