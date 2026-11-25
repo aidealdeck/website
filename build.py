@@ -225,7 +225,7 @@ def main():
         meta = {"out": f"cards/{c['slug']}/index.html", "path": f"/cards/{c['slug']}/",
                 "title": f"{c['name']} for real estate pros | Ai Deal Deck".replace("&", "&amp;"),
                 "desc": (c["short"] + " Launch price $19 through Nov 30.").replace("&", "&amp;"),
-                "topnote": "<span data-sale>Black Friday launch price</span> $19 through Nov 30 · regular price $49 from Dec 1",
+                "topnote": "<span data-sale>Black Friday</span>: this card is $19, not $49. <b data-left>Ends Nov 30.</b>",
                 "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
                 "pixel": "fbq('track','ViewContent',{content_name:'" + c["name"].replace("&", "and") + "',value:19,currency:'USD'});",
                 "ld": [extras.card_ld(c, extras.SITE + f"/cards/{c['slug']}/"), extras.faq_ld(plain_faq)]}
@@ -233,7 +233,7 @@ def main():
     long_plain = [(q, re.sub(r"<[^>]+>", "", a)) for q, a, k, c in faq_data.flat()]
     pages.append(({"out": "faq/index.html", "path": "/faq/", "title": "Questions and answers | Ai Deal Deck",
                    "desc": "Straight answers about Ai Deal Deck: what the cards do, what you need, setup, price, refunds, privacy and what they do not do.",
-                   "topnote": "<span data-sale>Black Friday launch price</span> $49 through Nov 30 · regular price $199 from Dec 1",
+                   "topnote": "<span data-sale>Black Friday</span>: all 5 cards + 2 bonus cards for $49, not $199. <b data-left>Ends Nov 30.</b>",
                    "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
                    "pixel": "", "ld": [extras.faq_ld(long_plain)]}, extras.faq_page(faq_data.FAQ_LONG)))
     LD = {
