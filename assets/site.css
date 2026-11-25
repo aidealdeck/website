@@ -225,3 +225,12 @@ body{padding-bottom:66px}
 .faqgroup{margin-top:40px}.faqgroup:first-of-type{margin-top:0}
 .faqgroup .h3{font-size:24px;margin-bottom:14px}
 .faqmiss{background:#fff;border:2px solid var(--gold);border-radius:12px;padding:18px 20px;margin-bottom:28px;font-size:16px;line-height:1.5}
+
+/* feedback form */
+.fbform{display:flex;flex-direction:column;gap:22px;font-size:17px;font-weight:600}
+.fbform label{display:flex;flex-direction:column;gap:8px}
+.fbform .fine{font-weight:400}
+.fbform input,.fbform select,.fbform textarea{font:inherit;font-weight:400;padding:12px 14px;border-radius:10px;border:1px solid var(--rule);background:#fff;color:var(--navy);min-height:48px}
+.fbscale{display:flex;flex-wrap:wrap;gap:8px}
+.fbscale button{min-width:44px;min-height:44px;border-radius:10px;border:1px solid var(--navy);background:#fff;color:var(--navy);font:inherit;font-weight:700;cursor:pointer}
+.fbscale button.on{background:var(--gold);border-color:var(--gold-ink)}

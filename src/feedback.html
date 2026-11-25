@@ -1,0 +1,33 @@
+<!--META {"out":"feedback/index.html","path":"/feedback/","title":"Tell us how it went | Ai Deal Deck","desc":"Two minutes: tell Ai Deal Deck how the site, checkout and setup went.","topnote":"Thank you for helping us improve","topbtn":"<a class=\"btn sm\" href=\"/\">Back to the Deck</a>","pixel":""} -->
+
+<section class="hero" style="padding-bottom:48px"><div class="wrap"><div class="copy" style="flex-basis:100%">
+<span class="pill">Two minutes</span>
+<h1>How did it go? <em>Tell us straight.</em></h1>
+<p class="sub">Your answers go to our team and shape what we fix and which card we build next.</p>
+</div></div></section>
+<section><div class="narrow">
+<form id="fb" class="fbform">
+<label>How likely are you to recommend Ai Deal Deck to another real estate pro? <span class="fine">0 = not at all, 10 = definitely</span>
+<div class="fbscale" id="fbscale"></div></label>
+<label>How was your experience on the website and at checkout?
+<select name="site"><option value="">Choose one</option><option>Great</option><option>Good</option><option>Okay</option><option>Confusing</option><option>Bad</option></select></label>
+<label>What almost stopped you, or what was confusing?
+<textarea name="stopped" maxlength="800" rows="3"></textarea></label>
+<label>How did setup with Claude go?
+<textarea name="setup" maxlength="800" rows="3"></textarea></label>
+<label>How did you hear about us? <span class="fine">A person's name, a creator, an ad, a search</span>
+<input name="heard" maxlength="120"></label>
+<label>Your email <span class="fine">optional, only if you want a reply</span>
+<input name="email" type="email" maxlength="120"></label>
+<button class="btn" type="submit">Send my answers</button>
+<p class="fine" id="fbmsg" aria-live="polite"></p>
+</form>
+</div></section>
+<script>
+(function(){var f=document.getElementById('fb'),sc=document.getElementById('fbscale'),score=null,msg=document.getElementById('fbmsg');
+for(var i=0;i<=10;i++){(function(n){var b=document.createElement('button');b.type='button';b.textContent=n;b.addEventListener('click',function(){score=n;[].forEach.call(sc.children,function(c){c.classList.toggle('on',c===b);});});sc.appendChild(b);})(i);}
+f.addEventListener('submit',function(e){e.preventDefault();if(score===null){msg.textContent='Please pick a number from 0 to 10 first.';return;}
+var d={action:'feedback',score:score,site:f.site.value,stopped:f.stopped.value,setup:f.setup.value,heard:f.heard.value,email:f.email.value};
+fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).then(function(){f.querySelector('button[type=submit]').disabled=true;msg.textContent='Thank you. Your answers are on their way to our team.';if(window.gtag)gtag('event','feedback_sent',{content_type:'feedback',content_id:'score '+score,value:score});}).catch(function(){msg.textContent='That did not send. Please email support@aidealdeck.com instead.';});});
+})();
+</script>

@@ -6,10 +6,10 @@ P = "(414) 946-6479"
 
 FAQ_LONG = [
     ("The basics", [
-        ("What is Ai Deal Deck?", "Ai Deal Deck sells do-it-yourself AI toolkits for real estate pros: agents, team leads, wholesalers and investors. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.", "about company product overview"),
+        ("What is Ai Deal Deck?", "Ai Deal Deck sells do-it-yourself AI toolkits for real estate pros. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.", "about company product overview"),
         ("What is a card?", "One tool for one part of your business: your numbers, your listings, your new leads, your money or your assistant. Each card comes with a blank workbook, a sample workbook, a START HERE guide, the setup prompt and a Setup Pack that Claude reads.", "toolkit tool"),
         ("What is The AI Agent Deck?", "All five cards in one download, plus two bonus cards (Listing Watchdog and Morning Brief). It costs less than three single cards.", "bundle package all"),
-        ("Who is it for?", "Real estate pros who sell for a living: agents, team leads, wholesalers, investors and anyone else running leads, deals and commissions. The examples use agent language (listings, closings, splits), and the trackers work the same way for any real estate sales business that wants its back office organized without hiring a developer or learning new software.", "realtor broker team solo wholesaler wholesaling investor investors flipper pros"),
+        ("Who is it for?", "Real estate pros who want their back office organized: anyone running leads, deals and commissions in a real estate sales business without hiring a developer or learning new software.", "realtor agent broker team solo wholesaler wholesaling investor investors flipper pros"),
         ("Is it done for me?", "No. It is a do-it-yourself toolkit. Claude helps you set it up, but you do the setup and you keep it running. If you would rather have it set up for you, email support@aidealdeck.com and ask about done-for-you setup, which is a separate service.", "dfy done for you install service"),
         ("Is this made by Anthropic or Claude?", "No. Ai Deal Deck is an independent product built to work with Claude. It is not made or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.", "affiliated official endorsed"),
         ("Who is behind Ai Deal Deck?", "Ai Deal Deck is a brand of The Showing Partner LLC, a Wisconsin company. It is not affiliated with or endorsed by any brokerage, MLS or trade association.", "owner company llc who owns"),
@@ -61,6 +61,29 @@ FAQ_LONG = [
         ("I did not get my download email. What do I do?", "Check your spam folder for an email from Gumroad. If it is not there, email support@aidealdeck.com with the email address you used at checkout and we will send it again.", "missing email not received spam lost"),
         ("Is sales tax added?", "Gumroad adds sales tax at checkout where it applies.", "tax vat"),
         ("Can my whole team use one purchase?", "Your license covers your own business or your own team's business. You may not share, resell or give the files to anyone outside it.", "team license share brokerage office multiple users"),
+    ]),
+    ("Referrals and creator codes", [
+        ("Do you reward referrals?", "Yes. When someone you referred buys any card or the Deck and names you at checkout, you get one free single card of your choice. A purchase is required: free downloads do not count.", "refer referral friend reward free card"),
+        ("How do I say who referred me?", "At checkout there is a box that asks \"How did you hear about us?\" Type the name or email of the person who referred you, or a creator code if you have one.", "referral name box heard about"),
+        ("What is a creator code?", "Some creators who talk about Ai Deal Deck share a code. When you buy at least one card and enter that code in the \"How did you hear about us?\" box at checkout, you get one free single card of your choice.", "creator code influencer promo coupon discount"),
+        ("Do I have to buy something to use a creator code?", "Yes. The free card comes with a purchase. You need to buy at least one card (or the Deck) and enter the code at checkout. A code on its own, or with only the free bonus cards, does not qualify.", "creator code free card without buying purchase required"),
+        ("I used a creator code and did not get a free card. Why?", "The most common reason is that no card was purchased: the free card is only valid when you buy at least one other card. If you did buy and entered the code at checkout, email support@aidealdeck.com with the email you used and the code, and we will send your free card.", "code not working did not get free card missing"),
+        ("How do I get my free card?", "After your purchase we email you a code for one single card of your choice. Use it at checkout for that card and the price drops to zero.", "redeem claim free card how"),
+        ("I forgot to enter the code or the name at checkout. Can I still get it?", "Email support@aidealdeck.com with the email you used at checkout and the code or the name. If the purchase qualifies we will add it.", "forgot code after purchase late"),
+        ("I bought the Deck with a creator code. What is my free card?", "The Deck already includes all five cards. Email support@aidealdeck.com after you buy and we will tell you your options.", "deck code free card already have all"),
+        ("How many free cards can I get from one purchase?", "One free card per purchase.", "stack combine multiple codes"),
+        ("I am a creator. How do I get a code?", "Email support@aidealdeck.com. Creators get their own link and code and earn 30% of each sale made through their link. Creators must tell their audience that they are paid.", "affiliate creator royalty commission partner influencer program"),
+    ]),
+    ("Checkout", [
+        ("Why does checkout say Gumroad?", "Gumroad is the company that runs our checkout, payment and file delivery. It is the merchant of record for your purchase.", "gumroad who charge statement"),
+        ("Is checkout secure?", "Payment is handled by Gumroad. We never receive your full card number.", "secure safe card payment"),
+        ("Why do I have to accept the Terms?", "Because the files are delivered instantly and all sales are final, we ask you to confirm you have read the <a href=\"/terms/\">Terms</a> before you pay.", "terms checkbox accept"),
+        ("At checkout I was offered the Deck in place of my card. What is that?", "If you have a single card in your cart, checkout offers the full Deck instead. Saying yes replaces the card in your cart with the Deck at the Deck price. Saying no keeps your single card.", "upsell offer replace cart deck"),
+        ("I took the free cards and was offered the KPI Tracker. Do I have to buy it?", "No. It is an optional offer. Your free cards are still free.", "free offer upsell kpi"),
+        ("Can I buy it as a gift?", "Yes. Checkout has a \"Give as a gift\" switch. Enter the other person's email and the download goes to them.", "gift someone else"),
+        ("Can I get a receipt or an invoice?", "Your receipt is emailed right after checkout, and it has a link to generate an invoice.", "invoice receipt business expense"),
+        ("I think I was charged twice or charged the wrong price. What do I do?", "Email support@aidealdeck.com with the email you used at checkout, what you were charged and when. We will look into it and reply.", "double charge wrong price billing mistake"),
+        ("I typed the wrong email at checkout. How do I get my files?", "Email support@aidealdeck.com from the address you want to use, with the name on the order and the date. We will get the download to you.", "wrong email typo change"),
     ]),
     ("Refunds and support", [
         ("Can I get a refund?", "All sales are final because the files are delivered instantly and you keep them, except where the law where you live gives you a right that cannot be waived. Please read this page and the <a href=\"/terms/\">Terms</a> before you buy. If a file is missing or will not open, we fix it.", "refund money back return cancel guarantee"),

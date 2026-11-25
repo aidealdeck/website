@@ -246,7 +246,7 @@ def main():
                              "description": "Two free Ai Deal Deck cards for real estate pros. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
                              "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": extras.SITE + "/free/"}}],
     }
-    SALES = lambda out: out not in ("terms/index.html", "privacy/index.html")
+    SALES = lambda out: out not in ("terms/index.html", "privacy/index.html", "feedback/index.html")
     sitemap = []
     for meta, body in pages:
         name = meta["out"]

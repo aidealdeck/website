@@ -203,7 +203,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 
 def llms_txt(cards, faq):
     lines = ["# Ai Deal Deck", "",
-             "> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate pros: agents, team leads, wholesalers and investors. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
+             "> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate pros. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
              "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.", "",
              "Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
              "## Products", "",
