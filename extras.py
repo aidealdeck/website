@@ -271,9 +271,19 @@ def after_free(urls):
     cards = "".join('<a class="no" href="%s" data-buy="%s" data-value="19">%s: $19</a>' % (urls[c["key"]], c["name"].replace("&", "&amp;"), c["name"].replace("&", "&amp;")) for c in CARDS)
     html = """<dialog id="offer" aria-labelledby="offer-h">
 <form method="dialog"><button class="x" aria-label="Close">×</button></form>
-<div data-step="deck">
-<div class="eyebrow">Before you get your free cards</div>
-<h2 id="offer-h" class="h2" style="font-size:28px">Want the rest of the cards for <s class="strike sm">$199</s> $49?</h2>
+<div data-step="email">
+<div class="eyebrow">2 free cards</div>
+<h2 id="offer-h" class="h2" style="font-size:28px">Where should we send your free cards?</h2>
+<p class="lead" style="font-size:16px">Listing Watchdog + Morning Brief. We email them to you right away. No payment card.</p>
+<form id="offer-form" style="margin-top:16px"><input type="email" name="email" required maxlength="120" placeholder="Your email address" autocomplete="email" aria-label="Your email address" style="width:100%;box-sizing:border-box;padding:15px 14px;font:inherit;font-size:17px;border:2px solid var(--navy);border-radius:10px">
+<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+<button class="btn block" type="submit" style="margin-top:12px">Email me my free cards</button></form>
+<p class="fine" id="offer-msg" aria-live="polite" style="margin-top:10px"></p>
+<p class="fine" style="margin-top:6px">By sending, you agree to our <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy</a>. You get one email with your cards. We will not add you to a list.</p>
+</div>
+<div data-step="deck" hidden>
+<div class="eyebrow">Sent. Check your email in a minute.</div>
+<h2 class="h2" style="font-size:28px">Want the rest of the cards for <s class="strike sm">$199</s> $49?</h2>
 <p class="lead" style="font-size:16px">The Deck has five more cards: your numbers, listings, new leads, money and assistant. Your two free cards are included.</p>
 <a class="btn block" style="margin-top:20px" href="__DECK__" data-buy="The AI Agent Deck" data-value="49">Yes, get the Deck: $49</a>
 <button type="button" class="no" data-next>No thanks</button>
@@ -284,20 +294,26 @@ def after_free(urls):
 <h2 class="h2" style="font-size:28px">Just one card for <s class="strike sm">$49</s> $19?</h2>
 <p class="lead" style="font-size:16px">Pick the one that helps you most.</p>
 __CARDS__
-<a class="btn block" id="offer-free" style="margin-top:18px" href="#" data-value="0">No thanks, take me to my free cards</a>
+<button type="button" class="no" data-next style="margin-top:18px;border-style:dashed">No thanks, I am all set</button>
 <p class="fine" style="margin-top:10px">$19 is the launch price through Nov 30. $49 is the regular price, starting Dec 1.</p>
 </div>
 </dialog>
 <script>
-(function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var i=0,steps=['deck','card'];
+(function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var i=0,steps=['email','deck','card'],fallback='',f=document.getElementById('offer-form'),msg=document.getElementById('offer-msg');
 function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i];});}
 document.addEventListener('click',function(e){
 var a=e.target.closest('a[data-buy="Free bonus cards"]');
-if(a&&!d.open){e.preventDefault();document.getElementById('offer-free').href=a.href;i=0;show();d.showModal();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});return;}
+if(a&&!d.open){e.preventDefault();fallback=a.href;i=0;show();msg.textContent='';d.showModal();f.email.focus();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});return;}
 if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else show();}});
+f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='Sending...';
+fetch('__CHAT_URL__',{method:'POST',credentials:'omit',body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname})}).then(function(r){return r.json();}).then(function(j){b.disabled=false;
+if(j&&j.ok){msg.textContent='';if(window.gtag)gtag('event','generate_lead',{method:'free_cards_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards'});i=1;show();}
+else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
+else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';}
+}).catch(function(){b.disabled=false;msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';});});
 })();
 </script>"""
-    return html.replace("__DECK__", urls["DECK"]).replace("__CARDS__", cards)
+    return html.replace("__DECK__", urls["DECK"]).replace("__CARDS__", cards).replace("__CHAT_URL__", CHAT_URL)
 
 
 def chat():
