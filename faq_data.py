@@ -92,7 +92,7 @@ FAQ_LONG = [
         ("I typed the wrong email at checkout. How do I get my files?", "Email support@aidealdeck.com from the address you want to use, with the name on the order and the date. We will get the download to you.", "wrong email typo change"),
     ]),
     ("Refunds and support", [
-        ("Can I get a refund?", "All sales are final because the files are delivered instantly and you keep them. We sell to buyers in the United States only. Please read this page and the <a href=\"/terms/\">Terms</a> before you buy. If a file is missing or will not open, we fix it.", "refund money back return cancel guarantee"),
+        ("Can I get a refund?", "All sales are final because the files are delivered instantly and you keep them, except where the law where you live gives you a right that cannot be waived. Please read this page and the <a href=\"/terms/\">Terms</a> before you buy. If a file is missing or will not open, we fix it.", "refund money back return cancel guarantee"),
         ("A file will not open or is missing. What do I do?", "Email support@aidealdeck.com with the email you used at checkout and what happened. We will help or send a working copy.", "broken corrupt file open error"),
         ("How do I reach a person?", "Email support@aidealdeck.com, or call " + P + " any time. Sarah answers around the clock, can answer most questions and passes messages to the team.", "contact phone human talk call support"),
         ("Is the phone line a real person?", "The line is answered around the clock by Sarah, an AI assistant. For anything she cannot answer she takes your name and email and the team replies.", "sarah ai bot robot human"),
