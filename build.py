@@ -222,7 +222,7 @@ def main():
     plain_faq = [(q, re.sub(r"<[^>]+>", "", a)) for q, a in FAQ]
     for c in extras.CARDS:
         meta = {"out": f"cards/{c['slug']}/index.html", "path": f"/cards/{c['slug']}/",
-                "title": f"{c['name']} for real estate agents | Ai Deal Deck".replace("&", "&amp;"),
+                "title": f"{c['name']} for real estate pros | Ai Deal Deck".replace("&", "&amp;"),
                 "desc": (c["short"] + " Launch price $19 through Nov 30.").replace("&", "&amp;"),
                 "topnote": "<span data-sale>Black Friday launch price</span> $19 through Nov 30 · regular price $49 from Dec 1",
                 "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
@@ -243,7 +243,7 @@ def main():
         "numbers/index.html": [extras.card_ld(extras.CARDS[0], extras.SITE + "/numbers/"), extras.faq_ld(plain_faq)],
         "free/index.html": [{"@type": "Product", "name": "Free cards: Listing Watchdog and Morning Brief", "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
                              "image": extras.SITE + "/assets/og.png",
-                             "description": "Two free Ai Deal Deck cards for real estate agents. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
+                             "description": "Two free Ai Deal Deck cards for real estate pros. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
                              "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": extras.SITE + "/free/"}}],
     }
     SALES = lambda out: out not in ("terms/index.html", "privacy/index.html")

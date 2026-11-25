@@ -1,6 +1,6 @@
 # Ai Deal Deck
 
-> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate agents and team leads. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.
+> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate pros: agents, team leads, wholesalers and investors. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.
 
 Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.
 
@@ -23,10 +23,10 @@ Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is indep
 
 ## Facts
 
-- What is Ai Deal Deck? Ai Deal Deck sells do-it-yourself AI toolkits for real estate agents and team leads. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.
+- What is Ai Deal Deck? Ai Deal Deck sells do-it-yourself AI toolkits for real estate pros: agents, team leads, wholesalers and investors. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.
 - What is a card? One tool for one part of your business: your numbers, your listings, your new leads, your money or your assistant. Each card comes with a blank workbook, a sample workbook, a START HERE guide, the setup prompt and a Setup Pack that Claude reads.
 - What is The AI Agent Deck? All five cards in one download, plus two bonus cards (Listing Watchdog and Morning Brief). It costs less than three single cards.
-- Who is it for? Working real estate agents and team leads who want their back office organized without hiring a developer or learning new software.
+- Who is it for? Real estate pros who sell for a living: agents, team leads, wholesalers, investors and anyone else running leads, deals and commissions. The examples use agent language (listings, closings, splits), and the trackers work the same way for any real estate sales business that wants its back office organized without hiring a developer or learning new software.
 - Is it done for me? No. It is a do-it-yourself toolkit. Claude helps you set it up, but you do the setup and you keep it running. If you would rather have it set up for you, email support@aidealdeck.com and ask about done-for-you setup, which is a separate service.
 - Is this made by Anthropic or Claude? No. Ai Deal Deck is an independent product built to work with Claude. It is not made or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.
 - Who is behind Ai Deal Deck? Ai Deal Deck is a brand of The Showing Partner LLC, a Wisconsin company. It is not affiliated with or endorsed by any brokerage, MLS or trade association.

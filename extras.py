@@ -66,7 +66,7 @@ def org_ld():
     return {"@type": "Organization", "@id": SITE + "/#org", "name": "Ai Deal Deck", "url": SITE + "/",
             "logo": SITE + "/assets/og.png", "email": "support@aidealdeck.com", "telephone": PHONE_TEL,
             "legalName": "The Showing Partner LLC",
-            "description": "Do-it-yourself AI toolkits (cards) for real estate agents, set up with Claude.",
+            "description": "Do-it-yourself AI toolkits (cards) for real estate pros, set up with Claude.",
             "contactPoint": {"@type": "ContactPoint", "telephone": PHONE_TEL, "email": "support@aidealdeck.com",
                              "contactType": "sales and customer support", "areaServed": "US", "availableLanguage": "English"}}
 
@@ -79,7 +79,7 @@ def offer(price, url):
 def deck_ld(url):
     return {"@type": "Product", "@id": SITE + "/#deck", "name": "The AI Agent Deck", "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
             "category": "Real estate agent software toolkit", "image": SITE + "/assets/og.png",
-            "description": "Five do-it-yourself AI toolkits for real estate agents (KPI Tracker, Listing Exposure Playbook, Lead-for-Life System, "
+            "description": "Five do-it-yourself AI toolkits for real estate pros (KPI Tracker, Listing Exposure Playbook, Lead-for-Life System, "
                            "Commission & GCI Ledger, VA Playbook & Scorecard) plus two bonus cards (Listing Watchdog and Morning Brief). "
                            "Claude helps you set each one up in about 20 minutes. Requires the Claude desktop app and a paid Claude plan.",
             "offers": offer(49, url)}
@@ -203,7 +203,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 
 def llms_txt(cards, faq):
     lines = ["# Ai Deal Deck", "",
-             "> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate agents and team leads. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
+             "> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate pros: agents, team leads, wholesalers and investors. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
              "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.", "",
              "Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
              "## Products", "",
