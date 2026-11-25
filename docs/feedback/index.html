@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tell us how it went | Ai Deal Deck</title>
-<meta name="description" content="Two minutes: tell Ai Deal Deck how the site, checkout and setup went.">
-<meta property="og:title" content="Tell us how it went | Ai Deal Deck">
-<meta property="og:description" content="Two minutes: tell Ai Deal Deck how the site, checkout and setup went.">
+<title>3 quick questions, 10% off your next card | Ai Deal Deck</title>
+<meta name="description" content="Bought a card? Answer 3 quick questions and get 10% off your next Ai Deal Deck purchase.">
+<meta property="og:title" content="3 quick questions, 10% off your next card | Ai Deal Deck">
+<meta property="og:description" content="Bought a card? Answer 3 quick questions and get 10% off your next Ai Deal Deck purchase.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ai Deal Deck">
 <meta property="og:image" content="https://aidealdeck.com/assets/og.png">
 <meta property="og:image:width" content="1640">
 <meta property="og:image:height" content="624">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tell us how it went | Ai Deal Deck">
-<meta name="twitter:description" content="Two minutes: tell Ai Deal Deck how the site, checkout and setup went.">
+<meta name="twitter:title" content="3 quick questions, 10% off your next card | Ai Deal Deck">
+<meta name="twitter:description" content="Bought a card? Answer 3 quick questions and get 10% off your next Ai Deal Deck purchase.">
 <meta name="twitter:image" content="https://aidealdeck.com/assets/og.png">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="theme-color" content="#0E1730">
@@ -88,34 +88,39 @@ window.addEventListener('pagehide',flush);
 <main>
 
 <section class="hero" style="padding-bottom:48px"><div class="wrap"><div class="copy" style="flex-basis:100%">
-<span class="pill">Two minutes</span>
-<h1>How did it go? <em>Tell us straight.</em></h1>
-<p class="sub">Your answers go to our team and shape what we fix and which card we build next.</p>
+<span class="pill">For buyers &middot; 1 minute</span>
+<h1>Answer 3 quick questions. <em>Get 10% off your next card.</em></h1>
+<p class="sub">Pick an answer, tap a number, type one line. Your 10% code shows up right here when you send it.</p>
 </div></div></section>
 <section><div class="narrow">
 <form id="fb" class="fbform">
-<label>How likely are you to recommend Ai Deal Deck to another real estate pro? <span class="fine">0 = not at all, 10 = definitely</span>
+<label>1. How did you hear about us?
+<select name="heardsel" required><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Google</option><option>A friend or another real estate pro</option><option>Other</option></select></label>
+<label id="otherwrap" hidden>Tell us where <span class="fine">or the name of the person who told you</span>
+<input name="heardother" maxlength="120"></label>
+<label>2. How likely are you to tell another real estate pro about Ai Deal Deck? <span class="fine">0 = not at all, 10 = definitely</span>
 <div class="fbscale" id="fbscale"></div></label>
-<label>How was your experience on the website and at checkout?
-<select name="site"><option value="">Choose one</option><option>Great</option><option>Good</option><option>Okay</option><option>Confusing</option><option>Bad</option></select></label>
-<label>What almost stopped you, or what was confusing?
-<textarea name="stopped" maxlength="800" rows="3"></textarea></label>
-<label>How did setup with Claude go?
-<textarea name="setup" maxlength="800" rows="3"></textarea></label>
-<label>How did you hear about us? <span class="fine">A person's name, a creator, an ad, a search</span>
-<input name="heard" maxlength="120"></label>
-<label>Your email <span class="fine">optional, only if you want a reply</span>
-<input name="email" type="email" maxlength="120"></label>
-<button class="btn" type="submit">Send my answers</button>
+<label>3. What is one thing we should fix or build next? <span class="fine">one line is plenty</span>
+<textarea name="stopped" maxlength="800" rows="2"></textarea></label>
+<button class="btn" type="submit">Send and show my 10% code</button>
 <p class="fine" id="fbmsg" aria-live="polite"></p>
 </form>
+<div id="fbcode" hidden style="text-align:center;padding:28px;border:1px solid rgba(255,255,255,.18);border-radius:16px;margin-top:20px">
+<p class="fine">Thank you. Here is your code:</p>
+<p style="font-size:2rem;font-weight:800;letter-spacing:.08em;margin:8px 0">THANKS10</p>
+<p>Type it in the <b>Discount code</b> box at checkout for 10% off any future purchase. It works with the email you bought with.</p>
+<p><a class="btn" href="/">See the cards</a></p>
+</div>
 </div></section>
 <script>
-(function(){var f=document.getElementById('fb'),sc=document.getElementById('fbscale'),score=null,msg=document.getElementById('fbmsg');
+(function(){var f=document.getElementById('fb'),sc=document.getElementById('fbscale'),score=null,msg=document.getElementById('fbmsg'),ow=document.getElementById('otherwrap');
 for(var i=0;i<=10;i++){(function(n){var b=document.createElement('button');b.type='button';b.textContent=n;b.addEventListener('click',function(){score=n;[].forEach.call(sc.children,function(c){c.classList.toggle('on',c===b);});});sc.appendChild(b);})(i);}
-f.addEventListener('submit',function(e){e.preventDefault();if(score===null){msg.textContent='Please pick a number from 0 to 10 first.';return;}
-var d={action:'feedback',score:score,site:f.site.value,stopped:f.stopped.value,setup:f.setup.value,heard:f.heard.value,email:f.email.value};
-fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).then(function(){f.querySelector('button[type=submit]').disabled=true;msg.textContent='Thank you. Your answers are on their way to our team.';if(window.gtag)gtag('event','feedback_sent',{content_type:'feedback',content_id:'score '+score,value:score});}).catch(function(){msg.textContent='That did not send. Please email support@aidealdeck.com instead.';});});
+f.heardsel.addEventListener('change',function(){var o=/Other|friend/.test(f.heardsel.value);ow.hidden=!o;});
+f.addEventListener('submit',function(e){e.preventDefault();if(!f.heardsel.value){msg.textContent='Please pick how you heard about us.';return;}if(score===null){msg.textContent='Please tap a number from 0 to 10.';return;}
+var heard=f.heardsel.value+(f.heardother.value?': '+f.heardother.value:'');
+var d={action:'feedback',score:score,site:'',stopped:f.stopped.value,setup:'',heard:heard,email:''};
+function done(){f.hidden=true;document.getElementById('fbcode').hidden=false;if(window.gtag)gtag('event','feedback_sent',{content_type:'feedback',content_id:f.heardsel.value,value:score});}
+fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).then(done).catch(function(){msg.textContent='That did not send. Please try again, or email support@aidealdeck.com.';});});
 })();
 </script>
 </main>
