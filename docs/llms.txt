@@ -25,6 +25,7 @@ Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is indep
 
 - What is Ai Deal Deck? Ai Deal Deck sells do-it-yourself AI toolkits for real estate pros. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.
 - What is a card? One tool for one part of your business: your numbers, your listings, your new leads, your money or your assistant. Each card comes with a blank workbook, a sample workbook, a START HERE guide, the setup prompt and a Setup Pack that Claude reads.
+- Are these real, physical cards? Does anything get mailed to me? No. The cards are digital. Nothing is printed and nothing is mailed. We call them cards because each one is one tool. You get a download link by email right after checkout, and the files open on your computer.
 - What is The AI Agent Deck? All five cards in one download, plus two bonus cards (Listing Watchdog and Morning Brief). It costs less than three single cards.
 - Who is it for? Real estate pros who want their back office organized: anyone running leads, deals and commissions in a real estate sales business without hiring a developer or learning new software.
 - Is it done for me? No. It is a do-it-yourself toolkit. Claude helps you set it up, but you do the setup and you keep it running. If you would rather have it set up for you, email support@aidealdeck.com and ask about done-for-you setup, which is a separate service.

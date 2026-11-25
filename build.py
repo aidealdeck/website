@@ -38,6 +38,7 @@ SNIP = {
 }
 
 FAQ = [
+    ("Are these physical cards?", "No. They are digital. Nothing is printed and nothing is mailed. You get a download link by email right after checkout."),
     ("Is it done for me?", "No. It's a do-it-yourself toolkit. Setup takes about 20 minutes per card: paste one prompt into Claude, answer simple questions, and approve what it sets up. The Lead-for-Life System takes another hour or two to build your follow-up plan in your CRM and write your own emails."),
     ("What else do I need?", "The Claude desktop app and a paid Claude plan (Claude Pro is currently $20/month), sold separately by Anthropic. The more cards you run and the more often they update, the more of your Claude plan they use, so you may need a higher plan as you grow. Google Sheets or Excel. A CRM is optional; if Claude has a connector for it, Claude can read it directly."),
     ("Will it contact my leads for me?", "No. It drafts messages for you to review and send. It never texts, calls or emails anyone on its own."),
