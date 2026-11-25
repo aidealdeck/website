@@ -1,0 +1,13 @@
+<!--META {"out":"unsubscribe/index.html","path":"/unsubscribe/","title":"Unsubscribe | AiDealDeck","desc":"Stop check-in emails from AiDealDeck with one click.","topnote":"","topbtn":"<a class=\"btn sm\" href=\"/\">Back to the Deck</a>","pixel":""} -->
+
+<section class="hero" style="padding-bottom:60px"><div class="wrap"><div class="copy" style="flex-basis:100%;text-align:center">
+<h1 id="uh">One moment...</h1>
+<p class="sub" id="um" style="margin-left:auto;margin-right:auto"></p>
+</div></div></section>
+<script>
+(function(){var h=document.getElementById('uh'),m=document.getElementById('um'),t=(location.search.match(/[?&]t=([a-f0-9]{8,40})/)||[])[1];
+function bad(){h.textContent='That did not work.';m.innerHTML='Email <a href="mailto:support@aidealdeck.com?subject=Unsubscribe" style="color:#fff">support@aidealdeck.com</a> and we will take you off right away.';}
+if(!t){bad();return;}
+fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify({action:'unsub',t:t})}).then(function(r){return r.json();}).then(function(j){if(j&&j.ok){h.textContent='You are unsubscribed.';m.textContent='You will not get check-in or reminder emails from us. Emails about an order you place still arrive.';}else bad();}).catch(bad);
+})();
+</script>
