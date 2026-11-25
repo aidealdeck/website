@@ -190,7 +190,7 @@ def shots_section():
     figs = "".join(shot_fig(k) for k in SHOT_CAPTIONS)
     if not figs:
         return ""  # no placeholders on the live site
-    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI dashboard Claude builds for you, 29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p>'
+    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI dashboard Claude helps you build, 29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p>'
     return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2>{vid}<div class="shots">{figs}</div></div></section>'
 
 def render(body):
@@ -238,7 +238,7 @@ def main():
     LD = {
         "index.html": [extras.deck_ld(extras.SITE + "/"), extras.faq_ld(plain_faq),
                        extras.video_ld("How does Ai Deal Deck work?", "A 36-second look at how a real estate agent sets up an Ai Deal Deck card with Claude.", "how-it-works", 36),
-                       extras.video_ld("The KPI dashboard Claude builds for you", "A 29-second look at the live real estate KPI dashboard, with sample data.", "kpi-tracker", 29),
+                       extras.video_ld("The KPI dashboard Claude helps you build", "A 29-second look at the live real estate KPI dashboard, with sample data.", "kpi-tracker", 29),
                        extras.video_ld("Watch the cards go to work", "A 28-second look at the five Ai Deal Deck cards.", "cards-go-to-work", 28)],
         "numbers/index.html": [extras.card_ld(extras.CARDS[0], extras.SITE + "/numbers/"), extras.faq_ld(plain_faq)],
         "free/index.html": [{"@type": "Product", "name": "Free cards: Listing Watchdog and Morning Brief", "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
@@ -255,7 +255,7 @@ def main():
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
         tail = ""
         if SALES(name):
-            tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"])
+            tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
         page = render(h + body + tail + f)
         page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
@@ -272,6 +272,8 @@ def main():
     prio = lambda p: "1.0" if p == "/" else ("0.3" if p in ("/terms/", "/privacy/") else "0.8")
     open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"<url><loc>https://aidealdeck.com{p}</loc><lastmod>{BUILD_DATE}</lastmod><priority>{prio(p)}</priority></url>\n" for p in sorted(sitemap)) + "</urlset>\n")
+    import json as _json
+    open(os.path.join(OUT, "faq.json"), "w").write(_json.dumps([{"q": q, "a": a_, "k": k} for q, a_, k, _c in faq_data.flat()]))
     open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, long_plain))
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
 

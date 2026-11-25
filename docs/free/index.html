@@ -187,6 +187,62 @@ setTimeout(show,40000);
 window.addEventListener('scroll',function(){var h=document.documentElement;if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.6)show();},{passive:true});
 document.addEventListener('mouseout',function(e){if(!e.relatedTarget&&e.clientY<8)show();});
 })();
+</script><dialog id="offer" aria-labelledby="offer-h">
+<form method="dialog"><button class="x" aria-label="Close">×</button></form>
+<div data-step="deck">
+<div class="eyebrow">Your free cards opened in a new tab</div>
+<h2 id="offer-h" class="h2" style="font-size:28px">Want the rest of the cards for <s class="strike sm">$199</s> $49?</h2>
+<p class="lead" style="font-size:16px">The Deck has five more cards: your numbers, listings, new leads, money and assistant. Your two free cards are included.</p>
+<a class="btn block" style="margin-top:20px" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Yes, get the Deck: $49</a>
+<button type="button" class="no" data-next>No thanks</button>
+<p class="fine" style="margin-top:10px">Black Friday launch price through Nov 30. $199 is the regular price, starting Dec 1.</p>
+</div>
+<div data-step="card" hidden>
+<div class="eyebrow">One more idea</div>
+<h2 class="h2" style="font-size:28px">Just one card for <s class="strike sm">$49</s> $19?</h2>
+<p class="lead" style="font-size:16px">Pick the one that helps you most.</p>
+<a class="no" href="https://shop.aidealdeck.com/l/real-estate-kpi-tracker?wanted=true" data-buy="Real Estate KPI Tracker" data-value="19">Real Estate KPI Tracker: $19</a><a class="no" href="https://shop.aidealdeck.com/l/listing-exposure-playbook?wanted=true" data-buy="Listing Exposure Playbook" data-value="19">Listing Exposure Playbook: $19</a><a class="no" href="https://shop.aidealdeck.com/l/lead-for-life-system?wanted=true" data-buy="Lead-for-Life System" data-value="19">Lead-for-Life System: $19</a><a class="no" href="https://shop.aidealdeck.com/l/agent-commission-gci-ledger?wanted=true" data-buy="Commission &amp; GCI Ledger" data-value="19">Commission &amp; GCI Ledger: $19</a><a class="no" href="https://shop.aidealdeck.com/l/real-estate-va-playbook?wanted=true" data-buy="VA Playbook &amp; Scorecard" data-value="19">VA Playbook &amp; Scorecard: $19</a>
+<button type="button" class="no" data-next style="margin-top:18px;border-style:dashed">No thanks, just my free cards</button>
+<p class="fine" style="margin-top:10px">$19 is the launch price through Nov 30. $49 is the regular price, starting Dec 1.</p>
+</div>
+</dialog>
+<script>
+(function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var i=0,steps=['deck','card'];
+function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i];});}
+document.addEventListener('click',function(e){
+var a=e.target.closest('a[data-buy="Free bonus cards"]');
+if(a&&!d.open){a.target='_blank';a.rel='noopener';i=0;show();setTimeout(function(){d.showModal();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});},400);return;}
+if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else show();}});
+})();
+</script><button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false">Chat with Sarah</button>
+<section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the Ai Deal Deck AI assistant">
+<header><div><b>Sarah Hill</b><span>AI assistant for Ai Deal Deck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
+<div class="chatlog" id="chatlog" aria-live="polite"></div>
+<form id="chatform" autocomplete="off"><input id="chatq" type="text" maxlength="300" placeholder="Type your question" aria-label="Type your question"><button type="submit">Send</button></form>
+<p class="chatfine">Sarah is an AI assistant and can make mistakes. Please do not type private or payment details. <a href="/privacy/">Privacy</a></p>
+</section>
+<script>
+(function(){var URL_='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec';var btn=document.getElementById('chatbtn'),box=document.getElementById('chatbox'),log=document.getElementById('chatlog'),form=document.getElementById('chatform'),inp=document.getElementById('chatq');
+if(!btn||!box)return;var hist=[],faq=null,busy=false,greeted=false;
+function ev(n,p){if(window.gtag)gtag('event',n,p||{});}
+function add(who,html,isText){var d=document.createElement('div');d.className='cm '+who;if(isText)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+function open_(){box.hidden=false;btn.setAttribute('aria-expanded','true');btn.hidden=true;if(!greeted){greeted=true;add('s',"Hi, I am Sarah, the AI assistant for Ai Deal Deck. Ask me anything about the cards, the price or how setup works.",true);ev('chat_open',{content_type:'chat',content_id:location.pathname});}inp.focus();}
+function close_(){box.hidden=true;btn.hidden=false;btn.setAttribute('aria-expanded','false');}
+btn.addEventListener('click',open_);document.getElementById('chatx').addEventListener('click',close_);
+var STOP={the:1,a:1,an:1,is:1,are:1,'do':1,does:1,i:1,to:1,it:1,of:1,and:1,or:1,my:1,me:1,you:1,your:1,what:1,how:1,can:1,'for':1,'in':1,on:1,'with':1,'this':1,that:1,be:1,have:1,'if':1,get:1,will:1,there:1,about:1};
+function words(t){return (t||'').toLowerCase().replace(/<[^>]+>/g,' ').replace(/[^a-z0-9$ ]/g,' ').split(/ +/).filter(function(w){return w.length>1&&!STOP[w];});}
+function fromFaq(q){var qs=words(q),best=null,bs=0;if(!qs.length||!faq)return null;
+faq.forEach(function(f){var qw=words(f.q),kw=words(f.k),aw=words(f.a),s=0;qs.forEach(function(w){if(qw.indexOf(w)>-1)s+=3;if(kw.indexOf(w)>-1)s+=3;if(aw.indexOf(w)>-1)s+=1;});s=s/Math.sqrt(qs.length);if(s>bs){bs=s;best=f;}});
+return bs>=2.4?best:null;}
+function loadFaq(){if(faq)return Promise.resolve();return fetch('/faq.json').then(function(r){return r.json();}).then(function(j){faq=j;}).catch(function(){faq=[];});}
+function fallback(q,wait){loadFaq().then(function(){var f=fromFaq(q);log.removeChild(wait);
+if(f){add('s',f.a+' <a href="/faq/">More answers</a>');ev('chat_message',{content_type:'chat',content_id:'faq'});}
+else{add('s','I am not sure about that one. You can call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and we will get you an answer.');ev('view_search_results',{search_term:'MISS: chat: '+q.slice(0,80)});ev('chat_message',{content_type:'chat',content_id:'miss'});}
+busy=false;});}
+form.addEventListener('submit',function(e){e.preventDefault();var q=inp.value.trim();if(!q||busy)return;busy=true;inp.value='';add('u',q,true);var wait=add('s','...',true);
+var done=false,t=setTimeout(function(){if(!done){done=true;fallback(q,wait);}},9000);
+fetch(URL_,{method:'POST',credentials:'omit',body:JSON.stringify({action:'chat',q:q,history:hist.slice(-6),page:location.pathname})}).then(function(r){return r.json();}).then(function(j){if(done)return;done=true;clearTimeout(t);if(j&&j.ok&&j.answer){wait.textContent=j.answer;hist.push({role:'user',content:q});hist.push({role:'assistant',content:j.answer});ev('chat_message',{content_type:'chat',content_id:'ai'});busy=false;}else{fallback(q,wait);}}).catch(function(){if(done)return;done=true;clearTimeout(t);fallback(q,wait);});});
+})();
 </script></main>
 <footer>
 <div class="wrap">
