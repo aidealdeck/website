@@ -1,8 +1,8 @@
-# Ai Deal Deck
+# AiDealDeck
 
-> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate pros. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.
+> AiDealDeck sells do-it-yourself AI toolkits, called cards, for real estate pros. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.
 
-Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.
+AiDealDeck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.
 
 ## Products
 
@@ -23,14 +23,14 @@ Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is indep
 
 ## Facts
 
-- What is Ai Deal Deck? Ai Deal Deck sells do-it-yourself AI toolkits for real estate pros. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.
+- What is AiDealDeck? AiDealDeck sells do-it-yourself AI toolkits for real estate pros. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.
 - What is a card? One tool for one part of your business: your numbers, your listings, your new leads, your money or your assistant. Each card comes with a blank workbook, a sample workbook, a START HERE guide, the setup prompt and a Setup Pack that Claude reads.
 - Are these real, physical cards? Does anything get mailed to me? No. The cards are digital. Nothing is printed and nothing is mailed. We call them cards because each one is one tool. You get a download link by email right after checkout, and the files open on your computer.
 - What is The AI Agent Deck? All five cards in one download, plus two bonus cards (Listing Watchdog and Morning Brief). It costs less than three single cards.
 - Who is it for? Real estate pros who want their back office organized: anyone running leads, deals and commissions in a real estate sales business without hiring a developer or learning new software.
 - Is it done for me? No. It is a do-it-yourself toolkit. Claude helps you set it up, but you do the setup and you keep it running. If you would rather have it set up for you, email support@aidealdeck.com and ask about done-for-you setup, which is a separate service.
-- Is this made by Anthropic or Claude? No. Ai Deal Deck is an independent product built to work with Claude. It is not made or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.
-- Who is behind Ai Deal Deck? Ai Deal Deck is a brand of The Showing Partner LLC, a Wisconsin company. It is not affiliated with or endorsed by any brokerage, MLS or trade association.
+- Is this made by Anthropic or Claude? No. AiDealDeck is an independent product built to work with Claude. It is not made or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.
+- Who is behind AiDealDeck? AiDealDeck is a brand of The Showing Partner LLC, a Wisconsin company. It is not affiliated with or endorsed by any brokerage, MLS or trade association.
 - What do I need to use a card? The Claude desktop app and a paid Claude plan, both from Anthropic, plus Google Sheets or Excel. A CRM is optional.
 - Do I need a paid Claude plan? Yes. The cards use Claude features that need a paid plan. Claude Pro is currently $20 a month and is sold separately by Anthropic. It is not included in our price.
 - Will I need a bigger Claude plan later? Maybe. The more cards you run and the more often they update, the more of your Claude plan they use. Heavier use may need a higher plan. Anthropic sets those plans and prices and can change them.
@@ -74,7 +74,7 @@ Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is indep
 - When does the person who referred me get their free card? Right after your purchase, if you typed their referral code: we email it to them automatically. If you typed only a name, they may need to email support@aidealdeck.com to claim it.
 - How do I say who referred me? At checkout there is a box that asks "How did you hear about us?" Type their referral code. No code? Type their name. If you have a creator code, type that instead.
 - Where is my referral code? We email it to you right after your first purchase. It starts with REF. Give it to another real estate pro. When they buy and type it in the "How did you hear about us?" box at checkout, you each get one free card, and we email yours automatically.
-- What is a creator code? Some creators who talk about Ai Deal Deck share a code. When you buy at least one card and enter that code in the "How did you hear about us?" box at checkout, you get one free single card of your choice.
+- What is a creator code? Some creators who talk about AiDealDeck share a code. When you buy at least one card and enter that code in the "How did you hear about us?" box at checkout, you get one free single card of your choice.
 - Do I get a free card every time I buy? No. A free card only comes with a creator code or a referral, and only when you buy at least one card. A purchase with no code and no referral does not include a free card.
 - Do I have to buy something to use a creator code or a referral? Yes. The free card comes with a purchase. You need to buy at least one card (or the Deck) and enter the code or the name at checkout. A code on its own, or with only the free bonus cards, does not qualify.
 - I used a creator code and did not get a free card. Why? The most common reason is that no card was purchased: the free card is only valid when you buy at least one other card. If you did buy and entered the code at checkout, email support@aidealdeck.com with the email you used and the code, and we will send your free card.
@@ -93,7 +93,7 @@ Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is indep
 - Can I get a receipt or an invoice? Your receipt is emailed right after checkout, and it has a link to generate an invoice.
 - I think I was charged twice or charged the wrong price. What do I do? Email support@aidealdeck.com with the email you used at checkout, what you were charged and when. We will look into it and reply.
 - I typed the wrong email at checkout. How do I get my files? Email support@aidealdeck.com from the address you want to use, with the name on the order and the date. We will get the download to you.
-- I just bought. What do I do next? Watch the 1-minute video at aidealdeck.com/start. Open the email from Ai Deal Deck, click View content and Download, open the Claude desktop app, click + and add your Downloads folder, then paste in the COPY THIS PROMPT file and press Enter.
+- I just bought. What do I do next? Watch the 1-minute video at aidealdeck.com/start. Open the email from AiDealDeck, click View content and Download, open the Claude desktop app, click + and add your Downloads folder, then paste in the COPY THIS PROMPT file and press Enter.
 - How do I get 10% off my next purchase? After you buy, answer 3 quick questions at aidealdeck.com/feedback. Your 10% code shows on the page when you send your answers. Type it in the Discount code box at checkout. It works for people who have already bought a card or the Deck.
 - Can I get a refund? All sales are final because the files are delivered instantly and you keep them, except where the law where you live gives you a right that cannot be waived. Please read this page and the Terms before you buy. If a file is missing or will not open, we fix it.
 - A file will not open or is missing. What do I do? Email support@aidealdeck.com with the email you used at checkout and what happened. We will help or send a working copy.

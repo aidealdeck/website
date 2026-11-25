@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the static Ai Deal Deck site from src/ into public/."""
+"""Builds the static AiDealDeck site from src/ into public/."""
 import json, os, re, shutil
 import extras
 import faq_data
@@ -47,7 +47,7 @@ FAQ = [
     ("Do I get a spreadsheet or a dashboard?", "Both are in the box and you choose. Every card comes with a workbook for Google Sheets or Excel. During setup Claude asks whether you want a live dashboard as your main view; if you say yes, Claude builds it for you inside Claude from your own numbers, and the workbook stays as the place your data lives. You can <a href=\"/demo/\">try a sample dashboard</a> before you buy."),
     ("Can I try it before I buy?", "Yes. Two cards are free: the <a href=\"/free/\">Listing Watchdog and Morning Brief</a>. There is also a <a href=\"/demo/\">live demo of the KPI dashboard</a> with sample data."),
     ("Can I talk to someone?", "Yes. Call " + extras.PHONE_DISPLAY + " any time; Sarah answers around the clock and can walk you through the cards. Or email support@aidealdeck.com."),
-    ("Is this made by Anthropic?", "No. Ai Deal Deck is an independent product built to work with Claude. It is not made or endorsed by Anthropic."),
+    ("Is this made by Anthropic?", "No. AiDealDeck is an independent product built to work with Claude. It is not made or endorsed by Anthropic."),
 ]
 
 SLUGS = {c["n"]: c["slug"] for c in extras.CARDS}
@@ -82,7 +82,7 @@ class _M:
 
 VIDEO = '''<section id="how">
 <div class="wrap">
-<div class="center"><div class="eyebrow">Watch &middot; 36 seconds</div><h2 class="h2">How does Ai Deal Deck work?</h2></div>
+<div class="center"><div class="eyebrow">Watch &middot; 36 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
 <video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
 <p class="center" style="margin-top:18px;color:var(--muted)">Rather have it set up for you? Email <a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a> and ask about done-for-you setup.</p>
 </div>
@@ -223,7 +223,7 @@ def main():
     plain_faq = [(q, re.sub(r"<[^>]+>", "", a)) for q, a in FAQ]
     for c in extras.CARDS:
         meta = {"out": f"cards/{c['slug']}/index.html", "path": f"/cards/{c['slug']}/",
-                "title": f"{c['name']} for real estate pros | Ai Deal Deck".replace("&", "&amp;"),
+                "title": f"{c['name']} for real estate pros | AiDealDeck".replace("&", "&amp;"),
                 "desc": (c["short"] + " Launch price $19 through Nov 30.").replace("&", "&amp;"),
                 "topnote": "<span data-sale>Black Friday</span>: this card is $19, not $49. <b data-left>Ends Nov 30.</b>",
                 "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
@@ -231,20 +231,20 @@ def main():
                 "ld": [extras.card_ld(c, extras.SITE + f"/cards/{c['slug']}/"), extras.faq_ld(plain_faq)]}
         pages.append((meta, extras.card_page(c, URLS, SNIP, faq_html(), shop_section())))
     long_plain = [(q, re.sub(r"<[^>]+>", "", a)) for q, a, k, c in faq_data.flat()]
-    pages.append(({"out": "faq/index.html", "path": "/faq/", "title": "Questions and answers | Ai Deal Deck",
-                   "desc": "Straight answers about Ai Deal Deck: what the cards do, what you need, setup, price, refunds, privacy and what they do not do.",
+    pages.append(({"out": "faq/index.html", "path": "/faq/", "title": "Questions and answers | AiDealDeck",
+                   "desc": "Straight answers about AiDealDeck: what the cards do, what you need, setup, price, refunds, privacy and what they do not do.",
                    "topnote": "<span data-sale>Black Friday</span>: all 5 cards + 2 bonus cards for $49, not $199. <b data-left>Ends Nov 30.</b>",
                    "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
                    "pixel": "", "ld": [extras.faq_ld(long_plain)]}, extras.faq_page(faq_data.FAQ_LONG)))
     LD = {
         "index.html": [extras.deck_ld(extras.SITE + "/"), extras.faq_ld(plain_faq),
-                       extras.video_ld("How does Ai Deal Deck work?", "A 36-second look at how a real estate agent sets up an Ai Deal Deck card with Claude.", "how-it-works", 36),
+                       extras.video_ld("How does AiDealDeck work?", "A 36-second look at how a real estate agent sets up an AiDealDeck card with Claude.", "how-it-works", 36),
                        extras.video_ld("The KPI dashboard Claude helps you build", "A 29-second look at the live real estate KPI dashboard, with sample data.", "kpi-tracker", 29),
-                       extras.video_ld("Watch the cards go to work", "A 28-second look at the five Ai Deal Deck cards.", "cards-go-to-work", 28)],
+                       extras.video_ld("Watch the cards go to work", "A 28-second look at the five AiDealDeck cards.", "cards-go-to-work", 28)],
         "numbers/index.html": [extras.card_ld(extras.CARDS[0], extras.SITE + "/numbers/"), extras.faq_ld(plain_faq)],
-        "free/index.html": [{"@type": "Product", "name": "Free cards: Listing Watchdog and Morning Brief", "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
+        "free/index.html": [{"@type": "Product", "name": "Free cards: Listing Watchdog and Morning Brief", "brand": {"@type": "Brand", "name": "AiDealDeck"},
                              "image": extras.SITE + "/assets/og.png",
-                             "description": "Two free Ai Deal Deck cards for real estate pros. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
+                             "description": "Two free AiDealDeck cards for real estate pros. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
                              "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": extras.SITE + "/free/"}}],
     }
     SALES = lambda out: out not in ("terms/index.html", "privacy/index.html", "feedback/index.html", "start/index.html")

@@ -283,3 +283,9 @@ dialog#offer a.no{display:block;text-align:center;text-decoration:none;box-sizin
 /* whole card opens "What is inside"; the buy link stays its own click */
 .pcard .more::after{content:"";position:absolute;inset:0;border-radius:16px;cursor:pointer}
 .pcard .single{position:relative;z-index:1;align-self:flex-start}
+.start3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.start3>div{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:20px 16px;text-align:center}
+.start3 span{display:flex;width:46px;height:46px;border-radius:50%;background:var(--gold);color:#13203F;font-weight:800;font-size:22px;align-items:center;justify-content:center;margin:0 auto 10px}
+.start3 b{display:block;font-family:'Space Grotesk',sans-serif;font-size:21px;line-height:1.2}
+.start3 small{display:block;margin-top:6px;font-size:15px;color:var(--muted);line-height:1.4}
+@media (max-width:640px){.start3{grid-template-columns:1fr}}

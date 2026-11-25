@@ -1,4 +1,4 @@
-"""Search/AI-search data, card pages and lead-capture blocks for the Ai Deal Deck site."""
+"""Search/AI-search data, card pages and lead-capture blocks for the AiDealDeck site."""
 import json
 
 SITE = "https://aidealdeck.com"
@@ -63,7 +63,7 @@ def esc(s):
 
 
 def org_ld():
-    return {"@type": "Organization", "@id": SITE + "/#org", "name": "Ai Deal Deck", "url": SITE + "/",
+    return {"@type": "Organization", "@id": SITE + "/#org", "name": "AiDealDeck", "url": SITE + "/",
             "logo": SITE + "/assets/og.png", "email": "support@aidealdeck.com", "telephone": PHONE_TEL,
             "legalName": "The Showing Partner LLC",
             "description": "Do-it-yourself AI toolkits (cards) for real estate pros, set up with Claude.",
@@ -77,7 +77,7 @@ def offer(price, url):
 
 
 def deck_ld(url):
-    return {"@type": "Product", "@id": SITE + "/#deck", "name": "The AI Agent Deck", "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
+    return {"@type": "Product", "@id": SITE + "/#deck", "name": "The AI Agent Deck", "brand": {"@type": "Brand", "name": "AiDealDeck"},
             "category": "Real estate agent software toolkit", "image": SITE + "/assets/og.png",
             "description": "Five do-it-yourself AI toolkits for real estate pros (KPI Tracker, Listing Exposure Playbook, Lead-for-Life System, "
                            "Commission & GCI Ledger, VA Playbook & Scorecard) plus two bonus cards (Listing Watchdog and Morning Brief). "
@@ -86,7 +86,7 @@ def deck_ld(url):
 
 
 def card_ld(c, url):
-    return {"@type": "Product", "name": c["name"], "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
+    return {"@type": "Product", "name": c["name"], "brand": {"@type": "Brand", "name": "AiDealDeck"},
             "category": "Real estate agent software toolkit", "image": SITE + "/assets/og.png", "description": c["short"],
             "isRelatedTo": {"@id": SITE + "/#deck"}, "offers": offer(19, url)}
 
@@ -101,7 +101,7 @@ def video_ld(name, desc, slug, secs):
 
 
 def ld_script(items):
-    graph = [org_ld(), {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Ai Deal Deck", "publisher": {"@id": SITE + "/#org"}}] + items
+    graph = [org_ld(), {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "AiDealDeck", "publisher": {"@id": SITE + "/#org"}}] + items
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, separators=(",", ":")).replace("</", "<\\/") + "</script>"
 
 
@@ -206,10 +206,10 @@ def card_page(c, urls, snip, faq_html, shop_html):
 
 
 def llms_txt(cards, faq):
-    lines = ["# Ai Deal Deck", "",
-             "> Ai Deal Deck sells do-it-yourself AI toolkits, called cards, for real estate pros. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
+    lines = ["# AiDealDeck", "",
+             "> AiDealDeck sells do-it-yourself AI toolkits, called cards, for real estate pros. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
              "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.", "",
-             "Ai Deal Deck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
+             "AiDealDeck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
              "## Products", "",
              f"- [The AI Agent Deck]({SITE}/): all five cards plus two bonus cards. Launch price $49 through November 30, 2026; regular price $199 from December 1, 2026."]
     for c in cards:
@@ -319,8 +319,8 @@ else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get th
 def chat():
     """Sarah, the site's AI assistant. Asks the script for an AI answer; if that is off or fails, answers from the FAQ."""
     html = """<button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false"><span class="chatav"><img src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="52" height="52" referrerpolicy="no-referrer" onerror="this.remove()"><i></i><em>1</em></span><span class="chattx"><b>Chat with Sarah</b><small>Hi! I have a Black Friday tip for you.</small></span></button>
-<section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the Ai Deal Deck AI assistant">
-<header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for Ai Deal Deck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
+<section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
+<header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for AiDealDeck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
 <div class="chatlog" id="chatlog" aria-live="polite"></div>
 <form id="chatform" autocomplete="off"><input id="chatq" type="text" maxlength="300" placeholder="Type your question" aria-label="Type your question"><button type="submit">Send</button></form>
 <p class="chatfine">Sarah is an AI assistant and can make mistakes. Please do not type private or payment details. <a href="/privacy/">Privacy</a></p>
@@ -330,7 +330,7 @@ def chat():
 if(!btn||!box)return;var hist=[],faq=null,busy=false,greeted=false;
 function ev(n,p){if(window.gtag)gtag('event',n,p||{});}
 function add(who,html,isText){var d=document.createElement('div');d.className='cm '+who;if(isText)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
-function open_(){box.hidden=false;btn.setAttribute('aria-expanded','true');btn.hidden=true;if(!greeted){greeted=true;add('s',"Hi, I am Sarah, the AI assistant for Ai Deal Deck. Black Friday sale: the full Deck is $49, not $199, through Nov 30. Any questions? Ask me.",true);var bd=btn.querySelector('.chatav em');if(bd)bd.remove();btn.classList.add('seen');ev('chat_open',{content_type:'chat',content_id:location.pathname});}inp.focus();}
+function open_(){box.hidden=false;btn.setAttribute('aria-expanded','true');btn.hidden=true;if(!greeted){greeted=true;add('s',"Hi, I am Sarah, the AI assistant for AiDealDeck. Black Friday sale: the full Deck is $49, not $199, through Nov 30. Any questions? Ask me.",true);var bd=btn.querySelector('.chatav em');if(bd)bd.remove();btn.classList.add('seen');ev('chat_open',{content_type:'chat',content_id:location.pathname});}inp.focus();}
 function close_(){box.hidden=true;btn.hidden=false;btn.setAttribute('aria-expanded','false');}
 btn.addEventListener('click',open_);document.getElementById('chatx').addEventListener('click',close_);
 var STOP={the:1,a:1,an:1,is:1,are:1,'do':1,does:1,i:1,to:1,it:1,of:1,and:1,or:1,my:1,me:1,you:1,your:1,what:1,how:1,can:1,'for':1,'in':1,on:1,'with':1,'this':1,that:1,be:1,have:1,'if':1,get:1,will:1,there:1,about:1};
