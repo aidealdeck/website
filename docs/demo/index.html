@@ -123,8 +123,8 @@ button.drow.off span{text-decoration:line-through;color:#5a6686}button.drow.off 
 <p class="sub">This is a working sample of the live dashboard Claude builds from your KPI Tracker. Move the sliders and switch lead sources off to see what each one is really worth. Sample data; yours runs on your own numbers and may look different.</p>
 
 <div class="dctl">
-<label>Yearly GCI goal <b id="o-goal"></b><input id="i-goal" type="range" min="100000" max="600000" step="10000" value="300000" aria-label="Yearly GCI goal"></label>
-<label>Average GCI per closing <b id="o-avg"></b><input id="i-avg" type="range" min="5000" max="25000" step="500" value="12000" aria-label="Average GCI per closing"></label>
+<label>Yearly GCI goal <b id="o-goal"></b><input id="i-goal" type="range" min="100000" max="2000000" step="25000" value="300000" aria-label="Yearly GCI goal"><span class="presets" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><button type="button" data-goal="300000" style="background:none;border:1px solid var(--line,#3a4a78);color:inherit;border-radius:999px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer">$300K</button><button type="button" data-goal="500000" style="background:none;border:1px solid var(--line,#3a4a78);color:inherit;border-radius:999px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer">$500K</button><button type="button" data-goal="1000000" style="background:none;border:1px solid var(--line,#3a4a78);color:inherit;border-radius:999px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer">$1M</button><button type="button" data-goal="2000000" style="background:none;border:1px solid var(--line,#3a4a78);color:inherit;border-radius:999px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer">$2M</button></span></label>
+<label>Average GCI per closing <b id="o-avg"></b><input id="i-avg" type="range" min="5000" max="50000" step="500" value="12000" aria-label="Average GCI per closing"></label>
 <label>Weeks left in the year <b id="o-wk"></b><input id="i-wk" type="range" min="1" max="52" step="1" value="5" aria-label="Weeks left in the year"></label>
 </div>
 
@@ -139,6 +139,10 @@ button.drow.off span{text-decoration:line-through;color:#5a6686}button.drow.off 
 <div class="dg">
 <div class="dp"><h3>Closed GCI by lead source</h3><div class="hint">Click a source to switch it off and see what you would lose.</div><div id="d-src"></div></div>
 <div class="dp"><h3>Your funnel this year</h3><div class="hint">Where deals drop out, lead to closed.</div><div id="d-fun"></div></div>
+<div class="dp"><h3>Team leaderboard this week</h3><div class="hint">Points for the work that leads to closings. You set the points and the weekly target. Sample names.</div>
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin-top:8px"><thead><tr style="text-align:left;opacity:.75"><th style="padding:6px 4px">Person</th><th style="padding:6px 4px;text-align:right">Talks</th><th style="padding:6px 4px;text-align:right">Appts set</th><th style="padding:6px 4px;text-align:right">Appts held</th><th style="padding:6px 4px;text-align:right">Points</th><th style="padding:6px 4px;text-align:right">Target</th><th style="padding:6px 4px">On pace?</th></tr></thead>
+<tbody id="d-lb"></tbody></table>
+<div class="hint" style="margin-top:8px">1 point per talk, 5 per appointment set, 10 per appointment held, 25 per contract, 50 per closing. Weekly target: <b id="o-pt"></b> points <input id="i-pt" type="range" min="20" max="150" step="2" value="56" aria-label="Weekly points target" style="vertical-align:middle;width:140px"></div></div>
 </div>
 
 <p class="dnote">Sample data for a made-up team. The KPI Tracker card includes the spreadsheet these numbers come from, and Claude builds the live dashboard with you during setup. Needs your own Claude account.</p>
@@ -169,7 +173,7 @@ function draw(){
   [].forEach.call(src.children,function(b,i){b.children[1].style.width=(S[i][7]/mx*100)+'%';b.children[2].textContent=usd(S[i][7]);});
   var fv=[t[1],t[2],t[3],t[4],t[5]]; [].forEach.call(fun.children,function(d,i){d.children[1].style.width=(fv[0]?fv[i]/fv[0]*100:0)+'%';d.children[2].textContent=fv[i];});
 }
-['i-goal','i-avg','i-wk'].forEach(function(i){$(i).addEventListener('input',draw)}); draw();
+var LB=[['Jordan Lee',38,3,2,0,0],['Alex Rivera',27,2,1,1,0],['Sam Patel',22,1,1,0,0]];function lb(){var tg=+$('i-pt').value;$('o-pt').textContent=tg;var tb=$('d-lb');tb.innerHTML='';LB.forEach(function(r){var p=r[1]+r[2]*5+r[3]*10+r[4]*25+r[5]*50;var tr=document.createElement('tr');[r[0],r[1],r[2],r[3],p,tg,p>=tg?'Yes':'Behind'].forEach(function(v,k){var td=document.createElement('td');td.textContent=v;td.style.padding='6px 4px';if(k>0&&k<6)td.style.textAlign='right';if(k===6)td.style.fontWeight='700';tr.appendChild(td);});tb.appendChild(tr);});}$('i-pt').addEventListener('input',lb);lb();['i-goal','i-avg','i-wk'].forEach(function(i){$(i).addEventListener('input',draw)});document.querySelectorAll('[data-goal]').forEach(function(b){b.addEventListener('click',function(){$('i-goal').value=b.getAttribute('data-goal');draw();if(window.gtag)gtag('event','demo_goal',{content_type:'demo',content_id:b.textContent});})}); draw();
 })();
 </script>
 <section class="leadband" id="start-free">
