@@ -186,7 +186,13 @@ def main():
         h = (head.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{PATH}}", meta["path"])
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]))
         modal = UPSELL.replace("__DECK__", URLS["DECK"]).replace("__KPI__", URLS["KPI"]) if meta["out"] in ("index.html","numbers/index.html","free/index.html") else ""
+        # Offers now happen inside Gumroad's checkout (upsells), so the on-site pop-up is off.
+        SITE_POPUP = False
+        if not SITE_POPUP:
+            modal = ""
         page = render(h + body + modal + foot)
+        if not SITE_POPUP:
+            page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
         leftover = re.findall(r"\{\{[A-Z_:]+.*?\}\}", page)
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
         dest = os.path.join(OUT, meta["out"])
