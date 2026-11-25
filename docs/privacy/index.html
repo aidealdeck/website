@@ -39,7 +39,7 @@ fbq('track','PageView');
 }
 /* Path tracking: tag every buy link with the page, the button position and the ad campaign that brought the visitor. */
 (function(){
-var page=({'/':'deck','/numbers/':'numbers','/free/':'free','/demo/':'demo'})[location.pathname]||(location.pathname.indexOf('/cards/')===0?'card_'+location.pathname.split('/')[2]:'other');
+var page=({'/':'deck','/numbers/':'numbers','/free/':'free','/demo/':'demo','/faq/':'faq'})[location.pathname]||(location.pathname.indexOf('/cards/')===0?'card_'+location.pathname.split('/')[2]:'other');
 var ad={};try{var q=new URLSearchParams(location.search);['utm_source','utm_campaign','utm_term'].forEach(function(k){var v=q.get(k);if(v)ad[k]=v.slice(0,80);});
  if(Object.keys(ad).length){sessionStorage.setItem('ad',JSON.stringify(ad));}else{ad=JSON.parse(sessionStorage.getItem('ad')||'{}');}
  if(!sessionStorage.getItem('land'))sessionStorage.setItem('land',page);}catch(e){}
@@ -47,7 +47,7 @@ var land=page;try{land=sessionStorage.getItem('land')||page;}catch(e){}
 function pos(a){var m=[['.topbar','topbar'],['.nudge','nudge'],['.mbar','mobilebar'],['.leadband','leadband'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
 function tag(){document.querySelectorAll('a[data-buy]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('utm_source',ad.utm_source||'direct');u.searchParams.set('utm_medium','site_'+land);u.searchParams.set('utm_campaign',ad.utm_campaign||'none');u.searchParams.set('utm_content',page+'_'+pos(a));a.href=u.toString();a.setAttribute('data-pos',pos(a));}catch(e){}});}
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tag);}else{tag();}
-document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a)return;gtag('event','begin_checkout',{item_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});if(!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a)return;gtag('event','begin_checkout',{content_type:'button',content_id:page+' / '+(a.getAttribute('data-pos')||'')+' / '+a.getAttribute('data-buy'),content_group:location.pathname,item_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});if(!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2684470808323193&ev=PageView&noscript=1"></noscript>
@@ -55,11 +55,32 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy
 /* Sale name: Black Friday through Nov 29, Cyber Monday on Nov 30 (Central time). Same price both days. */
 document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago'}).format(new Date());if(d==='2026-11-30'){document.querySelectorAll('[data-sale]').forEach(function(e){e.textContent='Cyber Monday launch price';});}}catch(e){}});
 </script>
+<script>
+/* Behavior tracking (no recordings, no personal data): how long each section and card is on screen, hover time on cards, and how far people scroll. */
+(function(){if(navigator.globalPrivacyControl||!('IntersectionObserver' in window))return;
+document.addEventListener('DOMContentLoaded',function(){
+var T={},vis={},H={},maxScroll=0,sent=false;
+function name(el,i){if(el.classList.contains('pcard')){var h=el.querySelector('h3');return 'card: '+(h?h.textContent.trim().slice(0,40):i);}
+var id=el.id||'';var h2=el.querySelector('h1,h2');return (id?id+': ':'')+(h2?h2.textContent.trim().slice(0,50):'section '+i);}
+var els=[].slice.call(document.querySelectorAll('main > section, main .pcard, .leadband'));
+var io=new IntersectionObserver(function(es){var now=Date.now();es.forEach(function(e){var k=e.target._k;if(e.isIntersecting&&e.intersectionRatio>=0.4){if(!vis[k])vis[k]=now;}else if(vis[k]){T[k]=(T[k]||0)+now-vis[k];vis[k]=0;}});},{threshold:[0,0.4,0.8]});
+els.forEach(function(el,i){el._k=name(el,i);io.observe(el);
+if(el.classList.contains('pcard')){var t0=0;el.addEventListener('mouseenter',function(){t0=Date.now();});el.addEventListener('mouseleave',function(){if(t0){H[el._k]=(H[el._k]||0)+Date.now()-t0;t0=0;}});}});
+window.addEventListener('scroll',function(){var d=document.documentElement;var p=Math.round(100*(d.scrollTop+window.innerHeight)/d.scrollHeight);if(p>maxScroll)maxScroll=Math.min(p,100);},{passive:true});
+function flush(){if(sent||!window.gtag)return;sent=true;var now=Date.now(),page=location.pathname;
+Object.keys(vis).forEach(function(k){if(vis[k]){T[k]=(T[k]||0)+now-vis[k];vis[k]=0;}});
+Object.keys(T).map(function(k){return [k,T[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,14).forEach(function(r){if(r[1]>=2000)gtag('event','section_time',{content_type:'section',content_id:r[0],content_group:page,value:Math.round(r[1]/1000)});});
+Object.keys(H).forEach(function(k){if(H[k]>=1500)gtag('event','card_hover',{content_type:'card_hover',content_id:k,content_group:page,value:Math.round(H[k]/1000)});});
+gtag('event','scroll_depth',{content_type:'scroll',content_id:page,content_group:page,value:maxScroll});}
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
+window.addEventListener('pagehide',flush);
+});})();
+</script>
 </head>
 <body>
 <header class="topbar">
 <a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="10" height="14" rx="1.5" transform="rotate(-12 8 13)"/><rect x="7" y="4" width="10" height="14" rx="1.5"/><rect x="11" y="6" width="10" height="14" rx="1.5" transform="rotate(12 16 13)"/></svg>Ai Deal Deck</a>
-<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a><a href="/demo/">Live demo</a><a href="tel:+14149466479" data-lead="call" class="navcall">Call (414) 946-6479</a></nav>
+<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a><a href="/demo/">Live demo</a><a href="/faq/">Questions</a><a href="tel:+14149466479" data-lead="call" class="navcall">Call (414) 946-6479</a></nav>
 <div class="note"></div>
 
 </header>
@@ -77,7 +98,7 @@ document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateT
 <li><b>When you buy or download (through Gumroad).</b> Gumroad processes your payment and shares your name, email address, the product, the price, your country and order details with us. We never receive your full card number.</li>
 <li><b>When you subscribe or email us.</b> Your email address and anything you choose to write to us.</li>
 <li><b>When you call us.</b> Our phone line is answered by an automated voice assistant. Calls may be recorded and transcribed so we can answer you, follow up and improve our service. If you give your name, email address or phone number on a call, we keep it to reply to you. Our voice provider keeps call records for a limited time.</li>
-<li><b>When you visit our pages.</b> We use the Meta Pixel, a tool from Meta Platforms, Inc. (Facebook and Instagram). It uses cookies and similar technology to record visits, which pages you view, button clicks and purchases, along with technical data such as your browser, device and IP address, and sends that to Meta. We use this to measure our ads and to show ads to people who visited our pages. Our buy links also carry tags that record which of our pages and buttons, and which ad campaign, led to a purchase; these tags describe the visit, not you. We also use Google Analytics, a tool from Google LLC, which uses cookies to count visits and show us which pages and buttons people use. Gumroad's checkout pages may also use cookies; see Gumroad's privacy policy.</li>
+<li><b>When you visit our pages.</b> We use the Meta Pixel, a tool from Meta Platforms, Inc. (Facebook and Instagram). It uses cookies and similar technology to record visits, which pages you view, button clicks and purchases, along with technical data such as your browser, device and IP address, and sends that to Meta. We use this to measure our ads and to show ads to people who visited our pages. Our buy links also carry tags that record which of our pages and buttons, and which ad campaign, led to a purchase; these tags describe the visit, not you. We also use Google Analytics, a tool from Google LLC, which uses cookies to count visits and show us which pages and buttons people use, how long each section of a page is on screen, how far people scroll, and what people type into the search box on our Questions page (so we can add missing answers). We do not record your screen or your keystrokes anywhere else. Gumroad's checkout pages may also use cookies; see Gumroad's privacy policy.</li>
 </ul>
 
 <h2>3. How we use it</h2>

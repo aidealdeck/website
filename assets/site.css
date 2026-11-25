@@ -217,3 +217,11 @@ body{padding-bottom:66px}
 .plain li{padding-left:16px;position:relative}
 .plain li:before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold-ink)}
 .pcard .more{display:inline-block;margin:2px 0 10px;font-size:14px;font-weight:600;color:var(--gold-ink)}
+
+/* long FAQ */
+.faqsearch{margin-top:26px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.faqsearch input{flex:1 1 360px;max-width:640px;font:inherit;font-size:18px;padding:16px 18px;border-radius:10px;border:2px solid var(--gold);background:#fff;color:var(--navy);min-height:52px}
+.faqsearch span{color:var(--cream);font-size:15px}
+.faqgroup{margin-top:40px}.faqgroup:first-of-type{margin-top:0}
+.faqgroup .h3{font-size:24px;margin-bottom:14px}
+.faqmiss{background:#fff;border:2px solid var(--gold);border-radius:12px;padding:18px 20px;margin-bottom:28px;font-size:16px;line-height:1.5}

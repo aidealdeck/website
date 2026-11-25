@@ -2,6 +2,7 @@
 """Builds the static Ai Deal Deck site from src/ into public/."""
 import json, os, re, shutil
 import extras
+import faq_data
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC, OUT = os.path.join(ROOT, "src"), os.path.join(ROOT, "docs")
@@ -52,7 +53,7 @@ SLUGS = {c["n"]: c["slug"] for c in extras.CARDS}
 
 def faq_html():
     items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in FAQ)
-    return f'<div class="faq">{items}</div>'
+    return f'<div class="faq">{items}</div><p class="center" style="margin-top:22px"><a href="/faq/"><b>See all questions and answers</b></a></p>'
 
 def card(m):
     num, tag, name, body, url, tilt = m.group(1).split("|")
@@ -228,6 +229,12 @@ def main():
                 "pixel": "fbq('track','ViewContent',{content_name:'" + c["name"].replace("&", "and") + "',value:19,currency:'USD'});",
                 "ld": [extras.card_ld(c, extras.SITE + f"/cards/{c['slug']}/"), extras.faq_ld(plain_faq)]}
         pages.append((meta, extras.card_page(c, URLS, SNIP, faq_html(), shop_section())))
+    long_plain = [(q, re.sub(r"<[^>]+>", "", a)) for q, a, k, c in faq_data.flat()]
+    pages.append(({"out": "faq/index.html", "path": "/faq/", "title": "Questions and answers | Ai Deal Deck",
+                   "desc": "Straight answers about Ai Deal Deck: what the cards do, what you need, setup, price, refunds, privacy and what they do not do.",
+                   "topnote": "<span data-sale>Black Friday launch price</span> $49 through Nov 30 · regular price $199 from Dec 1",
+                   "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
+                   "pixel": "", "ld": [extras.faq_ld(long_plain)]}, extras.faq_page(faq_data.FAQ_LONG)))
     LD = {
         "index.html": [extras.deck_ld(extras.SITE + "/"), extras.faq_ld(plain_faq),
                        extras.video_ld("How does Ai Deal Deck work?", "A 36-second look at how a real estate agent sets up an Ai Deal Deck card with Claude.", "how-it-works", 36),
@@ -265,7 +272,7 @@ def main():
     prio = lambda p: "1.0" if p == "/" else ("0.3" if p in ("/terms/", "/privacy/") else "0.8")
     open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"<url><loc>https://aidealdeck.com{p}</loc><lastmod>{BUILD_DATE}</lastmod><priority>{prio(p)}</priority></url>\n" for p in sorted(sitemap)) + "</urlset>\n")
-    open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, plain_faq))
+    open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, long_plain))
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
 
 if __name__ == "__main__":

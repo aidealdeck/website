@@ -136,7 +136,7 @@ def nudge(free_url):
 <script>
 (function(){{var n=document.getElementById('nudge');if(!n)return;var done=false;
 try{{done=sessionStorage.getItem('nudge')==='1';}}catch(e){{}}
-function show(){{if(done)return;done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}n.hidden=false;if(window.gtag)gtag('event','free_offer_shown',{{page:location.pathname}});}}
+function show(){{if(done)return;done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}n.hidden=false;if(window.gtag)gtag('event','free_offer_shown',{{content_type:'nudge',content_id:location.pathname}});}}
 function stop(){{done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}}}
 document.addEventListener('click',function(e){{if(e.target.closest('.nx')){{n.hidden=true;return;}}if(e.target.closest('a[data-buy]'))stop();
 var l=e.target.closest('a[data-lead]');if(l){{var k=l.getAttribute('data-lead');if(window.gtag)gtag('event','generate_lead',{{method:k,page:location.pathname}});if(window.fbq)fbq('track','Contact',{{method:k}});}}}});
@@ -220,3 +220,39 @@ def llms_txt(cards, faq):
     lines += ["", "## Contact", "", "- Email: support@aidealdeck.com", f"- Phone: {PHONE_DISPLAY} (answered around the clock)",
               f"- Terms: {SITE}/terms/", f"- Privacy: {SITE}/privacy/", ""]
     return "\n".join(lines)
+
+
+def faq_page(groups):
+    import re as _re
+    blocks = []
+    for cat, items in groups:
+        rows = "".join(f'<details data-k="{esc(k)}"><summary>{esc(q)}</summary><p>{a}</p></details>' for q, a, k in items)
+        blocks.append(f'<div class="faqgroup"><h2 class="h3">{esc(cat)}</h2><div class="faq">{rows}</div></div>')
+    return f'''<section class="hero" style="padding-bottom:56px">
+<div class="wrap"><div class="copy" style="flex-basis:100%">
+<span class="pill">Answers</span>
+<h1>Questions, <em>answered straight.</em></h1>
+<p class="sub">Type your question. If we do not have an answer yet, we will see what you asked and add it.</p>
+<form class="faqsearch" role="search" onsubmit="return false"><input id="faqq" type="search" placeholder="Try: refund, CRM, dashboard, Claude plan" aria-label="Search the questions" autocomplete="off"><span id="faqcount" aria-live="polite"></span></form>
+</div></div>
+</section>
+<section>
+<div class="narrow">
+<div id="faqmiss" class="faqmiss" hidden><b>We do not have that one yet.</b> We have noted your question and will add an answer. For an answer now, call <a href="tel:{PHONE_TEL}" data-lead="call">{PHONE_DISPLAY}</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a>.</div>
+{"".join(blocks)}
+</div>
+</section>
+<script>
+(function(){{var q=document.getElementById('faqq'),miss=document.getElementById('faqmiss'),cnt=document.getElementById('faqcount');if(!q)return;
+var items=[].slice.call(document.querySelectorAll('.faqgroup details'));var stop={{the:1,a:1,an:1,is:1,it:1,do:1,does:1,i:1,to:1,of:1,and:1,or:1,can:1,my:1,you:1,what:1,how:1,for:1,with:1,in:1,on:1,me:1,will:1,be:1,this:1,that:1,are:1,if:1,get:1,have:1}};
+items.forEach(function(d){{d._t=(d.textContent+' '+d.getAttribute('data-k')).toLowerCase();}});
+var timer=null,last='';
+function run(){{var raw=q.value.trim().toLowerCase();var words=raw.split(/[^a-z0-9$]+/).filter(function(w){{return w.length>1&&!stop[w];}});var n=0;
+items.forEach(function(d){{var hit=!words.length||words.some(function(w){{return d._t.indexOf(w.replace(/s$/,''))>-1;}});d.hidden=!hit;if(hit)n++;if(words.length&&hit&&n<=1)d.open=true;}});
+document.querySelectorAll('.faqgroup').forEach(function(g){{g.hidden=!g.querySelector('details:not([hidden])');}});
+miss.hidden=!(raw&&n===0);cnt.textContent=raw?(n+(n===1?' answer':' answers')):'';
+clearTimeout(timer);if(raw.length>2){{timer=setTimeout(function(){{if(raw===last)return;last=raw;if(window.gtag)gtag('event','view_search_results',{{search_term:(n?'':'MISS: ')+raw.slice(0,90),content_type:n?'faq_hit':'faq_miss',value:n}});}},1500);}}}}
+q.addEventListener('input',run);
+document.addEventListener('toggle',function(e){{var d=e.target;if(d.tagName==='DETAILS'&&d.open&&d.closest('.faqgroup')&&window.gtag)gtag('event','faq_open',{{content_type:'faq_open',content_id:d.querySelector('summary').textContent.slice(0,90)}});}},true);
+}})();
+</script>'''
