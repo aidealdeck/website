@@ -24,7 +24,18 @@ fbq('init','2684470808323193');
 fbq('track','PageView');
 {{PIXEL_EXTRA}}
 }
-document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a||!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD'});});
+/* Path tracking: tag every buy link with the page, the button position and the ad campaign that brought the visitor. */
+(function(){
+var page=({'/':'deck','/numbers/':'numbers','/free/':'free'})[location.pathname]||'other';
+var ad={};try{var q=new URLSearchParams(location.search);['utm_source','utm_campaign','utm_term'].forEach(function(k){var v=q.get(k);if(v)ad[k]=v.slice(0,80);});
+ if(Object.keys(ad).length){sessionStorage.setItem('ad',JSON.stringify(ad));}else{ad=JSON.parse(sessionStorage.getItem('ad')||'{}');}
+ if(!sessionStorage.getItem('land'))sessionStorage.setItem('land',page);}catch(e){}
+var land=page;try{land=sessionStorage.getItem('land')||page;}catch(e){}
+function pos(a){var m=[['.topbar','topbar'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
+function tag(){document.querySelectorAll('a[data-buy]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('utm_source',ad.utm_source||'direct');u.searchParams.set('utm_medium','site_'+land);u.searchParams.set('utm_campaign',ad.utm_campaign||'none');u.searchParams.set('utm_content',page+'_'+pos(a));a.href=u.toString();a.setAttribute('data-pos',pos(a));}catch(e){}});}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tag);}else{tag();}
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a||!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
+})();
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2684470808323193&ev=PageView&noscript=1"></noscript>
 </head>
