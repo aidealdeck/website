@@ -18,7 +18,7 @@ CARDS = [
                "Starts on clearly labeled starting averages, then switches to your own rates as your year fills in"],
          inside=["START HERE guide (PDF)", "Your KPI Tracker workbook, blank (Excel or Google Sheets)", "Example KPI Tracker filled with sample data",
                  "The copy-and-paste setup prompt for Claude", "Claude Setup Pack (Claude reads this for you)", "Terms and disclaimer"],
-         who="Solo agents and team leads who want to manage by numbers instead of by feel."),
+         who="Real estate pros who want to manage by numbers instead of by feel."),
     dict(slug="listing-exposure-playbook", key="LISTING", n="2", name="Listing Exposure Playbook",
          short="A repeatable 14-day listing launch plan for real estate agents, with fill-in templates and day-7 and day-14 seller reports.",
          h1="A 14-day listing launch plan you can <em>run the same way every time.</em>",
@@ -27,7 +27,7 @@ CARDS = [
                "Builds a day-7 and a day-14 report you can send your seller", "Keeps a launch tracker so nothing on the list gets skipped"],
          inside=["START HERE guide (PDF)", "Your Listing Launch Tracker workbook, blank", "Listing Exposure Playbook (PDF)", "Listing Templates (PDF)",
                  "Example Listing Launch Tracker filled with sample data", "The copy-and-paste setup prompt for Claude", "Claude Setup Pack", "Terms and disclaimer"],
-         who="Listing agents who want a consistent launch and an easy way to show sellers the work."),
+         who="Real estate pros who want a consistent listing launch and an easy way to show sellers the work."),
     dict(slug="lead-for-life-system", key="LEAD", n="3", name="Lead-for-Life System",
          short="A lead follow-up system for real estate agents: fast first contact, a set follow-up plan until they book, a speed scorecard and a TCPA checklist.",
          h1="A lead follow-up plan so <em>no paid lead gets forgotten.</em>",
@@ -36,7 +36,7 @@ CARDS = [
                "Scores how fast new leads get their first contact", "Includes a TCPA checklist for texting and calling"],
          inside=["START HERE guide (PDF)", "Your Lead-for-Life Plan & Call List workbook, blank", "Lead-for-Life System Playbook (PDF)",
                  "Example Plan & Call List filled with sample data", "The copy-and-paste setup prompt for Claude", "Claude Setup Pack", "Terms and disclaimer"],
-         who="Agents who pay for leads or get more inquiries than they can follow up from memory. Setup takes about 20 minutes, plus an hour or two to build your plan in your CRM and write your own emails."),
+         who="Real estate pros who pay for leads or get more inquiries than they can follow up from memory. Setup takes about 20 minutes, plus an hour or two to build your plan in your CRM and write your own emails."),
     dict(slug="commission-gci-ledger", key="GCI", n="4", name="Commission & GCI Ledger",
          short="A commission and GCI tracker for real estate agents: every closing, fee, referral fee and split in one place, with team totals kept separate from your own income.",
          h1="A commission tracker that shows <em>what you really netted.</em>",
@@ -45,7 +45,7 @@ CARDS = [
                "Keeps team production separate from your personal income", "Gives you one place to check a commission statement against"],
          inside=["START HERE guide (PDF)", "Your Commission Ledger workbook, blank", "Example Commission Ledger filled with sample data",
                  "The copy-and-paste setup prompt for Claude", "Claude Setup Pack", "Terms and disclaimer"],
-         who="Agents and team leads who want one clear record of the money. It is a tracking tool, not accounting software or tax advice."),
+         who="Real estate pros who want one clear record of the money. It is a tracking tool, not accounting software or tax advice."),
     dict(slug="va-playbook-scorecard", key="VA", n="5", name="VA Playbook & Scorecard",
          short="A real estate virtual assistant playbook: a narrow role with three jobs, a daily routine, an end-of-day report and a weekly scorecard.",
          h1="A real estate assistant role with <em>three jobs and a scorecard.</em>",
@@ -54,7 +54,7 @@ CARDS = [
                "Scores the week so you can see what got done", "Includes templates for handing work over"],
          inside=["START HERE guide (PDF)", "Your VA Scorecard workbook, blank", "Real Estate VA Playbook (PDF)", "VA Templates (PDF)",
                  "Example VA Scorecard filled with sample data", "The copy-and-paste setup prompt for Claude", "Claude Setup Pack", "Terms and disclaimer"],
-         who="Agents with an assistant, or about to hire one. Check your state's rules on what an unlicensed assistant may do."),
+         who="Real estate pros with an assistant, or about to hire one. Check your state's rules on what an unlicensed assistant may do."),
 ]
 
 
@@ -160,6 +160,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <p class="sub">{esc(c["sub"])}</p>
 <div class="cta-row">
 <a class="btn" href="{buy}" data-buy="{name}" data-value="19">Get this card: <s class="strike sm">$49</s> $19 {snip["ARROW"]}</a>
+<ol class="howbuy" aria-label="How to buy"><li><b>1.</b> Click the button.</li><li><b>2.</b> Type your email and pay.</li><li><b>3.</b> Your card lands in your email right away.</li></ol>
 <div class="meta"><span data-sale>Black Friday launch price</span> through Nov 30.<br>Regular price $49 from Dec 1. Emailed instantly.</div>
 </div>
 <p class="alt-buy">Want all five cards plus two bonus cards? <a href="{urls["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the full Deck for <s>$199</s> $49</a></p>
