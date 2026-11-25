@@ -164,7 +164,8 @@ def shots_section():
     figs = "".join(shot_fig(k) for k in SHOT_CAPTIONS)
     if not figs:
         return ""  # no placeholders on the live site
-    return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2><div class="shots">{figs}</div></div></section>'
+    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI Tracker dashboard, 23 seconds. Sample data.</p>'
+    return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2>{vid}<div class="shots">{figs}</div></div></section>'
 
 def render(body):
     body = re.sub(r"\{\{CARD:(.+?)\}\}(?=\s*\n)", lambda m: card(m) if "{{" not in m.group(1) else m.group(0), body)
