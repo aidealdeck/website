@@ -1,0 +1,87 @@
+<!--META {"out":"demo/index.html","path":"/demo/","title":"Try the KPI dashboard | Ai Deal Deck","desc":"Play with a sample of the live KPI dashboard Claude builds from your tracker. Change the goal, switch lead sources on and off, and watch the numbers move.","topnote":"Live demo · sample data","topbtn":"<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>","pixel":"fbq('track','ViewContent',{content_name:'KPI demo',value:19,currency:'USD'});"} -->
+
+<style>
+#demo{background:#0E1730;color:#fff;padding:44px 20px 56px}
+#demo .dw{max-width:1180px;margin:0 auto}
+#demo h1{font-family:'Space Grotesk',Inter,sans-serif;font-size:clamp(28px,4vw,40px);margin:0;color:#fff}
+#demo h1 em{font-style:normal;color:#D4AF5A}
+#demo .sub{color:#8fa0c8;font-size:15px;margin-top:6px;max-width:70ch}
+.dctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:22px 0 16px}
+.dctl label{display:block;background:#13203F;border:1px solid #D4AF5A;border-radius:14px;padding:14px 16px;font-size:14px;color:#c6d0ea}
+.dctl b{float:right;color:#D4AF5A;font-size:18px;font-family:'Space Grotesk',sans-serif}
+.dctl input{width:100%;margin-top:10px;accent-color:#D4AF5A}
+.dkp{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:14px}
+.dt{background:#13203F;border:1px solid #26366a;border-radius:14px;padding:16px 18px;min-width:0}
+.dt.g{border-color:#D4AF5A;background:linear-gradient(160deg,#1a2a55,#13203F)}
+.dt .l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8fa0c8;font-weight:700}
+.dt .v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;margin-top:6px;font-variant-numeric:tabular-nums}
+.dt.g .v{color:#D4AF5A}
+.dt .n{font-size:13px;color:#c6d0ea;margin-top:4px}
+.dbar{height:10px;background:#0b1226;border-radius:99px;margin-top:10px;overflow:hidden}.dbar i{display:block;height:100%;background:linear-gradient(90deg,#9c7d33,#D4AF5A);transition:width .35s}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.dp{background:#13203F;border:1px solid #26366a;border-radius:14px;padding:16px 20px;min-width:0}
+.dp h3{margin:0 0 4px;font-family:'Space Grotesk',sans-serif;font-size:18px;color:#fff}
+.dp .hint{font-size:13px;color:#8fa0c8;margin-bottom:10px}
+.drow{display:grid;grid-template-columns:minmax(110px,150px) 1fr 84px;gap:10px;align-items:center;margin:8px 0;font-size:15px}
+.drow span{color:#c6d0ea}.drow i{height:20px;border-radius:5px;background:#D4AF5A;transition:width .35s;min-width:2px}.drow b{text-align:right;font-variant-numeric:tabular-nums}
+button.drow{width:100%;background:none;border:0;color:inherit;font:inherit;padding:6px 8px;margin:2px -8px;border-radius:8px;cursor:pointer;text-align:left}
+button.drow:hover{background:#1a2a55}button.drow:focus-visible{outline:2px solid #D4AF5A}
+button.drow.off span{text-decoration:line-through;color:#5a6686}button.drow.off i{background:#26366a}button.drow.off b{color:#5a6686}
+.dnote{margin-top:18px;color:#8fa0c8;font-size:13px}
+.dcta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+</style>
+<section id="demo">
+<div class="dw">
+<h1>Try the <em>KPI dashboard</em></h1>
+<p class="sub">This is a working sample of the live dashboard Claude builds from your KPI Tracker. Move the sliders and switch lead sources off to see what each one is really worth. Sample data; yours runs on your own numbers and may look different.</p>
+
+<div class="dctl">
+<label>Yearly GCI goal <b id="o-goal"></b><input id="i-goal" type="range" min="100000" max="600000" step="10000" value="300000" aria-label="Yearly GCI goal"></label>
+<label>Average GCI per closing <b id="o-avg"></b><input id="i-avg" type="range" min="5000" max="25000" step="500" value="12000" aria-label="Average GCI per closing"></label>
+<label>Weeks left in the year <b id="o-wk"></b><input id="i-wk" type="range" min="1" max="52" step="1" value="5" aria-label="Weeks left in the year"></label>
+</div>
+
+<div class="dkp">
+<div class="dt g"><div class="l">Closed GCI this year</div><div class="v" id="k-gci"></div><div class="n" id="k-pct"></div><div class="dbar"><i id="k-bar"></i></div></div>
+<div class="dt"><div class="l">Needed per week</div><div class="v" id="k-week"></div><div class="n" id="k-left"></div></div>
+<div class="dt"><div class="l">Closings still needed</div><div class="v" id="k-need"></div><div class="n" id="k-done"></div></div>
+<div class="dt"><div class="l">Lead to closed</div><div class="v" id="k-conv"></div><div class="n" id="k-leads"></div></div>
+<div class="dt"><div class="l">Cost per closing</div><div class="v" id="k-cpc"></div><div class="n" id="k-spend"></div></div>
+</div>
+
+<div class="dg">
+<div class="dp"><h3>Closed GCI by lead source</h3><div class="hint">Click a source to switch it off and see what you would lose.</div><div id="d-src"></div></div>
+<div class="dp"><h3>Your funnel this year</h3><div class="hint">Where deals drop out, lead to closed.</div><div id="d-fun"></div></div>
+</div>
+
+<p class="dnote">Sample data for a made-up team. The KPI Tracker card includes the spreadsheet these numbers come from, and Claude builds the live dashboard with you during setup. Needs your own Claude account.</p>
+<div class="dcta">
+<a class="btn" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Get all 5 cards: <s class="strike sm">$199</s> $49 {{ARROW}}</a>
+<a class="link-quiet" style="color:#c6d0ea" href="{{KPI}}" data-buy="Real Estate KPI Tracker" data-value="19">or just the KPI Tracker for <s>$49</s> $19</a>
+</div>
+</div>
+</section>
+<script>
+(function(){
+var S=[["Zillow",10800,45,21,16,9,5,65510],["Sign calls",0,15,7,6,4,3,34580],["Website",1800,20,7,4,3,3,33960],["Sphere & referrals",0,25,13,9,4,3,33350],["Realtor.com",4800,30,6,4,1,1,11000],["Open houses",600,15,4,3,0,0,0]];
+var on=S.map(function(){return true}); var $=function(i){return document.getElementById(i)};
+var usd=function(n){return (n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString('en-US')};
+var src=$('d-src'); S.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.className='drow';b.setAttribute('aria-pressed','true');b.innerHTML='<span></span><i></i><b></b>';b.firstChild.textContent=s[0];b.addEventListener('click',function(){on[i]=!on[i];b.classList.toggle('off',!on[i]);b.setAttribute('aria-pressed',on[i]?'true':'false');draw();});src.appendChild(b);});
+var F=["Leads","Appointments set","Appointments held","Signed","Closed"]; var fun=$('d-fun'); F.forEach(function(n){var d=document.createElement('div');d.className='drow';d.innerHTML='<span></span><i></i><b></b>';d.firstChild.textContent=n;fun.appendChild(d);});
+function draw(){
+  var goal=+$('i-goal').value, avg=+$('i-avg').value, wk=+$('i-wk').value;
+  $('o-goal').textContent=usd(goal); $('o-avg').textContent=usd(avg); $('o-wk').textContent=wk;
+  var t=[0,0,0,0,0,0,0]; S.forEach(function(s,i){if(on[i])for(var k=1;k<8;k++)t[k-1]+=s[k];});
+  var gci=t[6], closed=t[5], leads=t[1], togo=Math.max(0,goal-gci);
+  $('k-gci').textContent=usd(gci); $('k-pct').textContent=(goal?(gci/goal*100).toFixed(1):'0')+'% of your '+usd(goal)+' goal'; $('k-bar').style.width=Math.min(100,goal?gci/goal*100:0)+'%';
+  $('k-week').textContent=togo?usd(togo/wk):'Goal met'; $('k-left').textContent=usd(togo)+' still to go';
+  $('k-need').textContent=Math.ceil(togo/avg); $('k-done').textContent=closed+' closed so far';
+  $('k-conv').textContent=leads?(closed/leads*100).toFixed(1)+'%':'—'; $('k-leads').textContent=leads+' leads this year';
+  $('k-cpc').textContent=closed?usd(t[0]/closed):'—'; $('k-spend').textContent=usd(t[0])+' spent on leads';
+  var mx=Math.max.apply(null,S.map(function(s){return s[7]}));
+  [].forEach.call(src.children,function(b,i){b.children[1].style.width=(S[i][7]/mx*100)+'%';b.children[2].textContent=usd(S[i][7]);});
+  var fv=[t[1],t[2],t[3],t[4],t[5]]; [].forEach.call(fun.children,function(d,i){d.children[1].style.width=(fv[0]?fv[i]/fv[0]*100:0)+'%';d.children[2].textContent=fv[i];});
+}
+['i-goal','i-avg','i-wk'].forEach(function(i){$(i).addEventListener('input',draw)}); draw();
+})();
+</script>
