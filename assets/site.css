@@ -270,3 +270,6 @@ dialog#offer a.no{display:block;text-align:center;text-decoration:none;box-sizin
 @media (max-width:640px){.chatbtn{left:10px;bottom:78px;padding:11px 16px}.chatbox{left:10px;bottom:78px;height:420px;max-height:calc(100vh - 150px)}}
 
 @media (max-width:640px){.shots{grid-template-columns:1fr}}
+/* whole card opens "What is inside"; the buy link stays its own click */
+.pcard .more::after{content:"";position:absolute;inset:0;border-radius:16px;cursor:pointer}
+.pcard .single{position:relative;z-index:1;align-self:flex-start}
