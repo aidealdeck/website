@@ -179,7 +179,7 @@ def shots_section():
     figs = "".join(shot_fig(k) for k in SHOT_CAPTIONS)
     if not figs:
         return ""  # no placeholders on the live site
-    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI Tracker, 29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p>'
+    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI dashboard Claude builds for you, 29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p>'
     return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2>{vid}<div class="shots">{figs}</div></div></section>'
 
 def render(body):
