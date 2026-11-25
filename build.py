@@ -52,8 +52,63 @@ def card(m):
     return (f'<div class="pcard" style="transform:rotate({tilt})">'
             f'<div class="top"><div class="pip">{pip}</div><div class="tag">{tag}</div></div>'
             f'<h3>{name}</h3><div class="rule"></div><p>{body}</p>'
-            f'<a class="single" href="{url}" data-buy="{re.sub("&amp;", "&", name)}" data-value="19">This card alone: <s>$49</s> $19</a>'
+            f'<a class="single" href="{url}" data-upsell="single" data-buy="{re.sub("&amp;", "&", name)}" data-value="19">Buy this card: <s>$49</s> $19</a>'
             f'<div class="pip bottom">{num}{DIAMOND.format(s=14)}</div></div>')
+
+
+CARD_DEFS = [
+    ("1", "Your numbers", "Real Estate KPI Tracker", "Lead → appointment → signed → under contract → closed, with the real percentage at each step, and the weekly number you need to hit your goal.", "KPI", "-2deg"),
+    ("2", "Your listings", "Listing Exposure Playbook", "A repeatable 14-day launch plan for every listing, with fill-in templates and day-7 and day-14 seller reports.", "LISTING", "1deg"),
+    ("3", "Your new leads", "Lead-for-Life System", "Every new lead contacted fast, then followed up on a set plan until they book. Includes a speed scorecard and a TCPA checklist.", "LEAD", "-1deg"),
+    ("4", "Your money", "Commission &amp; GCI Ledger", "Every closing, fee, referral fee and split in one place, with team totals kept separate from your own income.", "GCI", "2deg"),
+    ("5", "Your assistant", "VA Playbook &amp; Scorecard", "A narrow assistant role with three jobs, a daily routine, an end-of-day report and a weekly scorecard.", "VA", "-1deg"),
+]
+
+class _M:
+    def __init__(self, s): self.s = s
+    def group(self, i): return self.s
+
+def cardgrid_html():
+    cards = "".join(card(_M("|".join([n, tag, name, body, URLS[key], tilt]))) for n, tag, name, body, key, tilt in CARD_DEFS)
+    deck = ('<div class="pcard deck">' + SNIP["DECKICON"] +
+            '<h3>The full deck: all five cards, plus two bonus cards.</h3>'
+            f'<a class="btn block" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></div>')
+    fine = ('<p class="center fine" style="margin-top:20px">Each card alone: <s>$49</s> $19 launch price through Nov 30 ($49 is the regular price, starting Dec 1). '
+            'The Deck gets you all five plus both bonus cards for $49 now; $199 is the regular price, starting Dec 1.</p>')
+    return f'<div class="cards" id="cards">{cards}{deck}</div>{fine}'
+
+def shop_section():
+    return ('<section id="shop"><div class="wrap"><div class="center"><div class="eyebrow">Buy one card or the whole deck</div>'
+            '<h2 class="h2">Pick your cards</h2><p class="lead">Start with one card for $19, or get all five plus both bonus cards for $49.</p></div>'
+            + cardgrid_html() + '</div></section>')
+
+UPSELL = '''
+<dialog id="offer" aria-labelledby="offer-h">
+<form method="dialog"><button class="x" aria-label="Close">×</button></form>
+<div data-step="deck">
+<div class="eyebrow">Before you check out</div>
+<h2 id="offer-h" class="h2" style="font-size:28px">Get the whole deck for <s class="strike sm">$199</s> $49?</h2>
+<p class="lead" style="font-size:16px">All five cards plus the Listing Watchdog and Morning Brief bonus cards. One card alone is $19, so the Deck is five cards for the price of about two and a half.</p>
+<a class="btn block" style="margin-top:20px" href="__DECK__" data-buy="The AI Agent Deck" data-value="49">Yes, get the full Deck: $49</a>
+<button type="button" class="no" data-next>No thanks</button>
+<p class="fine" style="margin-top:10px">Launch price through Nov 30. $199 is the regular price, starting Dec 1.</p>
+</div>
+<div data-step="card" hidden>
+<div class="eyebrow">One more option</div>
+<h2 class="h2" style="font-size:28px">Add just the KPI Tracker for <s class="strike sm">$49</s> $19?</h2>
+<p class="lead" style="font-size:16px">Card 1: see where your deals leak and the weekly number that gets you to your goal. It is a separate purchase from your free download.</p>
+<a class="btn block" style="margin-top:20px" href="__KPI__" data-buy="Real Estate KPI Tracker" data-value="19">Yes, get the KPI Tracker: $19</a>
+<button type="button" class="no" data-next>No thanks, just my free cards</button>
+</div>
+</dialog>
+<script>
+(function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var dest=null,steps=[],i=0;
+function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i]});}
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-upsell]');if(a){e.preventDefault();dest=a.href;steps=a.getAttribute('data-upsell')==='free'?['deck','card']:['deck'];i=0;show();d.showModal();return;}
+if(e.target.closest('[data-next]')){i++;if(i>=steps.length){d.close();window.location.href=dest;}else show();}});
+d.addEventListener('close',function(){i=0;});})();
+</script>
+'''
 
 def stack_html():
     cells = "".join('<i class="on"></i>' if i < 7 else "<i></i>" for i in range(52))
@@ -108,6 +163,7 @@ def render(body):
     for k, v in URLS.items():
         body = body.replace("{{" + k + "}}", v)
     body = re.sub(r"\{\{CARD:(.+?)\}\}", card, body)
+    body = body.replace("{{CARDGRID}}", cardgrid_html()).replace("{{SHOP}}", shop_section())
     body = body.replace("{{STACK}}", stack_html()).replace("{{SHOTS}}", shots_section()).replace("{{FAQ}}", faq_html())
     body = re.sub(r"\{\{SHOT:(\w+)\}\}", lambda m: (f'<div class="shots" style="grid-template-columns:1fr">{shot_fig(m.group(1))}</div>' if shot_fig(m.group(1)) else ""), body)
     for k, v in SNIP.items():
@@ -129,7 +185,8 @@ def main():
         body = raw[meta_m.end():]
         h = (head.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{PATH}}", meta["path"])
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]))
-        page = render(h + body + foot)
+        modal = UPSELL.replace("__DECK__", URLS["DECK"]).replace("__KPI__", URLS["KPI"]) if meta["out"] in ("index.html","numbers/index.html","free/index.html") else ""
+        page = render(h + body + modal + foot)
         leftover = re.findall(r"\{\{[A-Z_:]+.*?\}\}", page)
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
         dest = os.path.join(OUT, meta["out"])

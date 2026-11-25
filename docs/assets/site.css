@@ -167,3 +167,14 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 
 .strike{color:var(--muted2);font-weight:500;font-size:.5em;vertical-align:middle;margin-right:6px}
 .strike.sm{font-size:.85em;color:inherit;opacity:.7;margin-right:2px}
+
+.topnav{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;font-weight:600}
+.topnav a{color:var(--paper);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.topnav a:hover{color:var(--gold)}
+@media (max-width:900px){.topbar .note{display:none}}
+dialog#offer{border:0;border-radius:18px;padding:32px;max-width:520px;width:calc(100% - 32px);color:var(--navy);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+dialog#offer::backdrop{background:rgba(14,23,48,.72)}
+dialog#offer .x{position:absolute;top:10px;right:12px;background:none;border:0;font-size:28px;line-height:1;color:var(--muted2);cursor:pointer;min-width:44px;min-height:44px}
+dialog#offer .no{display:block;width:100%;margin-top:12px;background:none;border:1px solid var(--rule);border-radius:10px;padding:14px;font:inherit;font-weight:600;color:var(--navy);cursor:pointer;min-height:48px}
+dialog#offer .no:hover{background:var(--paper)}
+dialog#offer .lead{margin-left:0}

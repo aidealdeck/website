@@ -31,8 +31,9 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy
 <body>
 <header class="topbar">
 <a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="10" height="14" rx="1.5" transform="rotate(-12 8 13)"/><rect x="7" y="4" width="10" height="14" rx="1.5"/><rect x="11" y="6" width="10" height="14" rx="1.5" transform="rotate(12 16 13)"/></svg>Ai Deal Deck</a>
+<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a></nav>
 <div class="note">Free download · no card needed</div>
-<a class="btn sm" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0">Get it free</a>
+<a class="btn sm" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-upsell="free" data-buy="Free bonus cards" data-value="0">Get it free</a>
 </header>
 <main>
 
@@ -43,7 +44,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy
 <h1>Know when you <em>lose a listing.</em></h1>
 <p class="sub">Tell it who to watch: past clients, people who went quiet after an appointment, referrals. It tells you when one of them lists with another agent, or when that listing expires or comes back.</p>
 <div class="cta-row">
-<a class="btn" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0">Get it free <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a class="btn" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-upsell="free" data-buy="Free bonus cards" data-value="0">Get it free <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <div class="meta">Emailed to you instantly. Needs the Claude<br>desktop app and a paid Claude plan.</div>
 </div>
 </div>
@@ -90,6 +91,8 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy
 </div>
 </section>
 
+<section id="shop"><div class="wrap"><div class="center"><div class="eyebrow">Buy one card or the whole deck</div><h2 class="h2">Pick your cards</h2><p class="lead">Start with one card for $19, or get all five plus both bonus cards for $49.</p></div><div class="cards" id="cards"><div class="pcard" style="transform:rotate(-2deg)"><div class="top"><div class="pip">1<svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div><div class="tag">Your numbers</div></div><h3>Real Estate KPI Tracker</h3><div class="rule"></div><p>Lead → appointment → signed → under contract → closed, with the real percentage at each step, and the weekly number you need to hit your goal.</p><a class="single" href="https://shop.aidealdeck.com/l/real-estate-kpi-tracker?wanted=true" data-upsell="single" data-buy="Real Estate KPI Tracker" data-value="19">Buy this card: <s>$49</s> $19</a><div class="pip bottom">1<svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div></div><div class="pcard" style="transform:rotate(1deg)"><div class="top"><div class="pip">2<svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div><div class="tag">Your listings</div></div><h3>Listing Exposure Playbook</h3><div class="rule"></div><p>A repeatable 14-day launch plan for every listing, with fill-in templates and day-7 and day-14 seller reports.</p><a class="single" href="https://shop.aidealdeck.com/l/listing-exposure-playbook?wanted=true" data-upsell="single" data-buy="Listing Exposure Playbook" data-value="19">Buy this card: <s>$49</s> $19</a><div class="pip bottom">2<svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div></div><div class="pcard" style="transform:rotate(-1deg)"><div class="top"><div class="pip">3<svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div><div class="tag">Your new leads</div></div><h3>Lead-for-Life System</h3><div class="rule"></div><p>Every new lead contacted fast, then followed up on a set plan until they book. Includes a speed scorecard and a TCPA checklist.</p><a class="single" href="https://shop.aidealdeck.com/l/lead-for-life-system?wanted=true" data-upsell="single" data-buy="Lead-for-Life System" data-value="19">Buy this card: <s>$49</s> $19</a><div class="pip bottom">3<svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div></div><div class="pcard" style="transform:rotate(2deg)"><div class="top"><div class="pip">4<svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div><div class="tag">Your money</div></div><h3>Commission &amp; GCI Ledger</h3><div class="rule"></div><p>Every closing, fee, referral fee and split in one place, with team totals kept separate from your own income.</p><a class="single" href="https://shop.aidealdeck.com/l/agent-commission-gci-ledger?wanted=true" data-upsell="single" data-buy="Commission & GCI Ledger" data-value="19">Buy this card: <s>$49</s> $19</a><div class="pip bottom">4<svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div></div><div class="pcard" style="transform:rotate(-1deg)"><div class="top"><div class="pip">5<svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div><div class="tag">Your assistant</div></div><h3>VA Playbook &amp; Scorecard</h3><div class="rule"></div><p>A narrow assistant role with three jobs, a daily routine, an end-of-day report and a weekly scorecard.</p><a class="single" href="https://shop.aidealdeck.com/l/real-estate-va-playbook?wanted=true" data-upsell="single" data-buy="VA Playbook & Scorecard" data-value="19">Buy this card: <s>$49</s> $19</a><div class="pip bottom">5<svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF5A" aria-hidden="true"><path d="M12 2l7 10-7 10-7-10z"/></svg></div></div><div class="pcard deck"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.3" aria-hidden="true"><rect x="3" y="6" width="10" height="14" rx="1.5" transform="rotate(-12 8 13)"/><rect x="7" y="4" width="10" height="14" rx="1.5"/><rect x="11" y="6" width="10" height="14" rx="1.5" transform="rotate(12 16 13)"/></svg><h3>The full deck: all five cards, plus two bonus cards.</h3><a class="btn block" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></div></div><p class="center fine" style="margin-top:20px">Each card alone: <s>$49</s> $19 launch price through Nov 30 ($49 is the regular price, starting Dec 1). The Deck gets you all five plus both bonus cards for $49 now; $199 is the regular price, starting Dec 1.</p></div></section>
+
 <section class="darker">
 <div class="wrap stack">
 <div class="copy">
@@ -107,6 +110,32 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy
 </div>
 </div>
 </section>
+
+<dialog id="offer" aria-labelledby="offer-h">
+<form method="dialog"><button class="x" aria-label="Close">×</button></form>
+<div data-step="deck">
+<div class="eyebrow">Before you check out</div>
+<h2 id="offer-h" class="h2" style="font-size:28px">Get the whole deck for <s class="strike sm">$199</s> $49?</h2>
+<p class="lead" style="font-size:16px">All five cards plus the Listing Watchdog and Morning Brief bonus cards. One card alone is $19, so the Deck is five cards for the price of about two and a half.</p>
+<a class="btn block" style="margin-top:20px" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Yes, get the full Deck: $49</a>
+<button type="button" class="no" data-next>No thanks</button>
+<p class="fine" style="margin-top:10px">Launch price through Nov 30. $199 is the regular price, starting Dec 1.</p>
+</div>
+<div data-step="card" hidden>
+<div class="eyebrow">One more option</div>
+<h2 class="h2" style="font-size:28px">Add just the KPI Tracker for <s class="strike sm">$49</s> $19?</h2>
+<p class="lead" style="font-size:16px">Card 1: see where your deals leak and the weekly number that gets you to your goal. It is a separate purchase from your free download.</p>
+<a class="btn block" style="margin-top:20px" href="https://shop.aidealdeck.com/l/real-estate-kpi-tracker?wanted=true" data-buy="Real Estate KPI Tracker" data-value="19">Yes, get the KPI Tracker: $19</a>
+<button type="button" class="no" data-next>No thanks, just my free cards</button>
+</div>
+</dialog>
+<script>
+(function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var dest=null,steps=[],i=0;
+function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i]});}
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-upsell]');if(a){e.preventDefault();dest=a.href;steps=a.getAttribute('data-upsell')==='free'?['deck','card']:['deck'];i=0;show();d.showModal();return;}
+if(e.target.closest('[data-next]')){i++;if(i>=steps.length){d.close();window.location.href=dest;}else show();}});
+d.addEventListener('close',function(){i=0;});})();
+</script>
 </main>
 <footer>
 <div class="wrap">
