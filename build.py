@@ -68,11 +68,11 @@ def card(m):
 
 
 CARD_DEFS = [
-    ("1", "Your numbers", "Real Estate KPI Tracker", "Lead → appointment → signed → under contract → closed, with the real percentage at each step, and the weekly number you need to hit your goal.", "KPI", "-2deg"),
-    ("2", "Your listings", "Listing Exposure Playbook", "A repeatable 14-day launch plan for every listing, with fill-in templates and day-7 and day-14 seller reports.", "LISTING", "1deg"),
-    ("3", "Your new leads", "Lead-for-Life System", "Every new lead contacted fast, then followed up on a set plan until they book. Includes a speed scorecard and a TCPA checklist.", "LEAD", "-1deg"),
-    ("4", "Your money", "Commission &amp; GCI Ledger", "Every closing, fee, referral fee and split in one place, with team totals kept separate from your own income.", "GCI", "2deg"),
-    ("5", "Your assistant", "VA Playbook &amp; Scorecard", "A narrow assistant role with three jobs, a daily routine, an end-of-day report and a weekly scorecard.", "VA", "-1deg"),
+    ("1", "Your numbers", "Real Estate KPI Tracker", "See how many leads turn into closings, step by step. It also gives you one number to hit each week to reach your goal.", "KPI", "-2deg"),
+    ("2", "Your listings", "Listing Exposure Playbook", "A 14-day plan for every new listing. It tells you what to do each day and gives you a report to show the seller.", "LISTING", "1deg"),
+    ("3", "Your new leads", "Lead-for-Life System", "Call every new lead fast. Then follow a set plan until they book. It also tracks how fast you call.", "LEAD", "-1deg"),
+    ("4", "Your money", "Commission &amp; GCI Ledger", "Write down every closing and what you were paid. See what you really kept this year.", "GCI", "2deg"),
+    ("5", "Your assistant", "VA Playbook &amp; Scorecard", "A clear daily job for your assistant: three tasks, a routine, a report each night and a score each week.", "VA", "-1deg"),
 ]
 
 class _M:
@@ -149,9 +149,9 @@ def stack_html():
 <div class="wrap stack">
 <div class="copy">
 <div class="eyebrow gold">This is your starting hand</div>
-<h2 class="h2">Start your deck today. Stack it into a full AI system.</h2>
-<p class="lead" style="margin-left:0">The AI Agent Deck is your first seven cards. New cards will cover more of your business, and each one you add plugs into the same deck, so your Morning Brief sees more and Claude knows more of your business with every card you play.</p>
-<p class="lead" style="margin-left:0">Lock in the starting hand at the $49 launch price, and every new card has a place waiting for it.</p>
+<h2 class="h2">Start with seven cards. Add more later.</h2>
+<p class="lead" style="margin-left:0">The Deck gives you seven cards today. When we make new cards, each one works with the cards you already have.</p>
+<p class="lead" style="margin-left:0">Get all seven now at the $49 launch price.</p>
 <a class="btn" style="margin-top:28px" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Start my deck: $49</a>
 <p class="fine" style="margin-top:14px">Future cards are separate products, sold separately when released. No release dates are promised.</p>
 </div>
