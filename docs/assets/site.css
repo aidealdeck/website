@@ -234,3 +234,7 @@ body{padding-bottom:66px}
 .fbscale{display:flex;flex-wrap:wrap;gap:8px}
 .fbscale button{min-width:44px;min-height:44px;border-radius:10px;border:1px solid var(--navy);background:#fff;color:var(--navy);font:inherit;font-weight:700;cursor:pointer}
 .fbscale button.on{background:var(--gold);border-color:var(--gold-ink)}
+
+.howbuy{list-style:none;margin:14px 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.95rem;opacity:.92}
+.howbuy li{margin:0}
+.howbuy b{margin-right:4px}
