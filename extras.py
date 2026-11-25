@@ -153,6 +153,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
     does = "".join(f"<li>{snip['CHECKSM']}<span>{esc(x)}</span></li>" for x in c["does"])
     inside = "".join(f"<li>{esc(x)}</li>" for x in c["inside"])
     name = esc(c["name"])
+    demo = '<a class="btn" href="/demo/" style="background:transparent;color:#fff;border:2px solid var(--gold)">Try the live demo first</a>' if c["key"] == "KPI" else ""
     return f'''<section class="hero">
 <div class="wrap">
 <div class="copy">
@@ -161,6 +162,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <p class="sub">{esc(c["sub"])}</p>
 <div class="cta-row">
 <a class="btn" href="{buy}" data-buy="{name}" data-value="19">Get this card: <s class="strike sm">$49</s> $19 {snip["ARROW"]}</a>
+{demo}
 <ol class="howbuy" aria-label="How to buy"><li><b>1.</b> Click the button.</li><li><b>2.</b> Type your email and pay.</li><li><b>3.</b> Your card lands in your email right away.</li></ol>
 <div class="meta"><span data-sale>Black Friday launch price</span> through Nov 30.<br>Regular price $49 from Dec 1. Emailed instantly.</div>
 </div>
