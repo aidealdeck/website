@@ -1,5 +1,5 @@
 """Search/AI-search data, card pages and lead-capture blocks for the AiDealDeck site."""
-import json
+import json, os
 
 SITE = "https://aidealdeck.com"
 PHONE_DISPLAY = "(414) 946-6479"
@@ -36,7 +36,7 @@ CARDS = [
                "Shows how fast you reach new leads", "Has a checklist of the rules for texting and calling (TCPA)"],
          inside=["START HERE guide (PDF)", "Your Lead-for-Life Plan & Call List workbook, blank", "Lead-for-Life System Playbook (PDF)",
                  "Example Plan & Call List filled with sample data", "The copy-and-paste setup prompt for Claude", "Claude Setup Pack", "Terms and disclaimer"],
-         who="Real estate pros who pay for leads or get more inquiries than they can follow up from memory. Setup takes about 20 minutes, plus an hour or two to build your plan in your CRM and write your own emails."),
+         who="Real estate pros who pay for leads or get more inquiries than they can follow up from memory. Claude helps you set it up. Plan an hour or two to build your plan in your CRM and write your own emails."),
     dict(slug="commission-gci-ledger", key="GCI", n="4", name="Commission & GCI Ledger",
          short="A commission and GCI tracker for real estate pros: every closing, fee and split in one place, so you can see what you really kept.",
          h1="A commission tracker that shows <em>what you really netted.</em>",
@@ -81,7 +81,7 @@ def deck_ld(url):
             "category": "Real estate agent software toolkit", "image": SITE + "/assets/og.png",
             "description": "Five do-it-yourself AI toolkits for real estate pros (KPI Tracker, Listing Exposure Playbook, Lead-for-Life System, "
                            "Commission & GCI Ledger, VA Playbook & Scorecard) plus two bonus cards (Listing Watchdog and Morning Brief). "
-                           "Claude helps you set each one up in about 20 minutes. Requires the Claude desktop app and a paid Claude plan.",
+                           "Claude helps you set them up. Requires the Claude desktop app and a paid Claude plan.",
             "offers": offer(49, url)}
 
 
@@ -128,8 +128,8 @@ def nudge(free_url):
     """Small slide-in offer of the free cards, shown once per visit to people who have not clicked a buy or free button."""
     return f'''<aside class="nudge" id="nudge" hidden aria-label="Free cards offer">
 <button type="button" class="nx" aria-label="Close">×</button>
-<b>Before you go: two cards, free</b>
-<span>Listing Watchdog + Morning Brief. No payment card needed.</span>
+<b>2 free cards</b>
+<span>Listing Watchdog + Morning Brief</span>
 <a class="btn sm" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
 <a class="freepill" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
@@ -153,6 +153,8 @@ def card_page(c, urls, snip, faq_html, shop_html):
     does = "".join(f"<li>{snip['CHECKSM']}<span>{esc(x)}</span></li>" for x in c["does"])
     inside = "".join(f"<li>{esc(x)}</li>" for x in c["inside"])
     name = esc(c["name"])
+    _v = os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'video', c['slug'] + '.mp4'))
+    vid = (f'<video controls playsinline preload="none" poster="/assets/video/{c["slug"]}.jpg" style=\"display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730\"><source src="/assets/video/{c["slug"]}.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Sample data shown.</p>') if _v else ''
     demo = '<a class="btn" href="/demo/" style="background:transparent;color:#fff;border:2px solid var(--gold)">Try the live demo first</a>' if c["key"] == "KPI" else ""
     return f'''<section class="hero">
 <div class="wrap">
@@ -163,7 +165,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <div class="cta-row">
 <a class="btn" href="{buy}" data-buy="{name}" data-value="19">Get this card: <s class="strike sm">$49</s> $19 {snip["ARROW"]}</a>
 {demo}
-<ol class="howbuy" aria-label="How to buy"><li><b>1.</b> Click the button.</li><li><b>2.</b> Type your email and pay.</li><li><b>3.</b> Your card lands in your email right away.</li></ol>
+<ol class="howbuy" aria-label="How to buy"><li><b>1.</b> Click.</li><li><b>2.</b> Pay.</li><li><b>3.</b> Card lands in your email.</li></ol>
 <div class="meta"><span data-sale>Black Friday launch price</span> through Nov 30.<br>Regular price $49 from Dec 1. Emailed instantly.</div>
 </div>
 <p class="alt-buy">Want all five cards plus two bonus cards? <a href="{urls["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the full Deck for <s>$199</s> $49</a></p>
@@ -175,6 +177,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <section>
 <div class="wrap">
 <div class="center"><div class="eyebrow">What it does</div><h2 class="h2">{name}</h2><p class="lead">{esc(c["short"])}</p></div>
+{vid}
 <div class="cols2">
 <div class="tile"><h3>What you get from it</h3><ul class="ticks">{does}</ul></div>
 <div class="tile"><h3>What is in the download</h3><ul class="plain">{inside}</ul></div>
@@ -185,7 +188,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 
 <section class="sand">
 <div class="wrap">
-<div class="center"><div class="eyebrow" style="color:var(--gold-dark)">How setup works</div><h2 class="h2">Claude helps you set it up in about 20 minutes</h2></div>
+<div class="center"><div class="eyebrow" style="color:var(--gold-dark)">How setup works</div><h2 class="h2">Claude helps you set it up</h2></div>
 <div class="steps">
 <div class="step"><div class="n">1</div><div><b>Download the card</b><span>The link is emailed to you right after checkout.</span></div></div>
 <div class="step"><div class="n">2</div><div><b>Paste one prompt into Claude</b><span>Claude reads the Setup Pack and asks you simple questions.</span></div></div>
@@ -208,7 +211,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 def llms_txt(cards, faq):
     lines = ["# AiDealDeck", "",
              "> AiDealDeck sells do-it-yourself AI toolkits, called cards, for real estate pros. Each card is a spreadsheet, a playbook and a copy-and-paste prompt. "
-             "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up in about 20 minutes, with the option of a live dashboard built inside Claude.", "",
+             "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up, with the option of a live dashboard built inside Claude.", "",
              "AiDealDeck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
              "## Products", "",
              f"- [The AI Agent Deck]({SITE}/): all five cards plus two bonus cards. Launch price $49 through November 30, 2026; regular price $199 from December 1, 2026."]

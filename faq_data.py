@@ -6,7 +6,7 @@ P = "(414) 946-6479"
 
 FAQ_LONG = [
     ("The basics", [
-        ("What is AiDealDeck?", "AiDealDeck sells do-it-yourself AI toolkits for real estate pros. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up in about 20 minutes.", "about company product overview"),
+        ("What is AiDealDeck?", "AiDealDeck sells do-it-yourself AI toolkits for real estate pros. We call each toolkit a card. A card is a workbook, a short guide and one copy-and-paste prompt. You paste the prompt into Claude and Claude helps you set that tool up.", "about company product overview"),
         ("What is a card?", "One tool for one part of your business: your numbers, your listings, your new leads, your money or your assistant. Each card comes with a blank workbook, a sample workbook, a START HERE guide, the setup prompt and a Setup Pack that Claude reads.", "toolkit tool"),
         ("Are these real, physical cards? Does anything get mailed to me?", "No. The cards are digital. Nothing is printed and nothing is mailed. We call them cards because each one is one tool. You get a download link by email right after checkout, and the files open on your computer.", "physical real cards printed paper mail mailed shipped shipping ship deck of cards box package deliver delivery address"),
         ("What is The AI Agent Deck?", "All five cards in one download, plus two bonus cards (Listing Watchdog and Morning Brief). It costs less than three single cards.", "bundle package all"),
@@ -26,7 +26,7 @@ FAQ_LONG = [
         ("Do I need to know how to code?", "No. You paste one prompt and answer plain questions.", "technical tech skills programming"),
     ]),
     ("Setup", [
-        ("How long does setup take?", "About 20 minutes per card. The Lead-for-Life System takes another hour or two because you build your follow-up plan in your CRM and write your own emails.", "time minutes long"),
+        ("How long does setup take?", "About 20 minutes for the full Deck, all cards at once. A single card is quicker. The Lead-for-Life System takes another hour or two because you build your follow-up plan in your CRM and write your own emails.", "time minutes long"),
         ("How do I set up a card?", "Save the download to your Downloads folder. Open the Claude desktop app, start a new chat and add that folder. Paste in the COPY THIS PROMPT file and press Enter. Claude asks you simple questions and you approve what it sets up. The START HERE guide in every download walks through it.", "install steps start instructions"),
         ("Do I get a spreadsheet or a dashboard?", "Both are in the box and you choose. Every card has a workbook. During setup Claude asks whether you want a live dashboard as your main view. If you say yes, Claude builds it for you inside Claude from your own numbers, and the workbook stays as the place your data lives.", "artifact dashboard view excel"),
         ("Will my dashboard look like the one on the site?", "The site shows examples with sample data. Claude builds your dashboard from your own numbers, so yours may look different.", "screenshot example same demo"),
