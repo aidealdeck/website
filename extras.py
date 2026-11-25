@@ -132,7 +132,7 @@ def nudge(free_url):
 <span>Listing Watchdog + Morning Brief. No payment card needed.</span>
 <a class="btn sm" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
-<a class="freepill" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get 2 free cards</a>
+<a class="freepill" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
 <div class="mbar" id="mbar"><a href="{free_url}" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="__DECK__" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
 <script>
 (function(){{var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;

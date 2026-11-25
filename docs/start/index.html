@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You got your cards. Here is what happens next. | Ai Deal Deck</title>
+<meta name="description" content="Four small steps to set up your Ai Deal Deck card with Claude: open the email, download, add your folder, paste the prompt.">
+<meta property="og:title" content="You got your cards. Here is what happens next. | Ai Deal Deck">
+<meta property="og:description" content="Four small steps to set up your Ai Deal Deck card with Claude: open the email, download, add your folder, paste the prompt.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ai Deal Deck">
+<meta property="og:image" content="https://aidealdeck.com/assets/og.png">
+<meta property="og:image:width" content="1640">
+<meta property="og:image:height" content="624">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="You got your cards. Here is what happens next. | Ai Deal Deck">
+<meta name="twitter:description" content="Four small steps to set up your Ai Deal Deck card with Claude: open the email, download, add your folder, paste the prompt.">
+<meta name="twitter:image" content="https://aidealdeck.com/assets/og.png">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0E1730">
+<meta property="og:url" content="https://aidealdeck.com/start/">
+<link rel="canonical" href="https://aidealdeck.com/start/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aidealdeck.com/#org","name":"Ai Deal Deck","url":"https://aidealdeck.com/","logo":"https://aidealdeck.com/assets/og.png","email":"support@aidealdeck.com","telephone":"+14149466479","legalName":"The Showing Partner LLC","description":"Do-it-yourself AI toolkits (cards) for real estate pros, set up with Claude.","contactPoint":{"@type":"ContactPoint","telephone":"+14149466479","email":"support@aidealdeck.com","contactType":"sales and customer support","areaServed":"US","availableLanguage":"English"}},{"@type":"WebSite","@id":"https://aidealdeck.com/#site","url":"https://aidealdeck.com/","name":"Ai Deal Deck","publisher":{"@id":"https://aidealdeck.com/#org"}}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal) -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+if(!navigator.globalPrivacyControl){
+(function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-GG42FBV7Z8';document.head.appendChild(g);})();
+gtag('js',new Date());gtag('config','G-GG42FBV7Z8');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2684470808323193');
+fbq('track','PageView');
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','zj9l2a03km');
+
+}
+/* Path tracking: tag every buy link with the page, the button position and the ad campaign that brought the visitor. */
+(function(){
+var page=({'/':'deck','/numbers/':'numbers','/free/':'free','/demo/':'demo','/faq/':'faq'})[location.pathname]||(location.pathname.indexOf('/cards/')===0?'card_'+location.pathname.split('/')[2]:'other');
+var ad={};try{var q=new URLSearchParams(location.search);['utm_source','utm_campaign','utm_term'].forEach(function(k){var v=q.get(k);if(v)ad[k]=v.slice(0,80);});
+ if(Object.keys(ad).length){sessionStorage.setItem('ad',JSON.stringify(ad));}else{ad=JSON.parse(sessionStorage.getItem('ad')||'{}');}
+ if(!sessionStorage.getItem('land'))sessionStorage.setItem('land',page);}catch(e){}
+var land=page;try{land=sessionStorage.getItem('land')||page;}catch(e){}
+function pos(a){var m=[['.topbar','topbar'],['.nudge','nudge'],['.mbar','mobilebar'],['.leadband','leadband'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
+function tag(){document.querySelectorAll('a[data-buy]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('utm_source',ad.utm_source||'direct');u.searchParams.set('utm_medium','site_'+land);u.searchParams.set('utm_campaign',ad.utm_campaign||'none');u.searchParams.set('utm_content',page+'_'+pos(a));a.href=u.toString();a.setAttribute('data-pos',pos(a));}catch(e){}});}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tag);}else{tag();}
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a)return;gtag('event','begin_checkout',{content_type:'button',content_id:page+' / '+(a.getAttribute('data-pos')||'')+' / '+a.getAttribute('data-buy'),content_group:location.pathname,item_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});if(!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2684470808323193&ev=PageView&noscript=1"></noscript>
+<script>
+/* Sale name: Black Friday through Nov 29, Cyber Monday on Nov 30 (Central time). Same price both days. */
+document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago'}).format(new Date());if(d==='2026-11-30'){document.querySelectorAll('[data-sale]').forEach(function(e){e.textContent='Cyber Monday launch price';});}}catch(e){}});
+</script>
+<script>
+/* Behavior tracking (no recordings, no personal data): how long each section and card is on screen, hover time on cards, and how far people scroll. */
+(function(){if(navigator.globalPrivacyControl||!('IntersectionObserver' in window))return;
+document.addEventListener('DOMContentLoaded',function(){
+var T={},vis={},H={},maxScroll=0,sent=false;
+function name(el,i){if(el.classList.contains('pcard')){var h=el.querySelector('h3');return 'card: '+(h?h.textContent.trim().slice(0,40):i);}
+var id=el.id||'';var h2=el.querySelector('h1,h2');return (id?id+': ':'')+(h2?h2.textContent.trim().slice(0,50):'section '+i);}
+var els=[].slice.call(document.querySelectorAll('main > section, main .pcard, .leadband'));
+var io=new IntersectionObserver(function(es){var now=Date.now();es.forEach(function(e){var k=e.target._k;if(e.isIntersecting&&e.intersectionRatio>=0.4){if(!vis[k])vis[k]=now;}else if(vis[k]){T[k]=(T[k]||0)+now-vis[k];vis[k]=0;}});},{threshold:[0,0.4,0.8]});
+els.forEach(function(el,i){el._k=name(el,i);io.observe(el);
+if(el.classList.contains('pcard')){var t0=0;el.addEventListener('mouseenter',function(){t0=Date.now();});el.addEventListener('mouseleave',function(){if(t0){H[el._k]=(H[el._k]||0)+Date.now()-t0;t0=0;}});}});
+window.addEventListener('scroll',function(){var d=document.documentElement;var p=Math.round(100*(d.scrollTop+window.innerHeight)/d.scrollHeight);if(p>maxScroll)maxScroll=Math.min(p,100);},{passive:true});
+function flush(){if(sent||!window.gtag)return;sent=true;var now=Date.now(),page=location.pathname;
+Object.keys(vis).forEach(function(k){if(vis[k]){T[k]=(T[k]||0)+now-vis[k];vis[k]=0;}});
+Object.keys(T).map(function(k){return [k,T[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,14).forEach(function(r){if(r[1]>=2000)gtag('event','section_time',{content_type:'section',content_id:r[0],content_group:page,value:Math.round(r[1]/1000)});});
+Object.keys(H).forEach(function(k){if(H[k]>=1500)gtag('event','card_hover',{content_type:'card_hover',content_id:k,content_group:page,value:Math.round(H[k]/1000)});});
+gtag('event','scroll_depth',{content_type:'scroll',content_id:page,content_group:page,value:maxScroll});}
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
+window.addEventListener('pagehide',flush);
+});})();
+</script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="10" height="14" rx="1.5" transform="rotate(-12 8 13)"/><rect x="7" y="4" width="10" height="14" rx="1.5"/><rect x="11" y="6" width="10" height="14" rx="1.5" transform="rotate(12 16 13)"/></svg>Ai Deal Deck</a>
+<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a><a href="/demo/">Live demo</a><a href="/faq/">Questions</a><a href="tel:+14149466479" data-lead="call" class="navcall">Call (414) 946-6479</a></nav>
+<div class="note">Thank you for your order</div>
+<a class="btn sm" href="/faq/">Questions</a>
+</header>
+<main>
+
+<section class="hero" style="padding-bottom:40px"><div class="wrap"><div class="copy" style="flex-basis:100%">
+<span class="pill">Start here &middot; 40 seconds</span>
+<h1>You got your cards. <em>Here is what happens next.</em></h1>
+<p class="sub">Four small steps. About 20 minutes per card. Claude helps you set it up.</p>
+</div></div></section>
+<section><div class="narrow">
+<video controls playsinline preload="metadata" poster="/assets/video/whats-next.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:0 auto;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/whats-next.mp4" type="video/mp4"></video>
+<p class="fine center" style="margin-top:10px">Sample screens. Yours will look a little different.</p>
+<ol class="startsteps">
+<li><b>You have mail.</b> Open the email from Ai Deal Deck. Check spam or promotions if you do not see it.</li>
+<li><b>Download your card.</b> Click View content, then Download. Save it to your Downloads folder and open it.</li>
+<li><b>Open the Claude desktop app.</b> Start a new chat. Click + and add your Downloads folder.</li>
+<li><b>Paste the prompt.</b> Open the COPY THIS PROMPT file, copy all of it, paste it into Claude and press Enter. Claude asks a few simple questions and helps you set it up.</li>
+</ol>
+<p class="center"><b>Then let the magic happen.</b> Ai Deal Deck = ADD: add these cards to your real estate business and voil&agrave;, you have AI.</p>
+<p class="fine center">You need the Claude desktop app and a paid Claude plan, sold separately by Anthropic. Stuck? See <a href="/faq/">Questions</a>, call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a>.</p>
+<p class="center" style="margin-top:26px"><a class="btn" href="/feedback/">Answer 3 quick questions, get 10% off your next card</a></p>
+</div></section>
+</main>
+<footer>
+<div class="wrap">
+<div style="max-width:720px">Ai Deal Deck is a brand of The Showing Partner LLC. Not affiliated with or endorsed by any brokerage, MLS, trade association, Anthropic, Google or CRM. Claude is a trademark of Anthropic, PBC. No guarantee of results. Not legal, tax, financial or brokerage advice.</div>
+<nav aria-label="Legal">
+<a href="/terms/">Terms</a>
+<a href="/privacy/">Privacy</a>
+<a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a>
+<a href="tel:+14149466479" data-lead="call">(414) 946-6479</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>
