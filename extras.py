@@ -132,13 +132,14 @@ def nudge(free_url):
 <span>Listing Watchdog + Morning Brief. No payment card needed.</span>
 <a class="btn sm" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
+<a class="freepill" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get 2 free cards</a>
 <div class="mbar" id="mbar"><a href="{free_url}" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="__DECK__" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
 <script>
-(function(){{var n=document.getElementById('nudge');if(!n)return;var done=false;
+(function(){{var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
 try{{done=sessionStorage.getItem('nudge')==='1';}}catch(e){{}}
-function show(){{if(done)return;done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}n.hidden=false;if(window.gtag)gtag('event','free_offer_shown',{{content_type:'nudge',content_id:location.pathname}});}}
+function show(){{if(done)return;done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}n.hidden=false;pill.hidden=true;if(window.gtag)gtag('event','free_offer_shown',{{content_type:'nudge',content_id:location.pathname}});}}
 function stop(){{done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}}}
-document.addEventListener('click',function(e){{if(e.target.closest('.nx')){{n.hidden=true;return;}}if(e.target.closest('a[data-buy]'))stop();
+document.addEventListener('click',function(e){{if(e.target.closest('.nx')){{n.hidden=true;pill.hidden=false;return;}}if(e.target.closest('a[data-buy]'))stop();
 var l=e.target.closest('a[data-lead]');if(l){{var k=l.getAttribute('data-lead');if(window.gtag)gtag('event','generate_lead',{{method:k,page:location.pathname}});if(window.fbq)fbq('track','Contact',{{method:k}});}}}});
 setTimeout(show,40000);
 window.addEventListener('scroll',function(){{var h=document.documentElement;if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.6)show();}},{{passive:true}});
@@ -264,12 +265,12 @@ CHAT_URL = "https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy02
 
 def after_free(urls):
     """Shown on the site right after someone clicks a free-cards button. The free checkout opens in a new tab;
-    this tab offers the Deck, then one single card."""
+    the offer shows first (Deck, then one card); the last No thanks goes to the free checkout."""
     cards = "".join('<a class="no" href="%s" data-buy="%s" data-value="19">%s: $19</a>' % (urls[c["key"]], c["name"].replace("&", "&amp;"), c["name"].replace("&", "&amp;")) for c in CARDS)
     html = """<dialog id="offer" aria-labelledby="offer-h">
 <form method="dialog"><button class="x" aria-label="Close">×</button></form>
 <div data-step="deck">
-<div class="eyebrow">Your free cards opened in a new tab</div>
+<div class="eyebrow">Before you get your free cards</div>
 <h2 id="offer-h" class="h2" style="font-size:28px">Want the rest of the cards for <s class="strike sm">$199</s> $49?</h2>
 <p class="lead" style="font-size:16px">The Deck has five more cards: your numbers, listings, new leads, money and assistant. Your two free cards are included.</p>
 <a class="btn block" style="margin-top:20px" href="__DECK__" data-buy="The AI Agent Deck" data-value="49">Yes, get the Deck: $49</a>
@@ -281,7 +282,7 @@ def after_free(urls):
 <h2 class="h2" style="font-size:28px">Just one card for <s class="strike sm">$49</s> $19?</h2>
 <p class="lead" style="font-size:16px">Pick the one that helps you most.</p>
 __CARDS__
-<button type="button" class="no" data-next style="margin-top:18px;border-style:dashed">No thanks, just my free cards</button>
+<a class="btn block" id="offer-free" style="margin-top:18px" href="#" data-value="0">No thanks, take me to my free cards</a>
 <p class="fine" style="margin-top:10px">$19 is the launch price through Nov 30. $49 is the regular price, starting Dec 1.</p>
 </div>
 </dialog>
@@ -290,7 +291,7 @@ __CARDS__
 function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i];});}
 document.addEventListener('click',function(e){
 var a=e.target.closest('a[data-buy="Free bonus cards"]');
-if(a&&!d.open){a.target='_blank';a.rel='noopener';i=0;show();setTimeout(function(){d.showModal();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});},400);return;}
+if(a&&!d.open){e.preventDefault();document.getElementById('offer-free').href=a.href;i=0;show();d.showModal();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});return;}
 if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else show();}});
 })();
 </script>"""
@@ -299,9 +300,9 @@ if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else
 
 def chat():
     """Sarah, the site's AI assistant. Asks the script for an AI answer; if that is off or fails, answers from the FAQ."""
-    html = """<button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false">Chat with Sarah</button>
+    html = """<button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false"><span class="chatav"><img src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="52" height="52" referrerpolicy="no-referrer" onerror="this.remove()"><i></i></span><span class="chattx"><b>Chat with Sarah</b><small>AI assistant. Ask me anything.</small></span></button>
 <section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the Ai Deal Deck AI assistant">
-<header><div><b>Sarah Hill</b><span>AI assistant for Ai Deal Deck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
+<header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for Ai Deal Deck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
 <div class="chatlog" id="chatlog" aria-live="polite"></div>
 <form id="chatform" autocomplete="off"><input id="chatq" type="text" maxlength="300" placeholder="Type your question" aria-label="Type your question"><button type="submit">Send</button></form>
 <p class="chatfine">Sarah is an AI assistant and can make mistakes. Please do not type private or payment details. <a href="/privacy/">Privacy</a></p>

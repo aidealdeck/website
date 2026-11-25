@@ -90,18 +90,18 @@ window.addEventListener('pagehide',flush);
 <section class="hero" style="padding-bottom:48px"><div class="wrap"><div class="copy" style="flex-basis:100%">
 <span class="pill">For buyers &middot; 1 minute</span>
 <h1>Answer 3 quick questions. <em>Get 10% off your next card.</em></h1>
-<p class="sub">Pick an answer, tap a number, type one line. Your 10% code shows up right here when you send it.</p>
+<p class="sub">Pick an answer, tap a number, share your feedback. Your 10% code shows up right here when you send it.</p>
 </div></div></section>
 <section><div class="narrow">
 <form id="fb" class="fbform">
 <label>1. How did you hear about us?
-<select name="heardsel" required><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Google</option><option>A friend or another real estate pro</option><option>Other</option></select></label>
+<select name="heardsel" required><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>LinkedIn</option><option>X (Twitter)</option><option>Google search</option><option>An AI assistant (Claude, ChatGPT, Gemini)</option><option>A friend or another real estate pro</option><option>My broker, team or office</option><option>A coach, trainer or speaker</option><option>A creator or influencer</option><option>A podcast</option><option>An email or newsletter</option><option>A Facebook group or online forum</option><option>An event or class</option><option>Other</option></select></label>
 <label id="otherwrap" hidden>Tell us where <span class="fine">or the name of the person who told you</span>
 <input name="heardother" maxlength="120"></label>
 <label>2. How likely are you to tell another real estate pro about Ai Deal Deck? <span class="fine">0 = not at all, 10 = definitely</span>
 <div class="fbscale" id="fbscale"></div></label>
-<label>3. What is one thing we should fix or build next? <span class="fine">one line is plenty</span>
-<textarea name="stopped" maxlength="800" rows="2"></textarea></label>
+<label>3. Your feedback <span class="fine">What other cards or products do you want to see? What should we improve on the site, at checkout or in setup?</span>
+<textarea name="stopped" maxlength="800" rows="3"></textarea></label>
 <button class="btn" type="submit">Send and show my 10% code</button>
 <p class="fine" id="fbmsg" aria-live="polite"></p>
 </form>
@@ -115,7 +115,7 @@ window.addEventListener('pagehide',flush);
 <script>
 (function(){var f=document.getElementById('fb'),sc=document.getElementById('fbscale'),score=null,msg=document.getElementById('fbmsg'),ow=document.getElementById('otherwrap');
 for(var i=0;i<=10;i++){(function(n){var b=document.createElement('button');b.type='button';b.textContent=n;b.addEventListener('click',function(){score=n;[].forEach.call(sc.children,function(c){c.classList.toggle('on',c===b);});});sc.appendChild(b);})(i);}
-f.heardsel.addEventListener('change',function(){var o=/Other|friend/.test(f.heardsel.value);ow.hidden=!o;});
+f.heardsel.addEventListener('change',function(){var o=/Other|friend|broker|coach|creator|podcast|group|event/.test(f.heardsel.value);ow.hidden=!o;});
 f.addEventListener('submit',function(e){e.preventDefault();if(!f.heardsel.value){msg.textContent='Please pick how you heard about us.';return;}if(score===null){msg.textContent='Please tap a number from 0 to 10.';return;}
 var heard=f.heardsel.value+(f.heardother.value?': '+f.heardother.value:'');
 var d={action:'feedback',score:score,site:'',stopped:f.stopped.value,setup:'',heard:heard,email:''};
