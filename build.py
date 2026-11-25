@@ -81,7 +81,7 @@ def cardgrid_html():
     deck = ('<div class="pcard deck">' + SNIP["DECKICON"] +
             '<h3>The full deck: all five cards, plus two bonus cards.</h3>'
             f'<a class="btn block" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></div>')
-    fine = ('<p class="center fine" style="margin-top:20px">Each card alone: <s>$49</s> $19 launch price through Nov 30 ($49 is the regular price, starting Dec 1). '
+    fine = ('<p class="center fine" style="margin-top:20px">Each card alone: <s>$49</s> $19 <span data-sale>Black Friday launch price</span> through Nov 30 ($49 is the regular price, starting Dec 1). '
             'The Deck gets you all five plus both bonus cards for $49 now; $199 is the regular price, starting Dec 1.</p>')
     return f'<div class="cards" id="cards">{cards}{deck}</div>{fine}'
 
@@ -99,7 +99,7 @@ UPSELL = '''
 <p class="lead" style="font-size:16px">All five cards plus the Listing Watchdog and Morning Brief bonus cards. One card alone is $19, so the Deck is five cards for the price of about two and a half.</p>
 <a class="btn block" style="margin-top:20px" href="__DECK__" data-buy="The AI Agent Deck" data-value="49">Yes, get the full Deck: $49</a>
 <button type="button" class="no" data-next>No thanks</button>
-<p class="fine" style="margin-top:10px">Launch price through Nov 30. $199 is the regular price, starting Dec 1.</p>
+<p class="fine" style="margin-top:10px"><span data-sale>Black Friday launch price</span> through Nov 30. $199 is the regular price, starting Dec 1.</p>
 </div>
 <div data-step="card" hidden>
 <div class="eyebrow">One more option</div>
