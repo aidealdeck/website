@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Builds the static Ai Deal Deck site from src/ into public/."""
 import json, os, re, shutil
+import extras
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC, OUT = os.path.join(ROOT, "src"), os.path.join(ROOT, "docs")
+import datetime
+BUILD_DATE = datetime.date.today().isoformat()
 SHOP = "https://shop.aidealdeck.com/l/"
 URLS = {
     "DECK": SHOP + "the-ai-agent-deck?wanted=true",
@@ -39,8 +42,13 @@ FAQ = [
     ("Will it contact my leads for me?", "No. It drafts messages for you to review and send. It never texts, calls or emails anyone on its own."),
     ("Will it get me more deals?", "We don't promise more leads, listings, closings or income. It shows you your numbers and what needs you; results depend on your work."),
     ("Can I get a refund?", "All sales are final because the files are delivered instantly and you keep them. Please read this page and the Terms before you buy. If a file is missing or won't open, email us and we'll fix it."),
+    ("Do I get a spreadsheet or a dashboard?", "Both are in the box and you choose. Every card comes with a workbook for Google Sheets or Excel. During setup Claude asks whether you want a live dashboard as your main view; if you say yes, Claude builds it for you inside Claude from your own numbers, and the workbook stays as the place your data lives. You can <a href=\"/demo/\">try a sample dashboard</a> before you buy."),
+    ("Can I try it before I buy?", "Yes. Two cards are free: the <a href=\"/free/\">Listing Watchdog and Morning Brief</a>. There is also a <a href=\"/demo/\">live demo of the KPI dashboard</a> with sample data."),
+    ("Can I talk to someone?", "Yes. Call " + extras.PHONE_DISPLAY + " any time; Sarah answers around the clock and can walk you through the cards. Or email support@aidealdeck.com."),
     ("Is this made by Anthropic?", "No. Ai Deal Deck is an independent product built to work with Claude. It is not made or endorsed by Anthropic."),
 ]
+
+SLUGS = {c["n"]: c["slug"] for c in extras.CARDS}
 
 def faq_html():
     items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in FAQ)
@@ -48,10 +56,12 @@ def faq_html():
 
 def card(m):
     num, tag, name, body, url, tilt = m.group(1).split("|")
+    slug = SLUGS.get(num, "")
+    more = f'<a class="more" href="/cards/{slug}/">What is inside</a>' if slug else ""
     pip = f'{num}{DIAMOND.format(s=16)}'
     return (f'<div class="pcard" style="transform:rotate({tilt})">'
             f'<div class="top"><div class="pip">{pip}</div><div class="tag">{tag}</div></div>'
-            f'<h3>{name}</h3><div class="rule"></div><p>{body}</p>'
+            f'<h3>{name}</h3><div class="rule"></div><p>{body}</p>{more}'
             f'<a class="single" href="{url}" data-upsell="single" data-buy="{re.sub("&amp;", "&", name)}" data-value="19">Buy this card: <s>$49</s> $19</a>'
             f'<div class="pip bottom">{num}{DIAMOND.format(s=14)}</div></div>')
 
@@ -201,32 +211,61 @@ def main():
     os.makedirs(OUT)
     head = open(os.path.join(SRC, "_head.html")).read()
     foot = open(os.path.join(SRC, "_foot.html")).read()
+    pages = []
     for name in sorted(os.listdir(SRC)):
         if name.startswith("_") or not name.endswith(".html"):
             continue
         raw = open(os.path.join(SRC, name)).read()
         meta_m = re.match(r"<!--META (.*?) -->\n", raw, re.S)
-        meta = json.loads(meta_m.group(1))
-        body = raw[meta_m.end():]
+        pages.append((json.loads(meta_m.group(1)), raw[meta_m.end():]))
+    plain_faq = [(q, re.sub(r"<[^>]+>", "", a)) for q, a in FAQ]
+    for c in extras.CARDS:
+        meta = {"out": f"cards/{c['slug']}/index.html", "path": f"/cards/{c['slug']}/",
+                "title": f"{c['name']} for real estate agents | Ai Deal Deck".replace("&", "&amp;"),
+                "desc": (c["short"] + " Launch price $19 through Nov 30.").replace("&", "&amp;"),
+                "topnote": "<span data-sale>Black Friday launch price</span> $19 through Nov 30 · regular price $49 from Dec 1",
+                "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
+                "pixel": "fbq('track','ViewContent',{content_name:'" + c["name"].replace("&", "and") + "',value:19,currency:'USD'});",
+                "ld": [extras.card_ld(c, extras.SITE + f"/cards/{c['slug']}/"), extras.faq_ld(plain_faq)]}
+        pages.append((meta, extras.card_page(c, URLS, SNIP, faq_html(), shop_section())))
+    LD = {
+        "index.html": [extras.deck_ld(extras.SITE + "/"), extras.faq_ld(plain_faq),
+                       extras.video_ld("How does Ai Deal Deck work?", "A 36-second look at how a real estate agent sets up an Ai Deal Deck card with Claude.", "how-it-works", 36),
+                       extras.video_ld("The KPI dashboard Claude builds for you", "A 29-second look at the live real estate KPI dashboard, with sample data.", "kpi-tracker", 29),
+                       extras.video_ld("Watch the cards go to work", "A 28-second look at the five Ai Deal Deck cards.", "cards-go-to-work", 28)],
+        "numbers/index.html": [extras.card_ld(extras.CARDS[0], extras.SITE + "/numbers/"), extras.faq_ld(plain_faq)],
+        "free/index.html": [{"@type": "Product", "name": "Free cards: Listing Watchdog and Morning Brief", "brand": {"@type": "Brand", "name": "Ai Deal Deck"},
+                             "image": extras.SITE + "/assets/og.png",
+                             "description": "Two free Ai Deal Deck cards for real estate agents. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
+                             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": extras.SITE + "/free/"}}],
+    }
+    SALES = lambda out: out not in ("terms/index.html", "privacy/index.html")
+    sitemap = []
+    for meta, body in pages:
+        name = meta["out"]
+        ld = extras.ld_script(meta.get("ld") or LD.get(name, []))
         h = (head.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{PATH}}", meta["path"])
-                 .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]))
-        modal = UPSELL.replace("__DECK__", URLS["DECK"]).replace("__KPI__", URLS["KPI"]) if meta["out"] in ("index.html","numbers/index.html","free/index.html") else ""
-        # Offers now happen inside Gumroad's checkout (upsells), so the on-site pop-up is off.
-        SITE_POPUP = False
-        if not SITE_POPUP:
-            modal = ""
-        page = render(h + body + modal + foot)
-        if not SITE_POPUP:
-            page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
+                 .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
+        tail = ""
+        if SALES(name):
+            tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"])
+        f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
+        page = render(h + body + tail + f)
+        page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
         leftover = re.findall(r"\{\{[A-Z_:]+.*?\}\}", page)
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
-        dest = os.path.join(OUT, meta["out"])
+        dest = os.path.join(OUT, name)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         open(dest, "w").write(page)
+        sitemap.append(meta["path"])
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUT, "assets"))
     open(os.path.join(OUT, "CNAME"), "w").write("aidealdeck.com\n")
     open(os.path.join(OUT, ".nojekyll"), "w").write("")
-    open(os.path.join(OUT, "robots.txt"), "w").write("User-agent: *\nAllow: /\n")
+    open(os.path.join(OUT, "robots.txt"), "w").write("User-agent: *\nAllow: /\n\nSitemap: https://aidealdeck.com/sitemap.xml\n")
+    prio = lambda p: "1.0" if p == "/" else ("0.3" if p in ("/terms/", "/privacy/") else "0.8")
+    open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "".join(f"<url><loc>https://aidealdeck.com{p}</loc><lastmod>{BUILD_DATE}</lastmod><priority>{prio(p)}</priority></url>\n" for p in sorted(sitemap)) + "</urlset>\n")
+    open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, plain_faq))
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
 
 if __name__ == "__main__":

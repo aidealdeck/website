@@ -8,9 +8,19 @@
 <meta property="og:title" content="Privacy | Ai Deal Deck">
 <meta property="og:description" content="How Ai Deal Deck collects and uses information.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Ai Deal Deck">
 <meta property="og:image" content="https://aidealdeck.com/assets/og.png">
+<meta property="og:image:width" content="1640">
+<meta property="og:image:height" content="624">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy | Ai Deal Deck">
+<meta name="twitter:description" content="How Ai Deal Deck collects and uses information.">
+<meta name="twitter:image" content="https://aidealdeck.com/assets/og.png">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0E1730">
 <meta property="og:url" content="https://aidealdeck.com/privacy/">
 <link rel="canonical" href="https://aidealdeck.com/privacy/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aidealdeck.com/#org","name":"Ai Deal Deck","url":"https://aidealdeck.com/","logo":"https://aidealdeck.com/assets/og.png","email":"support@aidealdeck.com","telephone":"+14149466479","legalName":"The Showing Partner LLC","description":"Do-it-yourself AI toolkits (cards) for real estate agents, set up with Claude.","contactPoint":{"@type":"ContactPoint","telephone":"+14149466479","email":"support@aidealdeck.com","contactType":"sales and customer support","areaServed":"US","availableLanguage":"English"}},{"@type":"WebSite","@id":"https://aidealdeck.com/#site","url":"https://aidealdeck.com/","name":"Ai Deal Deck","publisher":{"@id":"https://aidealdeck.com/#org"}}]}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,12 +39,12 @@ fbq('track','PageView');
 }
 /* Path tracking: tag every buy link with the page, the button position and the ad campaign that brought the visitor. */
 (function(){
-var page=({'/':'deck','/numbers/':'numbers','/free/':'free','/demo/':'demo'})[location.pathname]||'other';
+var page=({'/':'deck','/numbers/':'numbers','/free/':'free','/demo/':'demo'})[location.pathname]||(location.pathname.indexOf('/cards/')===0?'card_'+location.pathname.split('/')[2]:'other');
 var ad={};try{var q=new URLSearchParams(location.search);['utm_source','utm_campaign','utm_term'].forEach(function(k){var v=q.get(k);if(v)ad[k]=v.slice(0,80);});
  if(Object.keys(ad).length){sessionStorage.setItem('ad',JSON.stringify(ad));}else{ad=JSON.parse(sessionStorage.getItem('ad')||'{}');}
  if(!sessionStorage.getItem('land'))sessionStorage.setItem('land',page);}catch(e){}
 var land=page;try{land=sessionStorage.getItem('land')||page;}catch(e){}
-function pos(a){var m=[['.topbar','topbar'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
+function pos(a){var m=[['.topbar','topbar'],['.nudge','nudge'],['.mbar','mobilebar'],['.leadband','leadband'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
 function tag(){document.querySelectorAll('a[data-buy]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('utm_source',ad.utm_source||'direct');u.searchParams.set('utm_medium','site_'+land);u.searchParams.set('utm_campaign',ad.utm_campaign||'none');u.searchParams.set('utm_content',page+'_'+pos(a));a.href=u.toString();a.setAttribute('data-pos',pos(a));}catch(e){}});}
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tag);}else{tag();}
 document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a)return;gtag('event','begin_checkout',{item_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});if(!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
@@ -49,7 +59,7 @@ document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateT
 <body>
 <header class="topbar">
 <a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D4AF5A" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="10" height="14" rx="1.5" transform="rotate(-12 8 13)"/><rect x="7" y="4" width="10" height="14" rx="1.5"/><rect x="11" y="6" width="10" height="14" rx="1.5" transform="rotate(12 16 13)"/></svg>Ai Deal Deck</a>
-<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a><a href="/demo/">Live demo</a></nav>
+<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a><a href="/demo/">Live demo</a><a href="tel:+14149466479" data-lead="call" class="navcall">Call (414) 946-6479</a></nav>
 <div class="note"></div>
 
 </header>
@@ -66,6 +76,7 @@ document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateT
 <ul>
 <li><b>When you buy or download (through Gumroad).</b> Gumroad processes your payment and shares your name, email address, the product, the price, your country and order details with us. We never receive your full card number.</li>
 <li><b>When you subscribe or email us.</b> Your email address and anything you choose to write to us.</li>
+<li><b>When you call us.</b> Our phone line is answered by an automated voice assistant. Calls may be recorded and transcribed so we can answer you, follow up and improve our service. If you give your name, email address or phone number on a call, we keep it to reply to you. Our voice provider keeps call records for a limited time.</li>
 <li><b>When you visit our pages.</b> We use the Meta Pixel, a tool from Meta Platforms, Inc. (Facebook and Instagram). It uses cookies and similar technology to record visits, which pages you view, button clicks and purchases, along with technical data such as your browser, device and IP address, and sends that to Meta. We use this to measure our ads and to show ads to people who visited our pages. Our buy links also carry tags that record which of our pages and buttons, and which ad campaign, led to a purchase; these tags describe the visit, not you. We also use Google Analytics, a tool from Google LLC, which uses cookies to count visits and show us which pages and buttons people use. Gumroad's checkout pages may also use cookies; see Gumroad's privacy policy.</li>
 </ul>
 
@@ -114,6 +125,7 @@ document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateT
 <a href="/terms/">Terms</a>
 <a href="/privacy/">Privacy</a>
 <a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a>
+<a href="tel:+14149466479" data-lead="call">(414) 946-6479</a>
 </nav>
 </div>
 </footer>
