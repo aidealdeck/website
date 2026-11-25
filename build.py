@@ -30,12 +30,12 @@ SNIP = {
             '<div class="t">The AI<br>Agent Deck</div><div class="bar"></div><div class="s">5 cards + 2 bonus cards</div></div>'
             '<div class="badge"><small><s>$199</s></small><b>$49</b></div></div>'),
     "BUYFINE": ('By buying, you agree to the <a href="/terms/">Terms</a>. Needs the Claude desktop app and a paid Claude plan '
-                '(Claude Pro is currently $20/month), sold separately by Anthropic. All sales are final.'),
+                '(Claude Pro is currently $20/month), sold separately by Anthropic; heavier use may need a higher plan. Claude helps you set it up; it is do-it-yourself. All sales are final.'),
 }
 
 FAQ = [
     ("Is it done for me?", "No. It's a do-it-yourself toolkit. Setup takes about 20 minutes per card: paste one prompt into Claude, answer simple questions, and approve what it sets up. The Lead-for-Life System takes another hour or two to build your follow-up plan in your CRM and write your own emails."),
-    ("What else do I need?", "The Claude desktop app and a paid Claude plan (Claude Pro is currently $20/month), sold separately by Anthropic. Google Sheets or Excel. A CRM is optional; if Claude has a connector for it, Claude can read it directly."),
+    ("What else do I need?", "The Claude desktop app and a paid Claude plan (Claude Pro is currently $20/month), sold separately by Anthropic. The more cards you run and the more often they update, the more of your Claude plan they use, so you may need a higher plan as you grow. Google Sheets or Excel. A CRM is optional; if Claude has a connector for it, Claude can read it directly."),
     ("Will it contact my leads for me?", "No. It drafts messages for you to review and send. It never texts, calls or emails anyone on its own."),
     ("Will it get me more deals?", "We don't promise more leads, listings, closings or income. It shows you your numbers and what needs you; results depend on your work."),
     ("Can I get a refund?", "All sales are final because the files are delivered instantly and you keep them. Please read this page and the Terms before you buy. If a file is missing or won't open, email us and we'll fix it."),
