@@ -16,9 +16,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
-<!-- Meta Pixel -->
+<!-- Google Analytics + Meta Pixel (both skipped when the browser sends a Global Privacy Control signal) -->
 <script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 if(!navigator.globalPrivacyControl){
+(function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-GG42FBV7Z8';document.head.appendChild(g);})();
+gtag('js',new Date());gtag('config','G-GG42FBV7Z8');
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','2684470808323193');
 fbq('track','PageView');
@@ -34,7 +37,7 @@ var land=page;try{land=sessionStorage.getItem('land')||page;}catch(e){}
 function pos(a){var m=[['.topbar','topbar'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
 function tag(){document.querySelectorAll('a[data-buy]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('utm_source',ad.utm_source||'direct');u.searchParams.set('utm_medium','site_'+land);u.searchParams.set('utm_campaign',ad.utm_campaign||'none');u.searchParams.set('utm_content',page+'_'+pos(a));a.href=u.toString();a.setAttribute('data-pos',pos(a));}catch(e){}});}
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tag);}else{tag();}
-document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a||!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a)return;gtag('event','begin_checkout',{item_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});if(!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2684470808323193&ev=PageView&noscript=1"></noscript>
