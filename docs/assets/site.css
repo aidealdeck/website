@@ -345,3 +345,4 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 .topbar .note:empty{display:none}
 @media (min-width:1000px){.topbar .topnav{margin:0 auto}}
 .legal table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}.legal th,.legal td{text-align:left;padding:10px 12px;border:1px solid var(--rule);vertical-align:top;color:#2B3553}.legal th{background:#f5f3ee}
+@media (max-width:640px){.freepill.solo{display:flex;right:10px;bottom:10px;padding:6px 14px 6px 6px}.freepill.solo small{display:none}.freepill.solo .fpic{width:40px;height:40px;font-size:12px}}

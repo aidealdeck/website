@@ -126,6 +126,7 @@ def leadband(free_url):
 
 def nudge(free_url, bar=True):
     """Small slide-in offer of the free cards, shown once per visit to people who have not clicked a buy or free button."""
+    solo = '' if bar else ' solo'
     mbar = '<div class="mbar" id="mbar"><a href="' + free_url + '" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="__DECK__" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>' if bar else ''
     return f'''<aside class="nudge" id="nudge" hidden aria-label="Free cards offer">
 <button type="button" class="nx" aria-label="Close">×</button>
@@ -133,7 +134,7 @@ def nudge(free_url, bar=True):
 <span>Listing Watchdog + Morning Brief</span>
 <a class="btn sm" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
-<a class="freepill" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
+<a class="freepill{solo}" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
 {mbar}
 <script>
 (function(){{var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
