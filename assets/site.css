@@ -296,3 +296,7 @@ dialog#offer a.no{display:block;text-align:center;text-decoration:none;box-sizin
 @media (max-width:640px){.start3{grid-template-columns:1fr}}
 .pcard.deck{cursor:pointer}
 .pcard.deck .btn::after{content:"";position:absolute;inset:0;border-radius:18px}
+/* No lonely last words: balance short blocks, tidy long ones */
+h1,h2,h3,h4,.sub,.lead,.fine,.meta,.eyebrow,.center,figcaption,.alt-buy,.topbar,.nudge b,.nudge span,.btn,.pill,.step b,.pcard h3,.tile h3,.howbuy{text-wrap:balance}
+p,li,.step span,.pcard p,dd,summary,label,small{text-wrap:pretty}
+.center,.fine,.lead,.sub{text-wrap:balance}
