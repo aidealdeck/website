@@ -179,7 +179,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
     assert "$199" not in fan and "Agent Deck</div>" not in fan
     _v = os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'video', c['slug'] + '.mp4'))
     vid = (f'<video controls playsinline preload="none" poster="/assets/video/{c["slug"]}.jpg" style=\"display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730\"><source src="/assets/video/{c["slug"]}.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Sample data shown.</p>') if _v else ''
-    howvid = ('<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Watch how it works. 36 seconds.</p>') if c["key"] == "KPI" else ""
+    howvid = ('<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Watch how it works. 24 seconds.</p>') if c["key"] == "KPI" else ""
     demo = '<a class="btn" href="/demo/" style="background:transparent;color:#fff;border:2px solid var(--gold)">Try the live demo first</a>' if c["key"] == "KPI" else ""
     return f'''<section class="hero">
 <div class="wrap">
