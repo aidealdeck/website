@@ -178,6 +178,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <div class="wrap">
 <div class="center"><div class="eyebrow">What it does</div><h2 class="h2">{name}</h2><p class="lead">{esc(c["short"])}</p></div>
 {vid}
+<p class="center" style="margin:0 0 28px"><a class="btn" href="{buy}" data-buy="{name}" data-value="19">Get this card: <s class="strike sm">$49</s> $19 {snip["ARROW"]}</a></p>
 <div class="cols2">
 <div class="tile"><h3>What you get from it</h3><ul class="ticks">{does}</ul></div>
 <div class="tile"><h3>What is in the download</h3><ul class="plain">{inside}</ul></div>
