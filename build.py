@@ -212,6 +212,8 @@ def main():
         shutil.rmtree(OUT)
     os.makedirs(OUT)
     head = open(os.path.join(SRC, "_head.html")).read()
+    import hashlib
+    head = head.replace("/assets/site.css\"", "/assets/site.css?v=" + hashlib.md5(open(os.path.join(ROOT, "assets", "site.css"), "rb").read()).hexdigest()[:8] + "\"")
     foot = open(os.path.join(SRC, "_foot.html")).read()
     pages = []
     for name in sorted(os.listdir(SRC)):
