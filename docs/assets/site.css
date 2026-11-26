@@ -339,3 +339,6 @@ dialog#pick .fine{margin:10px 0 0}
 dialog#pick #pk-go[href='#']{background:transparent;border:2px solid var(--navy);color:var(--navy)}
 dialog#pick #pk-deck{margin-top:10px}
 dialog#pick #pk-deck[hidden]{display:none}
+#pk-bar{cursor:pointer}
+dialog#pick .px:focus{outline:none}
+dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
