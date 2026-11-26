@@ -195,7 +195,8 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <div class="step"><div class="n">2</div><div><b>Paste one prompt into Claude</b><span>Claude reads the Setup Pack and asks you simple questions.</span></div></div>
 <div class="step"><div class="n">3</div><div><b>Pick your view</b><span>A live dashboard inside Claude that Claude helps you build, or the spreadsheet on its own. You choose.</span></div></div>
 </div>
-<p class="center fine" style="margin-top:24px">Do-it-yourself. Needs the Claude desktop app and a paid Claude plan (Claude Pro is currently $20/month), sold separately by Anthropic; heavier use may need a higher plan. <a href="/demo/">Try a live sample dashboard</a>.</p>
+<p class="center" style="margin:28px 0 0"><a class="btn" href="{buy}" data-buy="{name}" data-value="19">Get this card: <s class="strike sm">$49</s> $19 {snip["ARROW"]}</a></p>
+<p class="center fine" style="margin-top:16px">Do-it-yourself. Needs the Claude desktop app and a paid Claude plan (Claude Pro is currently $20/month), sold separately by Anthropic; heavier use may need a higher plan. <a href="/demo/">Try a live sample dashboard</a>.</p>
 </div>
 </section>
 
