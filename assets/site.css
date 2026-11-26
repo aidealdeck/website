@@ -106,7 +106,11 @@ section{padding:88px 24px}
 .legend{margin-top:18px;display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--soft2)}
 .legend span{display:flex;align-items:center;gap:8px}
 /* shots */
-.shots{margin:36px auto 0;max-width:960px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.carousel{position:relative;max-width:960px;margin:36px auto 0}
+.shots{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 4px 14px;scrollbar-width:thin}
+.shots .shot{flex:0 0 72%;scroll-snap-align:center}
+.cbtn{position:absolute;top:42%;transform:translateY(-50%);z-index:2;width:46px;height:46px;border-radius:50%;border:0;background:var(--gold);color:var(--navy);font-size:30px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(14,23,48,.3)}
+.cbtn.prev{left:-14px}.cbtn.next{right:-14px}
 .shot{border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
 .shot img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;object-position:top left}
 .shot figcaption{margin-top:auto}
@@ -280,7 +284,7 @@ body{padding-bottom:66px}
 dialog#offer a.no{display:block;text-align:center;text-decoration:none;box-sizing:border-box}
 @media (max-width:640px){.chatbtn{left:10px;bottom:78px;padding:11px 16px}.chatbox{left:10px;bottom:78px;height:420px;max-height:calc(100vh - 150px)}}
 
-@media (max-width:640px){.shots{grid-template-columns:1fr}}
+@media (max-width:640px){.shots .shot{flex-basis:88%}.cbtn.prev{left:2px}.cbtn.next{right:2px}}
 /* whole card opens "What is inside"; the buy link stays its own click */
 .pcard .more::after{content:"";position:absolute;inset:0;border-radius:16px;cursor:pointer}
 .pcard .single{position:relative;z-index:1;align-self:flex-start}
