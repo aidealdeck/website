@@ -294,3 +294,5 @@ dialog#offer a.no{display:block;text-align:center;text-decoration:none;box-sizin
 .start3 b{display:block;font-family:'Space Grotesk',sans-serif;font-size:21px;line-height:1.2}
 .start3 small{display:block;margin-top:6px;font-size:15px;color:var(--muted);line-height:1.4}
 @media (max-width:640px){.start3{grid-template-columns:1fr}}
+.pcard.deck{cursor:pointer}
+.pcard.deck .btn::after{content:"";position:absolute;inset:0;border-radius:18px}
