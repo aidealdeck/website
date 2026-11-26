@@ -182,7 +182,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
     inside = "".join(f"<li>{esc(x)}</li>" for x in c["inside"])
     name = esc(c["name"])
     _t = {"KPI": "KPI<br>Tracker", "LISTING": "Listing Exposure<br>Playbook", "LEAD": "Lead-for-Life<br>System", "GCI": "Commission &amp;<br>GCI Ledger", "VA": "VA Playbook<br>&amp; Scorecard"}[c["key"]]
-    fan = (snip["FAN"].replace('aria-label="The AI Agent Deck: 5 cards plus 2 bonus cards, launch price $49"', 'aria-label="' + name + ': launch price $19"')
+    fan = (snip["FAN"].replace('aria-label="The AI Agent Deck: 5 cards plus 2 bonus cards"', 'aria-label="' + name + '"')
            .replace('<div class="t">The AI<br>Agent Deck</div>', '<div class="t" style="font-size:24px">' + _t + '</div>')
            .replace('5 cards + 2 bonus cards', 'Card ' + c["n"] + ' of 5')
            .replace('<small><s>$199</s></small><b>$49</b>', '<small><s>$49</s></small><b>$19</b>'))

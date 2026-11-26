@@ -28,7 +28,7 @@ SNIP = {
     "ARROW": '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
     "FLOWARROW": '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6A1F" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
     "DECKICON": DECK_SVG.format(s=40, w=1.3),
-    "FAN": ('<div class="fan" role="img" aria-label="The AI Agent Deck: 5 cards plus 2 bonus cards, launch price $49">'
+    "FAN": ('<div class="fan" role="img" aria-label="The AI Agent Deck: 5 cards plus 2 bonus cards">'
             '<div class="c c1"></div><div class="c c2"></div>'
             '<div class="front">' + DECK_SVG.format(s=56, w=1.2) +
             '<div class="t">The AI<br>Agent Deck</div><div class="bar"></div><div class="s">5 cards + 2 bonus cards</div></div>'
