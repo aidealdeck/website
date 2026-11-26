@@ -415,3 +415,5 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 .wlcard h2{font-size:26px;margin:8px 0 8px}.wlcard p{margin:0;font-size:17px;line-height:1.5;color:var(--muted)}
 .wlicon{font-size:64px;line-height:1;display:block}
 @media (max-width:760px){.wlgrid,.wlrow{grid-template-columns:1fr}}
+h1,h2,h3,.sub,.lead,p.center,.meta,.fine{text-wrap:balance}
+p,li{text-wrap:pretty}
