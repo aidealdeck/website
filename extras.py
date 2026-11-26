@@ -317,11 +317,12 @@ var a=e.target.closest('a[data-buy="Free bonus cards"]');
 if(a&&!d.open){e.preventDefault();fallback=a.href;i=0;show();msg.textContent='';d.showModal();f.email.focus();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});return;}
 if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else show();}});
 f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='Sending...';
-fetch('__CHAT_URL__',{method:'POST',credentials:'omit',body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname})}).then(function(r){return r.json();}).then(function(j){b.disabled=false;
+var ac=window.AbortController?new AbortController():null,slow=setTimeout(function(){msg.textContent='Still sending. One moment.';},5000),kill=setTimeout(function(){if(ac)ac.abort();},15000);function done(){clearTimeout(slow);clearTimeout(kill);}
+fetch('__CHAT_URL__',{method:'POST',credentials:'omit',signal:ac?ac.signal:undefined,body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname})}).then(function(r){return r.json();}).then(function(j){done();b.disabled=false;
 if(j&&j.ok){msg.textContent='';if(window.gtag)gtag('event','generate_lead',{method:'free_cards_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards'});i=1;show();}
 else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
 else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';}
-}).catch(function(){b.disabled=false;msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';});});
+}).catch(function(){done();b.disabled=false;msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';});});
 })();
 </script>"""
     return html.replace("__DECK__", urls["DECK"]).replace("__CARDS__", cards).replace("__CHAT_URL__", CHAT_URL)
