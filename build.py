@@ -69,11 +69,11 @@ def card(m):
 
 
 CARD_DEFS = [
-    ("1", "Your numbers", "Real Estate KPI Tracker", "See how many leads turn into closings, step by step. It also gives you one number to hit each week to reach your goal.", "KPI", "-2deg"),
-    ("2", "Your listings", "Listing Exposure Playbook", "A 14-day plan for every new listing. It tells you what to do each day and gives you a report to show the seller.", "LISTING", "1deg"),
-    ("3", "Your new leads", "Lead-for-Life System", "Call every new lead fast. Then follow a set plan until they book. It also tracks how fast you call.", "LEAD", "-1deg"),
-    ("4", "Your money", "Commission &amp; GCI Ledger", "Write down every closing and what you were paid. See what you really kept this year.", "GCI", "2deg"),
-    ("5", "Your assistant", "VA Playbook &amp; Scorecard", "A clear daily job for your assistant: three tasks, a routine, a report each night and a score each week.", "VA", "-1deg"),
+    ("1", "Your numbers", "Real Estate KPI Tracker", "See where your leads drop off. Get one number to hit each week.", "KPI", "-2deg"),
+    ("2", "Your listings", "Listing Exposure Playbook", "A 14-day plan for every new listing, with a report for the seller.", "LISTING", "1deg"),
+    ("3", "Your new leads", "Lead-for-Life System", "Call every new lead fast. Follow a set plan until they book.", "LEAD", "-1deg"),
+    ("4", "Your money", "Commission &amp; GCI Ledger", "Log every closing. See what you really kept this year.", "GCI", "2deg"),
+    ("5", "Your assistant", "VA Playbook &amp; Scorecard", "A clear daily job for your assistant, with a score each week.", "VA", "-1deg"),
 ]
 
 class _M:
@@ -102,8 +102,8 @@ def cardgrid_html():
     deck = ('<div class="pcard deck">' + SNIP["DECKICON"] +
             '<h3>The full deck: all five cards, plus two bonus cards.</h3>'
             f'<a class="btn block" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></div>')
-    fine = ('<p class="center fine" style="margin-top:20px">Each card alone: <s>$49</s> $19 <span data-sale>Black Friday launch price</span> through Nov 30 ($49 is the regular price, starting Dec 1). '
-            'The Deck gets you all five plus both bonus cards for $49 now; $199 is the regular price, starting Dec 1.</p>')
+    fine = ('<p class="center fine" style="margin-top:20px"><span data-sale>Black Friday launch price</span> through Nov 30. '
+            'From Dec 1: $49 a card, $199 for the Deck.</p>')
     allin = ('<label class="allin"><input type="checkbox" data-allin> <span><b>Make it the full Deck: all 5 cards + 2 bonus cards for $49</b>'
              '<small>Five single cards would be $95. Tick this and every card below takes you to the $49 Deck instead.</small></span></label>')
     js = ('<script>(function(){document.querySelectorAll("[data-allin]").forEach(function(cb){var box=cb.closest("section")||document;'
