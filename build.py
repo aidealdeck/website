@@ -84,7 +84,7 @@ VIDEO = '''<section id="how">
 <div class="wrap">
 <div class="center"><div class="eyebrow">Watch &middot; 36 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
 <video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
-<p class="center" style="margin:28px 0 0"><a class="btn" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49 {{ARROW}}</a></p>
+<p class="center" style="margin:28px 0 0"><a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></p>
 <p class="center" style="margin-top:18px;color:var(--muted)">Rather have it set up for you? Email <a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a> and ask about done-for-you setup.</p>
 </div>
 </section>'''
@@ -93,7 +93,7 @@ VIDEO2 = '''<section class="dark" id="magic">
 <div class="wrap">
 <div class="center"><div class="eyebrow">Watch &middot; 28 seconds</div><h2 class="h2">Watch the cards go to work</h2></div>
 <video controls playsinline preload="none" poster="/assets/video/cards-go-to-work.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/cards-go-to-work.mp4" type="video/mp4"></video>
-<p class="center" style="margin:28px 0 0"><a class="btn" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49 {{ARROW}}</a></p>
+<p class="center" style="margin:28px 0 0"><a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></p>
 </div>
 </section>'''
 

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unsubscribe | AiDealDeck</title>
+<meta name="description" content="Stop check-in emails from AiDealDeck with one click.">
+<meta property="og:title" content="Unsubscribe | AiDealDeck">
+<meta property="og:description" content="Stop check-in emails from AiDealDeck with one click.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AiDealDeck">
+<meta property="og:image" content="https://aidealdeck.com/assets/og.png">
+<meta property="og:image:width" content="1640">
+<meta property="og:image:height" content="624">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unsubscribe | AiDealDeck">
+<meta name="twitter:description" content="Stop check-in emails from AiDealDeck with one click.">
+<meta name="twitter:image" content="https://aidealdeck.com/assets/og.png">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0E1730">
+<meta property="og:url" content="https://aidealdeck.com/unsubscribe/">
+<link rel="canonical" href="https://aidealdeck.com/unsubscribe/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://aidealdeck.com/#org","name":"AiDealDeck","url":"https://aidealdeck.com/","logo":"https://aidealdeck.com/assets/og.png","email":"support@aidealdeck.com","telephone":"+14149466479","legalName":"The Showing Partner LLC","description":"Do-it-yourself AI toolkits (cards) for real estate pros, set up with Claude.","contactPoint":{"@type":"ContactPoint","telephone":"+14149466479","email":"support@aidealdeck.com","contactType":"sales and customer support","areaServed":"US","availableLanguage":"English"}},{"@type":"WebSite","@id":"https://aidealdeck.com/#site","url":"https://aidealdeck.com/","name":"AiDealDeck","publisher":{"@id":"https://aidealdeck.com/#org"}}]}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=679ed08b">
+<!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for visitors in Europe or the UK until they click Accept) -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+var EUV=false,CKV=null;try{EUV=/^(Europe\/|Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe))/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');CKV=localStorage.getItem('ck');}catch(e){}
+window.ADD_NEEDS_CONSENT=EUV&&CKV===null&&!navigator.globalPrivacyControl;
+if(!navigator.globalPrivacyControl&&(!EUV||CKV==='yes')){
+(function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-GG42FBV7Z8';document.head.appendChild(g);})();
+gtag('js',new Date());gtag('config','G-GG42FBV7Z8');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2684470808323193');
+fbq('track','PageView');
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','zj9l2a03km');
+
+}
+/* Path tracking: tag every buy link with the page, the button position and the ad campaign that brought the visitor. */
+(function(){
+var page=({'/':'deck','/numbers/':'numbers','/free/':'free','/demo/':'demo','/faq/':'faq'})[location.pathname]||(location.pathname.indexOf('/cards/')===0?'card_'+location.pathname.split('/')[2]:'other');
+var ad={};try{var q=new URLSearchParams(location.search);['utm_source','utm_campaign','utm_term'].forEach(function(k){var v=q.get(k);if(v)ad[k]=v.slice(0,80);});
+ if(Object.keys(ad).length){sessionStorage.setItem('ad',JSON.stringify(ad));}else{ad=JSON.parse(sessionStorage.getItem('ad')||'{}');}
+ if(!sessionStorage.getItem('land'))sessionStorage.setItem('land',page);}catch(e){}
+var land=page;try{land=sessionStorage.getItem('land')||page;}catch(e){}
+function pos(a){var m=[['.topbar','topbar'],['.nudge','nudge'],['.mbar','mobilebar'],['.leadband','leadband'],['.hero','hero'],['.cards','cardgrid'],['.offer','pricebox'],['.stack','deckgrid'],['.alt-buy','textlink']];for(var i=0;i<m.length;i++){if(a.closest(m[i][0]))return m[i][1];}return 'other';}
+function tag(){document.querySelectorAll('a[data-buy]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('utm_source',ad.utm_source||'direct');u.searchParams.set('utm_medium','site_'+land);u.searchParams.set('utm_campaign',ad.utm_campaign||'none');u.searchParams.set('utm_content',page+'_'+pos(a));a.href=u.toString();a.setAttribute('data-pos',pos(a));}catch(e){}});}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tag);}else{tag();}
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');if(!a)return;gtag('event','begin_checkout',{content_type:'button',content_id:page+' / '+(a.getAttribute('data-pos')||'')+' / '+a.getAttribute('data-buy'),content_group:location.pathname,item_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});if(!window.fbq)return;fbq('track','InitiateCheckout',{content_name:a.getAttribute('data-buy'),value:parseFloat(a.getAttribute('data-value')||'0'),currency:'USD',page:page,landing:land,position:a.getAttribute('data-pos')||''});});
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2684470808323193&ev=PageView&noscript=1"></noscript>
+<script>
+/* Sale name: Black Friday through Nov 29, Cyber Monday on Nov 30 (Central time). Same price both days. */
+document.addEventListener('DOMContentLoaded',function(){try{var d=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago'}).format(new Date());if(d==='2026-11-30'){document.querySelectorAll('[data-sale]').forEach(function(e){e.textContent='Cyber Monday launch price';});}}catch(e){}});
+</script>
+<script>
+/* Behavior tracking (no recordings, no personal data): how long each section and card is on screen, hover time on cards, and how far people scroll. */
+(function(){if(navigator.globalPrivacyControl||!('IntersectionObserver' in window))return;
+document.addEventListener('DOMContentLoaded',function(){
+var T={},vis={},H={},maxScroll=0,sent=false;
+function name(el,i){if(el.classList.contains('pcard')){var h=el.querySelector('h3');return 'card: '+(h?h.textContent.trim().slice(0,40):i);}
+var id=el.id||'';var h2=el.querySelector('h1,h2');return (id?id+': ':'')+(h2?h2.textContent.trim().slice(0,50):'section '+i);}
+var els=[].slice.call(document.querySelectorAll('main > section, main .pcard, .leadband'));
+var io=new IntersectionObserver(function(es){var now=Date.now();es.forEach(function(e){var k=e.target._k;if(e.isIntersecting&&e.intersectionRatio>=0.4){if(!vis[k])vis[k]=now;}else if(vis[k]){T[k]=(T[k]||0)+now-vis[k];vis[k]=0;}});},{threshold:[0,0.4,0.8]});
+els.forEach(function(el,i){el._k=name(el,i);io.observe(el);
+if(el.classList.contains('pcard')){var t0=0;el.addEventListener('mouseenter',function(){t0=Date.now();});el.addEventListener('mouseleave',function(){if(t0){H[el._k]=(H[el._k]||0)+Date.now()-t0;t0=0;}});}});
+window.addEventListener('scroll',function(){var d=document.documentElement;var p=Math.round(100*(d.scrollTop+window.innerHeight)/d.scrollHeight);if(p>maxScroll)maxScroll=Math.min(p,100);},{passive:true});
+function flush(){if(sent||!window.gtag)return;sent=true;var now=Date.now(),page=location.pathname;
+Object.keys(vis).forEach(function(k){if(vis[k]){T[k]=(T[k]||0)+now-vis[k];vis[k]=0;}});
+Object.keys(T).map(function(k){return [k,T[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,14).forEach(function(r){if(r[1]>=2000)gtag('event','section_time',{content_type:'section',content_id:r[0],content_group:page,value:Math.round(r[1]/1000)});});
+Object.keys(H).forEach(function(k){if(H[k]>=1500)gtag('event','card_hover',{content_type:'card_hover',content_id:k,content_group:page,value:Math.round(H[k]/1000)});});
+gtag('event','scroll_depth',{content_type:'scroll',content_id:page,content_group:page,value:maxScroll});}
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
+window.addEventListener('pagehide',flush);
+});})();
+</script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><g transform="translate(0.0 0.0) scale(1.0)"><defs><mask id="k0" maskUnits="userSpaceOnUse" x="-20" y="-20" width="104" height="104"><rect x="-20" y="-20" width="104" height="104" fill="#fff"/><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(30 32 52)" fill="#000" stroke="#000" stroke-width="2.6"/><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(-15 32 52)" fill="#000" stroke="#000" stroke-width="2.6"/><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(15 32 52)" fill="#000" stroke="#000" stroke-width="2.6"/><rect x="24" y="23" width="16" height="27" rx="2.5" fill="#000" stroke="#000" stroke-width="5.2"/></mask><mask id="k1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="104" height="104"><rect x="-20" y="-20" width="104" height="104" fill="#fff"/><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(-15 32 52)" fill="#000" stroke="#000" stroke-width="2.6"/><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(15 32 52)" fill="#000" stroke="#000" stroke-width="2.6"/><rect x="24" y="23" width="16" height="27" rx="2.5" fill="#000" stroke="#000" stroke-width="5.2"/></mask><mask id="k2" maskUnits="userSpaceOnUse" x="-20" y="-20" width="104" height="104"><rect x="-20" y="-20" width="104" height="104" fill="#fff"/><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(15 32 52)" fill="#000" stroke="#000" stroke-width="2.6"/><rect x="24" y="23" width="16" height="27" rx="2.5" fill="#000" stroke="#000" stroke-width="5.2"/></mask><mask id="k3" maskUnits="userSpaceOnUse" x="-20" y="-20" width="104" height="104"><rect x="-20" y="-20" width="104" height="104" fill="#fff"/><rect x="24" y="23" width="16" height="27" rx="2.5" fill="#000" stroke="#000" stroke-width="5.2"/></mask></defs><g transform="translate(0 0.5)"><g fill="none" stroke="#D4AE5C" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M5 28 L32 6 L59 28"/><g mask="url(#k0)"><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(-30 32 52)"/></g><g mask="url(#k1)"><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(30 32 52)"/></g><g mask="url(#k2)"><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(-15 32 52)"/></g><g mask="url(#k3)"><rect x="24" y="25" width="16" height="25" rx="2.5" transform="rotate(15 32 52)"/></g><path d="M10 57 H54"/></g><path fill="#D4AE5C" fill-rule="evenodd" d="M26.5 21.7 H37.5 A3.8 3.8 0 0 1 41.3 25.5 V47.5 A3.8 3.8 0 0 1 37.5 51.3 H26.5 A3.8 3.8 0 0 1 22.7 47.5 V25.5 A3.8 3.8 0 0 1 26.5 21.7 Z M26.605 41.141 28.997 32.041H31.987L34.379 41.141H32.611L32.117 39.139H28.867L28.373 41.141ZM29.27 37.553H31.714L30.609 33.12H30.375Z M35.523 41.141V34.693H37.161V41.141Z M36.34 29.299999999999997 Q36.34 31.9 38.940000000000005 31.9 Q36.34 31.9 36.34 34.5 Q36.34 31.9 33.74 31.9 Q36.34 31.9 36.34 29.299999999999997 Z"/></g></g></svg><span>Ai<span style="color:var(--gold)">Deal</span>Deck</span></a>
+<nav class="topnav" aria-label="Shop"><a href="/">The Deck</a><a href="/#cards">Single cards</a><a href="/free/">Free cards</a><a href="/demo/">Live demo</a><a href="/faq/">Questions</a><a href="tel:+14149466479" data-lead="call" class="navcall">Call (414) 946-6479</a></nav>
+<div class="note"></div>
+<a class="btn sm" href="/">Back to the Deck</a>
+</header>
+<main>
+
+<section class="hero" style="padding-bottom:60px"><div class="wrap"><div class="copy" style="flex-basis:100%;text-align:center">
+<h1 id="uh">One moment...</h1>
+<p class="sub" id="um" style="margin-left:auto;margin-right:auto"></p>
+</div></div></section>
+<script>
+(function(){var h=document.getElementById('uh'),m=document.getElementById('um'),t=(location.search.match(/[?&]t=([a-f0-9]{8,40})/)||[])[1];
+function bad(){h.textContent='That did not work.';m.innerHTML='Email <a href="mailto:support@aidealdeck.com?subject=Unsubscribe" style="color:#fff">support@aidealdeck.com</a> and we will take you off right away.';}
+if(!t){bad();return;}
+fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify({action:'unsub',t:t})}).then(function(r){return r.json();}).then(function(j){if(j&&j.ok){h.textContent='You are unsubscribed.';m.textContent='You will not get check-in or reminder emails from us. Emails about an order you place still arrive.';}else bad();}).catch(bad);
+})();
+</script>
+<button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false"><span class="chatav"><img src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="52" height="52" referrerpolicy="no-referrer" onerror="this.remove()"><i></i><em>1</em></span><span class="chattx"><b>Chat with Sarah</b><small>Hi! I have a Black Friday tip for you.</small></span></button>
+<section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
+<header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for AiDealDeck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
+<div class="chatlog" id="chatlog" aria-live="polite"></div>
+<form id="chatform" autocomplete="off"><input id="chatq" type="text" maxlength="300" placeholder="Type your question" aria-label="Type your question"><button type="submit">Send</button></form>
+<p class="chatfine">Sarah is an AI assistant and can make mistakes. Please do not type private or payment details. <a href="/privacy/">Privacy</a></p>
+</section>
+<script>
+(function(){var URL_='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec';var btn=document.getElementById('chatbtn'),box=document.getElementById('chatbox'),log=document.getElementById('chatlog'),form=document.getElementById('chatform'),inp=document.getElementById('chatq');
+if(!btn||!box)return;var hist=[],faq=null,busy=false,greeted=false;
+function ev(n,p){if(window.gtag)gtag('event',n,p||{});}
+function add(who,html,isText){var d=document.createElement('div');d.className='cm '+who;if(isText)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+function open_(){box.hidden=false;btn.setAttribute('aria-expanded','true');btn.hidden=true;if(!greeted){greeted=true;add('s',"Hi, I am Sarah, the AI assistant for AiDealDeck. Black Friday sale: the full Deck is $49, not $199, through Nov 30. Any questions? Ask me.",true);var bd=btn.querySelector('.chatav em');if(bd)bd.remove();btn.classList.add('seen');ev('chat_open',{content_type:'chat',content_id:location.pathname});}inp.focus();}
+function close_(){box.hidden=true;btn.hidden=false;btn.setAttribute('aria-expanded','false');}
+btn.addEventListener('click',open_);document.getElementById('chatx').addEventListener('click',close_);
+var STOP={the:1,a:1,an:1,is:1,are:1,'do':1,does:1,i:1,to:1,it:1,of:1,and:1,or:1,my:1,me:1,you:1,your:1,what:1,how:1,can:1,'for':1,'in':1,on:1,'with':1,'this':1,that:1,be:1,have:1,'if':1,get:1,will:1,there:1,about:1};
+function words(t){return (t||'').toLowerCase().replace(/<[^>]+>/g,' ').replace(/[^a-z0-9$ ]/g,' ').split(/ +/).filter(function(w){return w.length>1&&!STOP[w];});}
+function fromFaq(q){var qs=words(q),best=null,bs=0;if(!qs.length||!faq)return null;
+faq.forEach(function(f){var qw=words(f.q),kw=words(f.k),aw=words(f.a),s=0;qs.forEach(function(w){if(qw.indexOf(w)>-1)s+=3;if(kw.indexOf(w)>-1)s+=3;if(aw.indexOf(w)>-1)s+=1;});s=s/Math.sqrt(qs.length);if(s>bs){bs=s;best=f;}});
+return bs>=2.4?best:null;}
+function loadFaq(){if(faq)return Promise.resolve();return fetch('/faq.json').then(function(r){return r.json();}).then(function(j){faq=j;}).catch(function(){faq=[];});}
+function fallback(q,wait){loadFaq().then(function(){var f=fromFaq(q);log.removeChild(wait);
+if(f){add('s',f.a+' <a href="/faq/">More answers</a>');ev('chat_message',{content_type:'chat',content_id:'faq'});}
+else{add('s','I am not sure about that one. You can call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and we will get you an answer.');ev('view_search_results',{search_term:'MISS: chat: '+q.slice(0,80)});ev('chat_message',{content_type:'chat',content_id:'miss'});}
+busy=false;});}
+form.addEventListener('submit',function(e){e.preventDefault();var q=inp.value.trim();if(!q||busy)return;busy=true;inp.value='';add('u',q,true);var wait=add('s','...',true);
+var done=false,t=setTimeout(function(){if(!done){done=true;fallback(q,wait);}},9000);
+fetch(URL_,{method:'POST',credentials:'omit',body:JSON.stringify({action:'chat',q:q,history:hist.slice(-6),page:location.pathname})}).then(function(r){return r.json();}).then(function(j){if(done)return;done=true;clearTimeout(t);if(j&&j.ok&&j.answer){wait.textContent=j.answer;hist.push({role:'user',content:q});hist.push({role:'assistant',content:j.answer});ev('chat_message',{content_type:'chat',content_id:'ai'});busy=false;}else{fallback(q,wait);}}).catch(function(){if(done)return;done=true;clearTimeout(t);fallback(q,wait);});});
+})();
+</script></main>
+<footer>
+<div class="wrap">
+<div style="font-weight:700;margin-bottom:10px;color:var(--gold)">AiDealDeck = ADD. Add AI to your real estate business.</div>
+<div style="max-width:720px">AiDealDeck is a brand of The Showing Partner LLC. Not affiliated with or endorsed by any brokerage, MLS, trade association, Anthropic, Google or CRM. Claude is a trademark of Anthropic, PBC. No guarantee of results. Not legal, tax, financial or brokerage advice.</div>
+<nav aria-label="Legal">
+<a href="/terms/">Terms</a>
+<a href="/privacy/">Privacy</a>
+<a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a>
+<a href="tel:+14149466479" data-lead="call">(414) 946-6479</a>
+</nav>
+</div>
+</footer>
+<div id="ckbar" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;color:#13203F;border-top:3px solid #D4AE5C;padding:14px 16px;box-shadow:0 -8px 30px rgba(14,23,48,.3);text-align:center;font-size:15px">We use cookies to count visits and measure our ads. OK? <button type="button" data-ck="yes" style="margin-left:10px;background:#D4AE5C;color:#13203F;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Accept</button> <button type="button" data-ck="no" style="margin-left:6px;background:#fff;color:#13203F;border:1px solid #13203F;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Decline</button> <a href="/privacy/" style="margin-left:8px;color:#5b6477">Privacy</a></div>
+<script>(function(){if(!window.ADD_NEEDS_CONSENT)return;var b=document.getElementById('ckbar');b.hidden=false;b.addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-ck');if(!v)return;try{localStorage.setItem('ck',v);}catch(x){}b.hidden=true;if(v==='yes')location.reload();});})();</script>
+
+<script>(function(){var end=Date.UTC(2026,11,1,6,0,0),ms=end-Date.now();if(ms<=0)return;var d=Math.ceil(ms/864e5),t=d>2?'Ends in '+d+' days (Nov 30).':d===2?'Ends tomorrow night (Nov 30).':'Ends tonight at midnight.';[].forEach.call(document.querySelectorAll('[data-left]'),function(e){e.textContent=t;});})();</script>
+
+<script>
+/* Never leave 1-3 words alone on a last line: glue the last four words together. */
+(function(){function fix(root){var els=root.querySelectorAll('h1,h2,h3,h4,p,li,figcaption,summary,dd,small,label,td,.meta,.step span,.step b,.nudge span,.topbar');for(var i=0;i<els.length;i++){var el=els[i];if(el.getAttribute('data-nw'))continue;if(el.querySelector('p,li,ul,ol,div,h1,h2,h3,table,section,figure,video,input,select,textarea,button'))continue;el.setAttribute('data-nw','1');var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n,nodes=[];while(n=tw.nextNode())nodes.push(n);var done=0,chars=0,seenWord=false;for(var k=nodes.length-1;k>=0&&done<3;k--){var t=nodes[k].nodeValue,out='';for(var j=t.length-1;j>=0;j--){var c=t.charAt(j);if(/\s/.test(c)){var e=j;while(j>0&&/\s/.test(t.charAt(j-1)))j--;if(seenWord&&done<3&&chars<=40&&(j>0||k>0)){out='\u00a0'+out;done++;}else out=t.substring(j,e+1)+out;}else{seenWord=true;if(done<3)chars++;out=c+out;}}nodes[k].nodeValue=out;}}}
+if(document.readyState!=='loading')fix(document);else document.addEventListener('DOMContentLoaded',function(){fix(document);});window.__nowidow=fix;})();
+</script>
+</body>
+</html>
