@@ -3,7 +3,6 @@ Only facts already stated on the site, the product pages or the Terms. New entri
 (calls, emails and searches on this page that found nothing)."""
 
 P = "(414) 946-6479"
-from sale import SALE
 
 FAQ_LONG = [
     ("The basics", [
@@ -17,8 +16,7 @@ FAQ_LONG = [
         ("Who is behind AiDealDeck?", "AiDealDeck is a brand of The Showing Partner LLC, a Wisconsin company. It is not affiliated with or endorsed by any brokerage, MLS or trade association.", "owner company llc who owns"),
     ]),
     ("Price and buying", [
-        ("How much does it cost?", ("Through November 30: The AI Agent Deck is $49 and each single card is $19. From December 1 the regular prices are $199 for the Deck and $49 for a single card. The price on the page when you buy is the price you pay." if SALE else "The AI Agent Deck (all five cards plus the two bonus cards) is $199. A single card is $49. The two bonus cards are free on their own. It is a one-time purchase, not a subscription."), "price cost how much sale discount"),
-        (("What happens to the price after November 30?" if SALE else "Did the price change after the launch sale?"), ("The Black Friday launch price ends November 30. From December 1 the regular prices apply: $199 for The AI Agent Deck and $49 for a single card. The two bonus cards stay free. If you buy during the sale you keep the files; nothing changes for you later." if SALE else "The launch sale ended November 30, 2026. The regular prices are $199 for The AI Agent Deck and $49 for a single card. The two bonus cards are still free. Buyers from the sale keep their files; nothing changed for them."), "after sale ends december price increase regular launch"),
+        ("How much does it cost?", "Through November 30: The AI Agent Deck is $49 and each single card is $19. From December 1 the regular prices are $199 for the Deck and $49 for a single card. The price on the page when you buy is the price you pay.", "price cost how much sale discount"),
         ("Are there reviews from real estate pros?", "We are new (launched November 2026), so reviews are just coming in. Buyers can leave one on the <a href=\"/feedback/\">feedback page</a>, and the ones who say yes are shown on the homepage with their first name and job title. Until then, judge the work for free: the <a href=\"/demo/\">live demo</a> and the <a href=\"/free/\">two free cards</a>.", "reviews testimonials ratings proof legit scam anyone used track record"),
         ("Is it a subscription?", "No. You pay once and keep the files. The only ongoing cost is your own Claude plan, paid to Anthropic.", "monthly recurring fee one time"),
         ("Should I buy one card or the Deck?", "Five single cards cost more than the Deck, and the Deck adds both bonus cards. If you want more than two cards, the Deck costs less.", "which bundle single compare"),

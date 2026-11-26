@@ -3,7 +3,6 @@
 import json, os, re, shutil
 import extras
 import faq_data
-from sale import SALE, DECK_PRICE, CARD_PRICE
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC, OUT = os.path.join(ROOT, "src"), os.path.join(ROOT, "docs")
@@ -197,59 +196,6 @@ def shots_section():
     vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p><p class="center" style="margin:0 0 8px"><a class="btn" href="' + URLS["KPI"] + '" data-buy="Real Estate KPI Tracker" data-value="19">Get the KPI Tracker: <s class="strike sm">$49</s> $19 ' + SNIP.get("ARROW", "") + '</a></p>'
     return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2><p class="center" style="color:var(--muted);margin:8px 0 0">Real screens from the cards. Sample data.</p><div class="carousel"><button type="button" class="cbtn prev" aria-label="Previous picture">&#8249;</button><div class="shots" id="shots">{figs}</div><button type="button" class="cbtn next" aria-label="Next picture">&#8250;</button></div><script>(function(){{var s=document.getElementById("shots");if(!s)return;function go(d){{s.scrollBy({{left:d*s.clientWidth,behavior:"smooth"}});}}s.parentNode.querySelector(".prev").onclick=function(){{go(-1);}};s.parentNode.querySelector(".next").onclick=function(){{go(1);}};}})();</script><h3 class="center" style="margin:48px 0 0;font-size:24px">Watch the KPI dashboard come together</h3>{vid}</div></section>'
 
-# Regular-price copy. Every sale string on the site is listed here, so when SALE is False the same build
-# produces the regular-price site. Order matters: strike-through patterns first, then plain text.
-DESALE = [
-    ('<s class="strike sm">$199</s> $49', '$199'),
-    ('<s class="strike sm">$49</s> $19', '$49'),
-    ('<s class="strike">$199</s> $49', '$199'),
-    ('<small><s>$199</s></small><b>$49</b>', '<b>$199</b>'),
-    ('<small><s>$49</s></small><b>$19</b>', '<b>$49</b>'),
-    ('<s>$199</s> $49', '$199'),
-    ('<s>$49</s> $19', '$49'),
-    ('launch price $49"', '$199"'),
-    ('launch price $19"', '$49"'),
-    ('<span data-sale>Black Friday launch price</span> through Nov 30. Regular price $199 from Dec 1.<br>5 cards + 2 bonus cards. Digital download.', '5 cards + 2 bonus cards. One-time purchase. Digital download.'),
-    ('<span data-sale>Black Friday</span>: all 5 cards + 2 bonus cards for $49, not $199. <b data-left>Ends Nov 30.</b>', 'Start with 2 free cards. No payment card needed.'),
-    ('<span data-sale>Black Friday</span>: this card is $19, not $49. <b data-left>Ends Nov 30.</b>', 'This card is $49. The full Deck, all 5 cards + 2 bonus cards, is $199.'),
-    ('<span data-sale>Black Friday</span>: The AI Agent Deck is $49, not $199. <b data-left>Ends Nov 30.</b>', 'The AI Agent Deck: all 5 cards + 2 bonus cards for $199.'),
-    ('<span data-sale>Black Friday launch price</span> through Nov 30. From Dec 1: $49 a card, $199 for the Deck.', '$49 a card. $199 for the Deck. One-time purchase, no subscription.'),
-    ('<div class="eyebrow"><span data-sale>Black Friday launch price</span></div>', '<div class="eyebrow">One-time purchase</div>'),
-    ('<div class="was"><b><span data-sale>Black Friday launch price</span> through Nov 30. You save $150.</b><br>$199 is the regular price, starting Dec 1.</div>', '<div class="was"><b>All five cards plus two bonus cards.</b><br>Pay once. Keep the files. No subscription.</div>'),
-    ('<div class="meta"><span data-sale>Black Friday launch price</span> through Nov 30.<br>Regular price $49 from Dec 1. Emailed instantly.</div>', '<div class="meta">One-time purchase. Emailed instantly.</div>'),
-    ('<p class="fine" style="margin-top:10px"><span data-sale>Black Friday launch price</span> through Nov 30. $199 is the regular price, starting Dec 1.</p>', ''),
-    ('<p class="fine" style="margin-top:10px">Black Friday launch price through Nov 30. $199 is the regular price, starting Dec 1.</p>', ''),
-    ('<p class="fine" style="margin-top:10px">$19 is the launch price through Nov 30. $49 is the regular price, starting Dec 1.</p>', ''),
-    ('One card alone is $19, so the Deck is five cards for the price of about two and a half.', 'One card alone is $49, so the Deck is five cards for the price of about four, plus both bonus cards.'),
-    ('Get all seven now at the $49 launch price.', 'Get all seven now for $199.'),
-    ('Start with one card for $19, or get all five plus both bonus cards for $49.', 'Start with one card for $49, or get all five plus both bonus cards for $199.'),
-    ('Yes, get the full Deck: $49', 'Yes, get the full Deck: $199'),
-    ('Yes, get the Deck: $49', 'Yes, get the Deck: $199'),
-    ('Yes, get the KPI Tracker: $19', 'Yes, get the KPI Tracker: $49'),
-    ('Get the full Deck: $49', 'Get the full Deck: $199'),
-    ('Get the Deck: $49', 'Get the Deck: $199'),
-    ('KPI Tracker: $19', 'KPI Tracker: $49'),
-    (': $19</a>', ': $49</a>'),
-    ('Hi! I have a Black Friday tip for you.', 'Hi! Ask me anything about the cards.'),
-    (' $49 through Nov 30.', ''),
-    (' Launch price $19 through Nov 30.', ''),
-    ('data-value="49"', 'data-value="199"'),
-    ('data-value="19"', 'data-value="49"'),
-    ('value:49,currency', 'value:199,currency'),
-    ('value:19,currency', 'value:49,currency'),
-]
-_SCRIPT = re.compile(r"<script\b.*?</script>", re.S)
-_BAD = re.compile(r"Nov 30|Black Friday|Cyber Monday|launch price|Dec 1\b|data-sale|data-left|You save \$150|\$19(?!\d)")
-
-def desale(page, name):
-    for a, b_ in DESALE:
-        page = page.replace(a, b_)
-    left = sorted(set(_BAD.findall(_SCRIPT.sub("", page))))
-    if left:
-        raise SystemExit(f"{name}: sale text left after desale: {left}")
-    return page
-
-
 def render(body):
     body = re.sub(r"\{\{CARD:(.+?)\}\}(?=\s*\n)", lambda m: card(m) if "{{" not in m.group(1) else m.group(0), body)
     for k, v in URLS.items():
@@ -322,8 +268,6 @@ def main():
             tail = (extras.reviews() if name == "index.html" else "") + _band + _nudge + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
         page = render(h + body + tail + f)
-        if not SALE:
-            page = desale(page, name)
         def _lazy(m):
             tag = m.group(0)
             if 'loading=' in tag or 'facebook.com/tr' in tag: return tag
@@ -349,7 +293,6 @@ def main():
     import json as _json
     open(os.path.join(OUT, "faq.json"), "w").write(_json.dumps([{"q": q, "a": a_, "k": k} for q, a_, k, _c in faq_data.flat()]))
     open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, long_plain))
-    print("sale:", "ON (launch prices)" if SALE else "OFF (regular prices)")
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
 
 if __name__ == "__main__":

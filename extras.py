@@ -1,6 +1,5 @@
 """Search/AI-search data, card pages and lead-capture blocks for the AiDealDeck site."""
 import json, os
-from sale import SALE, DECK_PRICE, CARD_PRICE
 
 SITE = "https://aidealdeck.com"
 PHONE_DISPLAY = "(414) 946-6479"
@@ -73,11 +72,8 @@ def org_ld():
 
 
 def offer(price, url):
-    o = {"@type": "Offer", "price": str(price), "priceCurrency": "USD", "availability": "https://schema.org/InStock",
-         "url": url, "seller": {"@id": SITE + "/#org"}}
-    if SALE:
-        o["priceValidUntil"] = SALE_ENDS
-    return o
+    return {"@type": "Offer", "price": str(price), "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+            "priceValidUntil": SALE_ENDS, "url": url, "seller": {"@id": SITE + "/#org"}}
 
 
 def deck_ld(url):
@@ -86,13 +82,13 @@ def deck_ld(url):
             "description": "Five do-it-yourself AI toolkits for real estate pros (KPI Tracker, Listing Exposure Playbook, Lead-for-Life System, "
                            "Commission & GCI Ledger, VA Playbook & Scorecard) plus two bonus cards (Listing Watchdog and Morning Brief). "
                            "Claude helps you set them up. Requires the Claude desktop app and a paid Claude plan.",
-            "offers": offer(DECK_PRICE, url)}
+            "offers": offer(49, url)}
 
 
 def card_ld(c, url):
     return {"@type": "Product", "name": c["name"], "brand": {"@type": "Brand", "name": "AiDealDeck"},
             "category": "Real estate agent software toolkit", "image": SITE + "/assets/og.png", "description": c["short"],
-            "isRelatedTo": {"@id": SITE + "/#deck"}, "offers": offer(CARD_PRICE, url)}
+            "isRelatedTo": {"@id": SITE + "/#deck"}, "offers": offer(19, url)}
 
 
 def faq_ld(faq):
@@ -169,7 +165,7 @@ def nudge(free_url, bar=True):
 <a class="freepill{solo}" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
 {mbar}
 <script>
-(function(){{var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;try{{if(pill&&sessionStorage.getItem('freeSent')==='1')pill.hidden=true;}}catch(e){{}}
+(function(){{var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
 try{{done=sessionStorage.getItem('nudge')==='1';}}catch(e){{}}
 function show(){{if(done)return;done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}n.hidden=false;pill.hidden=true;if(window.gtag)gtag('event','free_offer_shown',{{content_type:'nudge',content_id:location.pathname}});}}
 function stop(){{done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}}}
@@ -256,9 +252,9 @@ def llms_txt(cards, faq):
              "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up, with the option of a live dashboard built inside Claude.", "",
              "AiDealDeck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
              "## Products", "",
-             f"- [The AI Agent Deck]({SITE}/): all five cards plus two bonus cards. " + ("Launch price $49 through November 30, 2026; regular price $199 from December 1, 2026." if SALE else "$199, one-time purchase.")]
+             f"- [The AI Agent Deck]({SITE}/): all five cards plus two bonus cards. Launch price $49 through November 30, 2026; regular price $199 from December 1, 2026."]
     for c in cards:
-        lines.append(f"- [{c['name']}]({SITE}/cards/{c['slug']}/): {c['short']} " + ("Launch price $19 through November 30, 2026; regular price $49." if SALE else "$49, one-time purchase."))
+        lines.append(f"- [{c['name']}]({SITE}/cards/{c['slug']}/): {c['short']} Launch price $19 through November 30, 2026; regular price $49.")
     lines += [f"- [Free cards: Listing Watchdog and Morning Brief]({SITE}/free/): free download. Listing Watchdog tells an agent when a past client or lead they are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
               f"- [Live demo]({SITE}/demo/): a playable sample of the KPI dashboard, with sample data.", "",
               "## What buyers need", "",
@@ -353,7 +349,7 @@ if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else
 f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='Sending...';
 var ac=window.AbortController?new AbortController():null,slow=setTimeout(function(){msg.textContent='Still sending. One moment.';},5000),kill=setTimeout(function(){if(ac)ac.abort();},22000);function done(){clearTimeout(slow);clearTimeout(kill);}
 fetch('__CHAT_URL__',{method:'POST',credentials:'omit',signal:ac?ac.signal:undefined,body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname})}).then(function(r){return r.json();}).then(function(j){done();b.disabled=false;
-if(j&&j.ok){msg.textContent='';if(window.gtag)gtag('event','generate_lead',{method:'free_cards_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards'});var fp=document.getElementById('freepill');if(fp)fp.hidden=true;try{sessionStorage.setItem('freeSent','1');}catch(x){}i=1;show();}
+if(j&&j.ok){msg.textContent='';if(window.gtag)gtag('event','generate_lead',{method:'free_cards_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards'});i=1;show();}
 else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
 else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';}
 }).catch(function(){done();b.disabled=false;msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';});});
@@ -364,7 +360,7 @@ else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get th
 
 def chat():
     """Sarah, the site's AI assistant. Local intents first (lead capture, the tip, reviews, CRMs), then the script's
-    AI answer, then the FAQ. Sale copy switches itself off after Nov 30 (Central time)."""
+    AI answer, then the FAQ. Sale lines here are plain strings so the price-switch tasks can edit them."""
     html = """<button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false"><span class="chatav"><svg class="chatglyph" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#13203F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.5-4.5A8 8 0 1 1 21 12z"/></svg><img src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="52" height="52" referrerpolicy="no-referrer" onerror="this.remove()"><i></i><em>1</em></span><span class="chattx"><b>Chat with Sarah</b><small id="chatteaser">Hi! I have a Black Friday tip for you.</small></span></button>
 <section class="chatbox" id="chatbox" data-clarity-mask="true" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
 <header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for AiDealDeck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
@@ -375,10 +371,8 @@ def chat():
 <script>
 (function(){var URL_='__CHAT_URL__';var btn=document.getElementById('chatbtn'),box=document.getElementById('chatbox'),log=document.getElementById('chatlog'),form=document.getElementById('chatform'),inp=document.getElementById('chatq');
 if(!btn||!box)return;var hist=[],faq=null,busy=false,greeted=false;
-var SALE=Date.now()<Date.UTC(2026,11,1,6,0,0);
-var TIP=SALE?'Here is the Black Friday tip: through Nov 30 the full Deck is $49 instead of $199. That is less than three single cards at $19, and the two free cards are included.':'Two cards are free: the Listing Watchdog and the Morning Brief. Take those first, then add the Deck ($199) or a single card ($49) when you are ready.';
-var FREE_LINE=SALE?' Want the two free cards while you decide? Type your email and I will send them now.':' Type your email and I will send the free cards now.';
-if(!SALE){var ts=document.getElementById('chatteaser');if(ts)ts.textContent='Hi! Ask me anything about the cards.';}
+var TIP='Here is the Black Friday tip: through Nov 30 the full Deck is $49 instead of $199. That is less than three single cards at $19, and the two free cards are included.';
+var FREE_LINE=' Want the two free cards while you decide? Type your email and I will send them now.';
 function ev(n,p){if(window.gtag)gtag('event',n,p||{});}
 function add(who,html,isText){var d=document.createElement('div');d.className='cm '+who;if(isText)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
 function say(t,id){add('s',t,true);hist.push({role:'assistant',content:t});ev('chat_message',{content_type:'chat',content_id:id||'local'});}
@@ -404,13 +398,13 @@ var CRM_RE=/\\b(follow ?up ?boss|fub|kv ?core|lofty|chime|boom ?town|sierra inte
 var CRMVS_RE=/\\bcrm\\b.*\\b(dashboard|report|reports|already|differ|different|difference|instead|versus|vs)\\b|\\b(dashboard|report|reports|already|differ|different|difference|instead|versus|vs)\\b.*\\bcrm\\b/i;
 function sendFree(email,wait){var ac=window.AbortController?new AbortController():null,kill=setTimeout(function(){if(ac)ac.abort();},20000);
 fetch(URL_,{method:'POST',credentials:'omit',signal:ac?ac.signal:undefined,body:JSON.stringify({action:'free',email:email,website:'',page:location.pathname,source:'chat'})}).then(function(r){return r.json();}).then(function(j){clearTimeout(kill);log.removeChild(wait);
-if(j&&j.ok){say('Done. The two free cards are on their way to '+email+'. Check your inbox in a minute (and spam, just in case).'+(SALE?' You are on our list too, so you will hear from us before the sale ends on Nov 30.':' You are on our list too, so you will hear about new cards and sales.')+' Anything else I can help with?','lead');ev('generate_lead',{method:'chat_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards (chat)'});var p=document.getElementById('freepill');if(p)p.hidden=true;try{sessionStorage.setItem('freeSent','1');}catch(e){}}
+if(j&&j.ok){say('Done. The two free cards are on their way to '+email+'. Check your inbox in a minute (and spam, just in case). You are on our list too, so you will hear from us before the sale ends on Nov 30. Anything else I can help with?','lead');ev('generate_lead',{method:'chat_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards (chat)'});}
 else if(j&&j.error==='email'){say('That address does not look right. Can you type it again?','lead_retry');}
 else{add('s','I could not send that just now. Tap the free-cards button on this page, or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and the team will send them.');}
 busy=false;}).catch(function(){clearTimeout(kill);log.removeChild(wait);add('s','I could not send that just now. Tap the free-cards button on this page, or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and the team will send them.');busy=false;});}
 function local(q){var m;
 if(TIP_RE.test(q)&&!DL_RE.test(q))return TIP+FREE_LINE;
-if(LEAD_RE.test(q)&&!DL_RE.test(q))return 'Happy to. What is your email? I will send the two free cards (Listing Watchdog and Morning Brief) right now'+(SALE?', and you will hear from us before the sale ends on Nov 30.':', and you will hear about new cards and sales.')+' One click unsubscribes.';
+if(LEAD_RE.test(q)&&!DL_RE.test(q))return 'Happy to. What is your email? I will send the two free cards (Listing Watchdog and Morning Brief) right now, and you will hear from us before the sale ends on Nov 30. One click unsubscribes.';
 var parts=[];
 if(CRMVS_RE.test(q))parts.push('Most CRM dashboards show activity: calls, emails, tasks. The KPI Tracker shows conversion. It counts lead, appointment set, appointment held, signed, under contract and closed, with the real percentage at each step. Then it works out the one weekly number to hit for the goal you type in, and shows which lead sources turn into closings. If Claude can read your CRM or a spreadsheet export from it, the numbers come across without retyping.');
 else if((m=CRM_RE.exec(q)))parts.push('I cannot promise '+m[0]+' works, so please check before you buy. Here is how it goes: if Claude has a connector for your CRM, Claude can read it directly. If not, export a spreadsheet from '+m[0]+' and Claude works from that; every card comes with a workbook anyway.');

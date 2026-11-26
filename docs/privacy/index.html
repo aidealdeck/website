@@ -187,7 +187,7 @@ window.addEventListener('pagehide',flush);
 <a class="freepill solo" id="freepill" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
 
 <script>
-(function(){var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;try{if(pill&&sessionStorage.getItem('freeSent')==='1')pill.hidden=true;}catch(e){}
+(function(){var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
 try{done=sessionStorage.getItem('nudge')==='1';}catch(e){}
 function show(){if(done)return;done=true;try{sessionStorage.setItem('nudge','1');}catch(e){}n.hidden=false;pill.hidden=true;if(window.gtag)gtag('event','free_offer_shown',{content_type:'nudge',content_id:location.pathname});}
 function stop(){done=true;try{sessionStorage.setItem('nudge','1');}catch(e){}}
@@ -234,7 +234,7 @@ if(e.target.closest('#offer [data-next]')){i++;if(i>=steps.length)d.close();else
 f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='Sending...';
 var ac=window.AbortController?new AbortController():null,slow=setTimeout(function(){msg.textContent='Still sending. One moment.';},5000),kill=setTimeout(function(){if(ac)ac.abort();},22000);function done(){clearTimeout(slow);clearTimeout(kill);}
 fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',signal:ac?ac.signal:undefined,body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname})}).then(function(r){return r.json();}).then(function(j){done();b.disabled=false;
-if(j&&j.ok){msg.textContent='';if(window.gtag)gtag('event','generate_lead',{method:'free_cards_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards'});var fp=document.getElementById('freepill');if(fp)fp.hidden=true;try{sessionStorage.setItem('freeSent','1');}catch(x){}i=1;show();}
+if(j&&j.ok){msg.textContent='';if(window.gtag)gtag('event','generate_lead',{method:'free_cards_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards'});i=1;show();}
 else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
 else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';}
 }).catch(function(){done();b.disabled=false;msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get the free cards here instead</a>.';});});
@@ -249,10 +249,8 @@ else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get th
 <script>
 (function(){var URL_='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec';var btn=document.getElementById('chatbtn'),box=document.getElementById('chatbox'),log=document.getElementById('chatlog'),form=document.getElementById('chatform'),inp=document.getElementById('chatq');
 if(!btn||!box)return;var hist=[],faq=null,busy=false,greeted=false;
-var SALE=Date.now()<Date.UTC(2026,11,1,6,0,0);
-var TIP=SALE?'Here is the Black Friday tip: through Nov 30 the full Deck is $49 instead of $199. That is less than three single cards at $19, and the two free cards are included.':'Two cards are free: the Listing Watchdog and the Morning Brief. Take those first, then add the Deck ($199) or a single card ($49) when you are ready.';
-var FREE_LINE=SALE?' Want the two free cards while you decide? Type your email and I will send them now.':' Type your email and I will send the free cards now.';
-if(!SALE){var ts=document.getElementById('chatteaser');if(ts)ts.textContent='Hi! Ask me anything about the cards.';}
+var TIP='Here is the Black Friday tip: through Nov 30 the full Deck is $49 instead of $199. That is less than three single cards at $19, and the two free cards are included.';
+var FREE_LINE=' Want the two free cards while you decide? Type your email and I will send them now.';
 function ev(n,p){if(window.gtag)gtag('event',n,p||{});}
 function add(who,html,isText){var d=document.createElement('div');d.className='cm '+who;if(isText)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
 function say(t,id){add('s',t,true);hist.push({role:'assistant',content:t});ev('chat_message',{content_type:'chat',content_id:id||'local'});}
@@ -278,13 +276,13 @@ var CRM_RE=/\b(follow ?up ?boss|fub|kv ?core|lofty|chime|boom ?town|sierra inter
 var CRMVS_RE=/\bcrm\b.*\b(dashboard|report|reports|already|differ|different|difference|instead|versus|vs)\b|\b(dashboard|report|reports|already|differ|different|difference|instead|versus|vs)\b.*\bcrm\b/i;
 function sendFree(email,wait){var ac=window.AbortController?new AbortController():null,kill=setTimeout(function(){if(ac)ac.abort();},20000);
 fetch(URL_,{method:'POST',credentials:'omit',signal:ac?ac.signal:undefined,body:JSON.stringify({action:'free',email:email,website:'',page:location.pathname,source:'chat'})}).then(function(r){return r.json();}).then(function(j){clearTimeout(kill);log.removeChild(wait);
-if(j&&j.ok){say('Done. The two free cards are on their way to '+email+'. Check your inbox in a minute (and spam, just in case).'+(SALE?' You are on our list too, so you will hear from us before the sale ends on Nov 30.':' You are on our list too, so you will hear about new cards and sales.')+' Anything else I can help with?','lead');ev('generate_lead',{method:'chat_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards (chat)'});var p=document.getElementById('freepill');if(p)p.hidden=true;try{sessionStorage.setItem('freeSent','1');}catch(e){}}
+if(j&&j.ok){say('Done. The two free cards are on their way to '+email+'. Check your inbox in a minute (and spam, just in case). You are on our list too, so you will hear from us before the sale ends on Nov 30. Anything else I can help with?','lead');ev('generate_lead',{method:'chat_email',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Free bonus cards (chat)'});}
 else if(j&&j.error==='email'){say('That address does not look right. Can you type it again?','lead_retry');}
 else{add('s','I could not send that just now. Tap the free-cards button on this page, or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and the team will send them.');}
 busy=false;}).catch(function(){clearTimeout(kill);log.removeChild(wait);add('s','I could not send that just now. Tap the free-cards button on this page, or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and the team will send them.');busy=false;});}
 function local(q){var m;
 if(TIP_RE.test(q)&&!DL_RE.test(q))return TIP+FREE_LINE;
-if(LEAD_RE.test(q)&&!DL_RE.test(q))return 'Happy to. What is your email? I will send the two free cards (Listing Watchdog and Morning Brief) right now'+(SALE?', and you will hear from us before the sale ends on Nov 30.':', and you will hear about new cards and sales.')+' One click unsubscribes.';
+if(LEAD_RE.test(q)&&!DL_RE.test(q))return 'Happy to. What is your email? I will send the two free cards (Listing Watchdog and Morning Brief) right now, and you will hear from us before the sale ends on Nov 30. One click unsubscribes.';
 var parts=[];
 if(CRMVS_RE.test(q))parts.push('Most CRM dashboards show activity: calls, emails, tasks. The KPI Tracker shows conversion. It counts lead, appointment set, appointment held, signed, under contract and closed, with the real percentage at each step. Then it works out the one weekly number to hit for the goal you type in, and shows which lead sources turn into closings. If Claude can read your CRM or a spreadsheet export from it, the numbers come across without retyping.');
 else if((m=CRM_RE.exec(q)))parts.push('I cannot promise '+m[0]+' works, so please check before you buy. Here is how it goes: if Claude has a connector for your CRM, Claude can read it directly. If not, export a spreadsheet from '+m[0]+' and Claude works from that; every card comes with a workbook anyway.');
@@ -316,10 +314,7 @@ fetch(URL_,{method:'POST',credentials:'omit',body:JSON.stringify({action:'chat',
 <div id="ckbar" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;color:#13203F;border-top:3px solid #D4AE5C;padding:14px 16px;box-shadow:0 -8px 30px rgba(14,23,48,.3);text-align:center;font-size:15px">We use cookies for analytics, page recordings and ads. Accept to allow them, or Decline to keep them off. <button type="button" data-ck="yes" style="margin-left:10px;background:#D4AE5C;color:#13203F;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Accept</button> <button type="button" data-ck="no" style="margin-left:6px;background:#fff;color:#13203F;border:1px solid #13203F;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Decline</button> <a href="/privacy/" style="margin-left:8px;color:#5b6477">Privacy</a></div>
 <script>(function(){var b=document.getElementById('ckbar'),l=document.getElementById('cklink'),was=null;try{was=localStorage.getItem('ck');}catch(x){}if(l)l.addEventListener('click',function(e){e.preventDefault();b.hidden=false;});if(window.ADD_NEEDS_CONSENT)b.hidden=false;b.addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-ck');if(!v)return;try{localStorage.setItem('ck',v);}catch(x){}b.hidden=true;if(v!==was&&(v==='yes'||was==='yes'))location.reload();});})();</script>
 
-<script>(function(){var end=Date.UTC(2026,11,1,6,0,0),ms=end-Date.now();
-/* Safety net: if this page was built with sale copy and the sale is over, say so until the Dec 1 rebuild lands. */
-if(ms<=0){if(document.querySelector('[data-sale]')&&!document.getElementById('saleover')){var b=document.createElement('div');b.id='saleover';b.setAttribute('role','status');b.style.cssText='background:#13203F;color:#fff;text-align:center;font-size:14px;font-weight:600;padding:9px 14px;border-bottom:2px solid #D4AF5A';b.textContent='The launch sale ended Nov 30. Regular prices apply at checkout: $199 for the Deck, $49 a card. The two bonus cards are still free.';document.body.insertBefore(b,document.body.firstChild);}return;}
-var d=Math.ceil(ms/864e5),t=d>2?'Ends in '+d+' days (Nov 30).':d===2?'Ends tomorrow night (Nov 30).':'Ends tonight at midnight.';[].forEach.call(document.querySelectorAll('[data-left]'),function(e){e.textContent=t;});})();</script>
+<script>(function(){var end=Date.UTC(2026,11,1,6,0,0),ms=end-Date.now();if(ms<=0)return;var d=Math.ceil(ms/864e5),t=d>2?'Ends in '+d+' days (Nov 30).':d===2?'Ends tomorrow night (Nov 30).':'Ends tonight at midnight.';[].forEach.call(document.querySelectorAll('[data-left]'),function(e){e.textContent=t;});})();</script>
 
 <script>
 /* Never leave 1-3 words alone on a last line: glue the last four words together. */
