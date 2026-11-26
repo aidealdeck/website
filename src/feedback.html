@@ -15,11 +15,14 @@
 <div class="fbscale" id="fbscale"></div></label>
 <label>3. Your feedback <span class="fine">What other cards or products do you want to see? What should we improve on the site, at checkout or in setup?</span>
 <textarea name="stopped" maxlength="800" rows="3"></textarea></label>
-<label>4. Leave a review <span class="fine">Optional. Tap the stars, then write one or two lines.</span>
-<div class="fbscale fbstars" id="fbstars"></div>
-<textarea name="review" maxlength="300" rows="2" placeholder="What changed for you?"></textarea></label>
-<div class="fbrow"><input name="rname" maxlength="30" placeholder="First name" aria-label="First name"><input name="rwho" maxlength="40" placeholder="Agent, Ohio" aria-label="Your role and state"></div>
-<label class="fbcheck"><input type="checkbox" name="rshow"> <span>OK to show my review and first name on aidealdeck.com</span></label>
+<p class="fbhead">4. Leave a review <span class="fine">Optional. It takes 20 seconds.</span></p>
+<label>How many stars? <span class="fine">Tap one. 1 = poor, 5 = great.</span>
+<div class="fbscale fbstars" id="fbstars"></div></label>
+<label>Your review <span class="fine">One or two sentences. Example: "I finally see my numbers every Monday."</span>
+<textarea name="review" maxlength="300" rows="2"></textarea></label>
+<div class="fbrow"><label>Your first name<input name="rname" maxlength="30" autocomplete="given-name"></label>
+<label>Your job and state <span class="fine">Example: Agent, Ohio</span><input name="rwho" maxlength="40"></label></div>
+<label class="fbcheck"><input type="checkbox" name="rshow"> <span>Yes, show my review, first name, job and state on aidealdeck.com</span></label>
 <button class="btn" type="submit">Send and show my 10% code</button>
 <p class="fine" id="fbmsg" aria-live="polite"></p>
 </form>
