@@ -416,4 +416,5 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 .wlicon{font-size:64px;line-height:1;display:block}
 @media (max-width:760px){.wlgrid,.wlrow{grid-template-columns:1fr}}
 h1,h2,h3,.sub,.lead,p.center,.meta,.fine{text-wrap:balance}
+.fine.nb{text-wrap:wrap}
 p,li{text-wrap:pretty}
