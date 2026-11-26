@@ -421,3 +421,4 @@ p,li{text-wrap:pretty}
 .wlopts{display:flex;flex-wrap:wrap;gap:10px}
 .wlopts button{min-height:46px;padding:8px 16px;border-radius:999px;border:2px solid #13203F;background:#fff;color:#13203F;font-size:16px;font-weight:600;cursor:pointer}
 .wlopts button:hover{background:#13203F;color:#fff}
+@media (max-width:640px){.nophone{display:none!important}}

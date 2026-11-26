@@ -9,7 +9,6 @@
 <h2>Join the waitlist</h2>
 <input type="text" name="fname" placeholder="First name" autocomplete="given-name" aria-label="First name">
 <input type="email" name="email" placeholder="Email" autocomplete="email" inputmode="email" required aria-label="Email">
-<input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" inputmode="tel" aria-label="Phone, optional">
 <p class="wlq">Tell me about:</p>
 <label class="wlchk"><input type="checkbox" name="w_cards" checked> <span>New cards</span></label>
 <label class="wlchk"><input type="checkbox" name="w_decks" checked> <span>New decks</span></label>
@@ -58,7 +57,7 @@ var b=f.querySelector('button[type=submit]'),em='';
 f.addEventListener('submit',function(e){e.preventDefault();b.disabled=true;m.textContent='Sending...';
 var want=[];if(f.w_cards.checked)want.push('cards');if(f.w_decks.checked)want.push('decks');if(f.w_jokers.checked)want.push('jokers');
 em=f.email.value.trim();var base={email:em,website:f.website.value,page:location.pathname,source:'waitlist'};
-post({action:'waitlist',email:base.email,website:base.website,page:base.page,name:f.fname.value.trim(),phone:f.phone.value.trim(),want:want.join(',')}).then(function(j){
+post({action:'waitlist',email:base.email,website:base.website,page:base.page,name:f.fname.value.trim(),phone:'',want:want.join(',')}).then(function(j){
 if(j&&j.ok){ok(j);return;}
 if(j&&j.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';return;}
 base.action='free';return post(base).then(function(k){if(k&&k.ok)ok(k);else if(k&&k.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';}else bad();});
