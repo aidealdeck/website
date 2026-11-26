@@ -153,6 +153,12 @@ def card_page(c, urls, snip, faq_html, shop_html):
     does = "".join(f"<li>{snip['CHECKSM']}<span>{esc(x)}</span></li>" for x in c["does"])
     inside = "".join(f"<li>{esc(x)}</li>" for x in c["inside"])
     name = esc(c["name"])
+    _t = {"KPI": "KPI<br>Tracker", "LISTING": "Listing Exposure<br>Playbook", "LEAD": "Lead-for-Life<br>System", "GCI": "Commission &amp;<br>GCI Ledger", "VA": "VA Playbook<br>&amp; Scorecard"}[c["key"]]
+    fan = (snip["FAN"].replace('aria-label="The AI Agent Deck: 5 cards plus 2 bonus cards, launch price $49"', 'aria-label="' + name + ': launch price $19"')
+           .replace('<div class="t">The AI<br>Agent Deck</div>', '<div class="t" style="font-size:24px">' + _t + '</div>')
+           .replace('5 cards + 2 bonus cards', 'Card ' + c["n"] + ' of 5')
+           .replace('<small><s>$199</s></small><b>$49</b>', '<small><s>$49</s></small><b>$19</b>'))
+    assert "$199" not in fan and "Agent Deck</div>" not in fan
     _v = os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'video', c['slug'] + '.mp4'))
     vid = (f'<video controls playsinline preload="none" poster="/assets/video/{c["slug"]}.jpg" style=\"display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730\"><source src="/assets/video/{c["slug"]}.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Sample data shown.</p>') if _v else ''
     demo = '<a class="btn" href="/demo/" style="background:transparent;color:#fff;border:2px solid var(--gold)">Try the live demo first</a>' if c["key"] == "KPI" else ""
@@ -170,7 +176,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 </div>
 <p class="alt-buy">Want all five cards plus two bonus cards? <a href="{urls["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the full Deck for <s>$199</s> $49</a></p>
 </div>
-<div class="art">{snip["FAN"]}</div>
+<div class="art">{fan}</div>
 </div>
 </section>
 
@@ -367,7 +373,7 @@ PICK_HTML = r"""<dialog id="pick" aria-label="Pick a card">
 <div data-p="email">
 <div class="eyebrow">Welcome</div>
 <h3>Pick a card. Win a prize.</h3>
-<p class="pk-sub">Every card wins: 5%, 10% or 15% off, or 2 free cards.</p>
+<p class="pk-sub">Type your email. Shuffle. Pick one.</p>
 <form id="pick-form"><input type="email" name="email" required placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn block" type="submit">Shuffle the deck</button></form>
 <p class="fine" id="pick-msg" role="status"></p>
 <p class="fine">One prize per email. We email it to you once.</p>
@@ -391,17 +397,17 @@ function get(k){try{return LS&&LS.getItem(k);}catch(e){return null;}}function se
 function step(n){d.querySelectorAll('[data-p]').forEach(function(s){s.hidden=s.getAttribute('data-p')!==n;});}
 function post(b){return fetch(API,{method:'POST',credentials:'omit',body:JSON.stringify(b)}).then(function(r){return r.json();});}
 function apply(j){if(!j||!j.code)return;document.querySelectorAll('a[href*="shop.aidealdeck.com/l/"]').forEach(function(a){var h=a.getAttribute('href');if(h.indexOf('?wanted=true')>0&&h.indexOf('/'+j.code)<0)a.setAttribute('href',h.replace('?wanted=true','/'+j.code+'?wanted=true'));});
-if(!document.getElementById('pk-bar')){var b=document.createElement('div');b.id='pk-bar';b.textContent='Your prize: '+j.pct+'% off, already added to every buy button. Good until '+j.until+'.';document.body.insertBefore(b,document.body.firstChild);}}
+if(!document.getElementById('pk-bar')){var b=document.createElement('div');b.id='pk-bar';b.textContent='Your prize: '+(j.label||j.pct+'% off')+', already added to every buy button. Good until '+j.until+'.';document.body.insertBefore(b,document.body.firstChild);}}
 function deck(){var a=document.querySelector('a[data-buy="The AI Agent Deck"][href*="wanted=true"]');return a?a.getAttribute('href'):'https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true';}
 function won(j){var w=document.getElementById('pk-won'),u=document.getElementById('pk-until'),g=document.getElementById('pk-go'),f=document.getElementById('pk-fine'),e=document.getElementById('pk-eye');
 e.textContent=j.again?'You already picked':'You won';
-if(j.pct>0&&j.code){apply(j);w.textContent=j.pct+'% off anything';u.textContent='Good until '+j.until+'.';g.textContent='Use it on the Deck';g.href=deck();f.textContent='It is already added to every buy button here. We emailed it to you too.';}
+if(j.pct>0&&j.code){apply(j);w.textContent=(j.label||j.pct+'% off')+' anything';u.textContent='Good until '+j.until+'.';g.textContent='Use it on the Deck';g.href=deck();f.textContent='It is already added to every buy button here. We emailed it to you too.';}
 else if(j.pct>0){w.textContent='Your prize has ended';u.textContent='It was good until '+j.until+'.';g.textContent='Keep looking';g.href='#';f.textContent='';}
 else{w.textContent='2 free cards';u.textContent='Listing Watchdog + Morning Brief.';g.textContent='Keep looking';g.href='#';f.textContent='We just emailed them to you.';}
 var k=document.getElementById('pk-deck'),da=document.querySelector('a[data-buy="The AI Agent Deck"][data-value]'),pv=da?da.getAttribute('data-value'):'';if(j.pct>0&&j.code){k.hidden=true;}else{k.hidden=false;k.href=deck();k.textContent='Get the full Deck'+(pv?': $'+pv:'');}
 step('won');}
 var res=null,picked=null,row=document.getElementById('pk-row'),h=document.getElementById('pk-h'),f=document.getElementById('pick-form'),msg=document.getElementById('pick-msg');
-function reveal(){if(!res||!picked)return;picked.querySelector('.pk-front').textContent=res.pct>0?res.pct+'% OFF':'2 FREE CARDS';row.classList.add('done');picked.classList.add('flip');if(window.gtag)gtag('event','pick_won',{value:res.pct,content_id:location.pathname});setTimeout(function(){won(res);},1300);}
+function reveal(){if(!res||!picked)return;picked.querySelector('.pk-front').textContent=(res.label||(res.pct>0?res.pct+'% off':'2 free cards')).toUpperCase();row.classList.add('done');picked.classList.add('flip');if(window.gtag)gtag('event','pick_won',{value:res.pct,content_id:location.pathname});setTimeout(function(){won(res);},1300);}
 row.addEventListener('click',function(e){var c=e.target.closest('.pk-card');if(!c||picked||!row.classList.contains('ready'))return;picked=c;h.textContent='Good pick...';reveal();});
 f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='';
 post({action:'pick',email:f.email.value,page:location.pathname}).then(function(j){b.disabled=false;
@@ -414,6 +420,6 @@ d.addEventListener('click',function(e){if(e.target.closest('.px')||(e.target.id=
 var m=/[?&]prize=([0-9a-f]{20})/.exec(location.search),tok=m?m[1]:get('pkTok');
 if(tok){if(m)set('pkTok',tok);post({action:'pick',tok:tok}).then(function(j){if(j&&j.ok&&j.code)apply(j);else if(j&&(j.none||j.expired))del('pkTok');}).catch(function(){});return;}
 if(get('pkSeen'))return;
-setTimeout(function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}step('email');d.showModal();if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});},3500);
+setTimeout(function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('email');d.showModal();if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});},3500);
 })();
 </script>"""
