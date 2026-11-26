@@ -381,6 +381,7 @@ PICK_HTML = r"""<dialog id="pick" aria-label="Pick a card">
 <h3 id="pk-won"></h3>
 <p class="pk-sub" id="pk-until"></p>
 <a class="btn block" id="pk-go" href="#"></a>
+<a class="btn block" id="pk-deck" href="#" data-buy="The AI Agent Deck" hidden></a>
 <p class="fine" id="pk-fine"></p>
 </div>
 </dialog>
@@ -397,6 +398,7 @@ e.textContent=j.again?'You already picked':'You won';
 if(j.pct>0&&j.code){apply(j);w.textContent=j.pct+'% off anything';u.textContent='Good until '+j.until+'.';g.textContent='Use it on the Deck';g.href=deck();f.textContent='It is already added to every buy button here. We emailed it to you too.';}
 else if(j.pct>0){w.textContent='Your prize has ended';u.textContent='It was good until '+j.until+'.';g.textContent='Keep looking';g.href='#';f.textContent='';}
 else{w.textContent='2 free cards';u.textContent='Listing Watchdog + Morning Brief.';g.textContent='Keep looking';g.href='#';f.textContent='We just emailed them to you.';}
+var k=document.getElementById('pk-deck'),da=document.querySelector('a[data-buy="The AI Agent Deck"][data-value]'),pv=da?da.getAttribute('data-value'):'';if(j.pct>0&&j.code){k.hidden=true;}else{k.hidden=false;k.href=deck();k.textContent='Get the full Deck'+(pv?': $'+pv:'');}
 step('won');}
 var res=null,picked=null,row=document.getElementById('pk-row'),h=document.getElementById('pk-h'),f=document.getElementById('pick-form'),msg=document.getElementById('pick-msg');
 function reveal(){if(!res||!picked)return;picked.querySelector('.pk-front').textContent=res.pct>0?res.pct+'% OFF':'2 FREE CARDS';row.classList.add('done');picked.classList.add('flip');if(window.gtag)gtag('event','pick_won',{value:res.pct,content_id:location.pathname});setTimeout(function(){won(res);},1300);}

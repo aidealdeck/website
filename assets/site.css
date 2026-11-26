@@ -336,3 +336,6 @@ dialog#pick .fine{margin:10px 0 0}
 .shots .shot img{aspect-ratio:16/10;object-fit:contain;object-position:center;background:#fff}
 .cbtn.prev{left:-22px}.cbtn.next{right:-22px}
 @media (max-width:640px){.shots .shot{flex-basis:100%}.cbtn.prev{left:2px}.cbtn.next{right:2px}}
+dialog#pick #pk-go[href='#']{background:transparent;border:2px solid var(--navy);color:var(--navy)}
+dialog#pick #pk-deck{margin-top:10px}
+dialog#pick #pk-deck[hidden]{display:none}
