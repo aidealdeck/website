@@ -85,7 +85,7 @@ VIDEO = '''<section id="how" class="sand">
 <div class="center"><div class="eyebrow">Watch &middot; 24 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
 <video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
 <p class="center" style="margin:28px 0 0"><a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></p>
-<p class="center" style="margin-top:18px;color:var(--muted)">Rather have it set up for you? Done-for-you setup is coming soon. Email <a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a> and we will tell you when it opens.</p>
+<p class="center" style="margin-top:18px;color:var(--muted)">Rather have it set up for you? Done-for-you setup is coming soon. <a href="mailto:support@aidealdeck.com?subject=Done-for-you%20setup%20waitlist&amp;body=Please%20tell%20me%20when%20done-for-you%20setup%20opens." data-lead="dfy">Put me on the waitlist</a> and we will tell you when it opens.</p>
 </div>
 </section>'''
 
@@ -155,7 +155,7 @@ def stack_html():
 <h2 class="h2">Start with seven cards. Add more later.</h2>
 <p class="lead" style="margin-left:0">The Deck gives you seven cards today. When we make new cards, each one works with the cards you already have.</p>
 <p class="lead" style="margin-left:0">Get all seven now at the $49 launch price.</p>
-<a class="btn" style="margin-top:28px" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Start my deck: $49</a>
+<a class="btn" style="margin-top:28px" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a>
 <p class="fine" style="margin-top:14px">Future cards are separate products, sold separately when released. No release dates are promised.</p>
 </div>
 <div class="board" role="img" aria-label="A 52-card deck with 7 cards filled in and 45 empty slots">
