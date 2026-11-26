@@ -286,9 +286,9 @@ def main():
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
         dest = os.path.join(OUT, name)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
-        if name in ("feedback/index.html", "start/index.html", "unsubscribe/index.html", "numbers/index.html"): page = page.replace('content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"', 'content="noindex,follow"')
+        if name in ("feedback/index.html", "start/index.html", "unsubscribe/index.html", "numbers/index.html", "my-deck/index.html"): page = page.replace('content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"', 'content="noindex,follow"')
         open(dest, "w").write(page)
-        if name not in ("feedback/index.html", "start/index.html", "unsubscribe/index.html", "numbers/index.html"): sitemap.append(meta["path"])
+        if name not in ("feedback/index.html", "start/index.html", "unsubscribe/index.html", "numbers/index.html", "my-deck/index.html"): sitemap.append(meta["path"])
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUT, "assets"))
     open(os.path.join(OUT, "CNAME"), "w").write("aidealdeck.com\n")
     open(os.path.join(OUT, ".nojekyll"), "w").write("")

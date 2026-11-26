@@ -422,3 +422,15 @@ p,li{text-wrap:pretty}
 .wlopts button{min-height:46px;padding:8px 16px;border-radius:999px;border:2px solid #13203F;background:#fff;color:#13203F;font-size:16px;font-weight:600;cursor:pointer}
 .wlopts button:hover{background:#13203F;color:#fff}
 @media (max-width:640px){.nophone{display:none!important}}
+.mdgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;max-width:980px;margin:34px auto 0}
+.mdcard{position:relative;aspect-ratio:5/7;border-radius:14px;border:2px dashed #4A5A88;background:rgba(255,255,255,.03);color:#9AA3BC;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:34px 10px 14px;text-align:center;text-decoration:none}
+.mdcard .rk{position:absolute;left:12px;top:8px;font-size:20px;color:#6C7AA6}
+.mdcard .nm{font-weight:700;font-size:16px;line-height:1.25;text-wrap:balance}
+.mdcard .st{font-size:13px;font-weight:600}
+.mdcard .st.get{color:var(--gold);text-decoration:underline;min-height:44px;display:inline-flex;align-items:center}
+.mdcard.has{border:2px solid var(--gold);background:#1A2854;color:#fff;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.mdcard.has .rk{color:var(--gold)}.mdcard.has .st{color:var(--gold)}
+.mdcard.mys .q{font-size:54px;font-weight:800;color:var(--gold);line-height:1}
+.mdextra{max-width:620px;margin:22px auto 0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.mdextra p{margin:0;color:var(--soft);font-size:17px;text-wrap:balance}
+@media (max-width:760px){.mdgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}

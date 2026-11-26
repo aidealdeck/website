@@ -1,0 +1,53 @@
+<!--META {"out":"my-deck/index.html","path":"/my-deck/","title":"My Deck: the cards you have collected | AiDealDeck","desc":"See the AiDealDeck cards you have collected and what is coming next.","topnote":"<span data-sale>Black Friday</span>: all 5 cards + 2 bonus cards for $49, not $199. <b data-left>Ends Nov 30.</b>","topbtn":"<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>","pixel":""} -->
+
+<section class="hero" style="padding-bottom:56px"><div class="wrap"><div class="copy" style="flex-basis:100%;text-align:center">
+<span class="pill">Your collection</span>
+<h1>My <em>Deck</em></h1>
+<p class="sub" id="mdsub" style="margin-left:auto;margin-right:auto">See the cards you have collected.</p>
+<form id="mdform" class="wlbox" style="max-width:440px;margin:28px auto 0;text-align:left" novalidate>
+<h2>Get my link</h2>
+<input type="email" name="email" placeholder="The email you used with us" autocomplete="email" inputmode="email" required aria-label="Email">
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+<button class="btn block" type="submit">Email me my link</button>
+<p id="mdmsg" class="wlmsg" role="status"></p>
+<p class="fine nb">No password needed.<br>We email you a private link.</p>
+</form>
+<div id="mddeck" hidden>
+<div class="mdgrid" id="mdgrid"></div>
+<p class="sub" id="mdcount" style="margin:26px auto 0"></p>
+<div id="mdextra" class="mdextra"></div>
+</div>
+</div></div></section>
+<script>
+(function(){
+var U='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec';
+var CARDS=[['KPI Tracker','K','/cards/kpi-tracker/',/KPI/i],['Listing Exposure Playbook','Q','/cards/listing-exposure-playbook/',/Listing Exposure/i],['Lead-for-Life System','J','/cards/lead-for-life-system/',/Lead-for-Life/i],['Commission & GCI Ledger','10','/cards/commission-gci-ledger/',/GCI|Commission/i],['VA Playbook & Scorecard','9','/cards/va-playbook-scorecard/',/VA Playbook/i],['Listing Watchdog','8','/free/',null],['Morning Brief','7','/free/',null]];
+function post(d){return fetch(U,{method:'POST',credentials:'omit',body:JSON.stringify(d)}).then(function(r){return r.json();});}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var f=document.getElementById('mdform'),m=document.getElementById('mdmsg'),t=new URLSearchParams(location.search).get('t');
+if(t){f.hidden=true;document.getElementById('mdsub').textContent='Loading your cards...';
+post({action:'mydeck',t:t}).then(function(j){
+if(!j||!j.ok){f.hidden=false;document.getElementById('mdsub').textContent=(j&&j.error==='expired')?'That link has expired. Get a new one below.':'That link did not work. Get a new one below.';return;}
+var all=false,free=false,own=[];(j.products||[]).forEach(function(p){if(/^FREE/i.test(p)||/Bonuses/i.test(p)){free=true;}else if(/AI Agent Deck/i.test(p)){all=true;}else{own.push(p);}});
+var n=0,h='';CARDS.forEach(function(c){var has=all||(c[3]?own.some(function(p){return c[3].test(p);}):free);if(has)n++;
+h+='<div class="mdcard'+(has?' has':'')+'"><b class="rk">'+c[1]+'</b><span class="nm">'+esc(c[0])+'</span>'+(has?'<span class="st">In your deck</span>':'<a class="st get" href="'+c[2]+'">'+(c[3]?'Get this card':'Get it free')+'</a>')+'</div>';});
+for(var i=0;i<3;i++)h+='<a class="mdcard mys" href="/waitlist/"><b class="rk">?</b><span class="q">?</span><span class="st">Coming soon</span></a>';
+document.getElementById('mdgrid').innerHTML=h;
+document.getElementById('mdsub').textContent='Here is your collection.';
+document.getElementById('mdcount').innerHTML='You have <b style="color:var(--gold)">'+n+' of 7</b> cards.'+(n<7?'':' You have them all.');
+var x='';
+if(n<7&&!all)x+='<a class="btn" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Get all 7 cards: the Deck</a>';
+x+='<p>Your files: open your Gumroad receipt email and tap the download button.</p>';
+if(j.ref)x+='<p>Your referral link. When a friend buys, you each get a free card:<br><b style="color:var(--gold)">aidealdeck.com/?ref='+esc(j.ref)+'</b></p>';
+x+=j.waitlist?'<p>You are on the waitlist. You get first dibs and a small discount.</p>':'<p><a href="/waitlist/" style="color:var(--gold);font-weight:700">Join the waitlist</a> for first dibs and a small discount.</p>';
+document.getElementById('mdextra').innerHTML=x;document.getElementById('mddeck').hidden=false;
+if(window.gtag)gtag('event','my_deck_view',{cards:n});
+}).catch(function(){f.hidden=false;document.getElementById('mdsub').textContent='We could not load your cards just now. Please try again.';});}
+f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;m.textContent='Sending...';
+post({action:'mydeck',email:f.email.value.trim(),website:f.website.value}).then(function(j){b.disabled=false;
+if(j&&j.ok){m.innerHTML='<b>Check your email.</b> If that address has cards with us, your link is on its way.';}
+else if(j&&j.error==='email'){m.textContent='That email address does not look right. Please check it.';}
+else{m.textContent='We could not send it just now. Please try again.';}
+}).catch(function(){b.disabled=false;m.textContent='We could not send it just now. Please try again.';});});
+})();
+</script>
