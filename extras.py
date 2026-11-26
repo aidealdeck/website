@@ -105,6 +105,16 @@ def ld_script(items):
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, separators=(",", ":")).replace("</", "<\\/") + "</script>"
 
 
+def reviews():
+    return '''<section id="reviews" class="sand" hidden><div class="wrap">
+<div class="center"><div class="eyebrow" style="color:var(--gold-dark)">Real buyers</div><h2 class="h2">What real estate pros say</h2></div>
+<div class="revs" id="revlist"></div>
+<p class="center fine" style="margin-top:18px">Real reviews from buyers, shown with their OK. Reviewers got 10% off a future card for answering, whatever they said.</p>
+</div></section>
+<script>(function(){var s=document.getElementById('reviews'),l=document.getElementById('revlist');if(!s||!window.fetch)return;
+function go(){fetch('__U__',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'feedback',list:1})}).then(function(r){return r.json();}).then(function(j){var a=(j&&j.reviews)||[];if(!a.length)return;a.forEach(function(r){var d=document.createElement('div');d.className='rev';var st=document.createElement('div');st.className='revst';st.setAttribute('aria-label',r.st+' of 5 stars');st.textContent=new Array(r.st+1).join('\\u2605');var p=document.createElement('p');p.textContent='\\u201c'+r.t+'\\u201d';var b=document.createElement('b');b.textContent=[r.n,r.w].filter(Boolean).join(', ')||'Verified buyer';d.appendChild(st);d.appendChild(p);d.appendChild(b);l.appendChild(d);});s.hidden=false;}).catch(function(){});}
+if('requestIdleCallback' in window)requestIdleCallback(go,{timeout:4000});else setTimeout(go,2500);})();</script>'''.replace('__U__', 'https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec')
+
 def kpiband(kpi_url, deck_url):
     return f'''<section class="leadband" id="start-free">
 <div class="wrap">

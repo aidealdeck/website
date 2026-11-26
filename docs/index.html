@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=8fa07f13">
+<link rel="stylesheet" href="/assets/site.css?v=d1ba7501">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for every visitor until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -221,7 +221,14 @@ window.addEventListener('pagehide',flush);
 <div class="center" style="margin-top:36px"><a class="btn navy" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: $49</a></div>
 </div>
 </section>
-<section class="leadband" id="start-free">
+<section id="reviews" class="sand" hidden><div class="wrap">
+<div class="center"><div class="eyebrow" style="color:var(--gold-dark)">Real buyers</div><h2 class="h2">What real estate pros say</h2></div>
+<div class="revs" id="revlist"></div>
+<p class="center fine" style="margin-top:18px">Real reviews from buyers, shown with their OK. Reviewers got 10% off a future card for answering, whatever they said.</p>
+</div></section>
+<script>(function(){var s=document.getElementById('reviews'),l=document.getElementById('revlist');if(!s||!window.fetch)return;
+function go(){fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'feedback',list:1})}).then(function(r){return r.json();}).then(function(j){var a=(j&&j.reviews)||[];if(!a.length)return;a.forEach(function(r){var d=document.createElement('div');d.className='rev';var st=document.createElement('div');st.className='revst';st.setAttribute('aria-label',r.st+' of 5 stars');st.textContent=new Array(r.st+1).join('\u2605');var p=document.createElement('p');p.textContent='\u201c'+r.t+'\u201d';var b=document.createElement('b');b.textContent=[r.n,r.w].filter(Boolean).join(', ')||'Verified buyer';d.appendChild(st);d.appendChild(p);d.appendChild(b);l.appendChild(d);});s.hidden=false;}).catch(function(){});}
+if('requestIdleCallback' in window)requestIdleCallback(go,{timeout:4000});else setTimeout(go,2500);})();</script><section class="leadband" id="start-free">
 <div class="wrap">
 <div class="lb-main">
 <div class="eyebrow gold">Not ready?</div>

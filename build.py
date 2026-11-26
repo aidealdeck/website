@@ -265,7 +265,7 @@ def main():
             _nudge = extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"])
             if _kpi:
                 _nudge = re.sub(r'<a href="[^"]*" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a>', '<a href="' + URLS["KPI"] + '" data-buy="Real Estate KPI Tracker" data-value="19" class="mfree">KPI Tracker: $19</a>', _nudge)
-            tail = _band + _nudge + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
+            tail = (extras.reviews() if name == "index.html" else "") + _band + _nudge + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
         page = render(h + body + tail + f)
         def _lazy(m):

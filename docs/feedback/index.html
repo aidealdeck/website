@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=8fa07f13">
+<link rel="stylesheet" href="/assets/site.css?v=d1ba7501">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for every visitor until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -107,6 +107,11 @@ window.addEventListener('pagehide',flush);
 <div class="fbscale" id="fbscale"></div></label>
 <label>3. Your feedback <span class="fine">What other cards or products do you want to see? What should we improve on the site, at checkout or in setup?</span>
 <textarea name="stopped" maxlength="800" rows="3"></textarea></label>
+<label>4. Leave a review <span class="fine">Optional. Tap the stars, then write one or two lines.</span>
+<div class="fbscale fbstars" id="fbstars"></div>
+<textarea name="review" maxlength="300" rows="2" placeholder="What changed for you?"></textarea></label>
+<div class="fbrow"><input name="rname" maxlength="30" placeholder="First name" aria-label="First name"><input name="rwho" maxlength="40" placeholder="Agent, Ohio" aria-label="Your role and state"></div>
+<label class="fbcheck"><input type="checkbox" name="rshow"> <span>OK to show my review and first name on aidealdeck.com</span></label>
 <button class="btn" type="submit">Send and show my 10% code</button>
 <p class="fine" id="fbmsg" aria-live="polite"></p>
 </form>
@@ -120,10 +125,12 @@ window.addEventListener('pagehide',flush);
 <script>
 (function(){var f=document.getElementById('fb'),sc=document.getElementById('fbscale'),score=null,msg=document.getElementById('fbmsg'),ow=document.getElementById('otherwrap');
 for(var i=0;i<=10;i++){(function(n){var b=document.createElement('button');b.type='button';b.textContent=n;b.addEventListener('click',function(){score=n;[].forEach.call(sc.children,function(c){c.classList.toggle('on',c===b);});});sc.appendChild(b);})(i);}
+var st=document.getElementById('fbstars'),stars=0;for(var j=1;j<=5;j++){(function(n){var b=document.createElement('button');b.type='button';b.textContent='\u2605';b.setAttribute('aria-label',n+' of 5 stars');b.addEventListener('click',function(){stars=n;[].forEach.call(st.children,function(c,i){c.classList.toggle('on',i<n);});});st.appendChild(b);})(j);}
+var qs=new URLSearchParams(location.search),act=qs.get('approve')?'approve':qs.get('hide')?'hide':'';if(act&&qs.get('k')){var o={action:'feedback',k:qs.get('k')};o[act]=qs.get(act);f.hidden=true;msg=document.createElement('p');msg.className='lead center';msg.textContent='Working...';f.parentNode.insertBefore(msg,f);history.replaceState(null,'',location.pathname);fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(o)}).then(function(r){return r.json();}).then(function(j){msg.textContent=j.ok?(j.status==='ok'?'Done. The review now shows on the home page.':'Done. The review is hidden.'):'That link did not work. Tell Claude: approve the review.';}).catch(function(){msg.textContent='That did not go through. Try the link again.';});return;}
 f.heardsel.addEventListener('change',function(){var o=/Other|friend|broker|coach|creator|podcast|group|event/.test(f.heardsel.value);ow.hidden=!o;});
 f.addEventListener('submit',function(e){e.preventDefault();if(!f.heardsel.value){msg.textContent='Please pick how you heard about us.';return;}if(score===null){msg.textContent='Please tap a number from 0 to 10.';return;}
 var heard=f.heardsel.value+(f.heardother.value?': '+f.heardother.value:'');
-var d={action:'feedback',score:score,site:'',stopped:f.stopped.value,setup:'',heard:heard,email:''};
+var d={action:'feedback',score:score,site:'',stopped:f.stopped.value,setup:'',heard:heard,email:'',stars:stars||0,review:f.review.value,name:f.rname.value,who:f.rwho.value,show:f.rshow.checked?'yes':'no'};
 function done(){f.hidden=true;document.getElementById('fbcode').hidden=false;if(window.gtag)gtag('event','feedback_sent',{content_type:'feedback',content_id:f.heardsel.value,value:score});}
 fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).then(done).catch(function(){msg.textContent='That did not send. Please try again, or email support@aidealdeck.com.';});});
 })();

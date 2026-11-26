@@ -357,3 +357,8 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 .topright{display:flex;align-items:center;gap:12px;justify-content:flex-end;min-width:0}
 @media (min-width:1000px){.topbar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);flex-wrap:nowrap}.topbar .brand{justify-self:start}.topbar .topnav{margin:0;justify-self:center}.topright{justify-self:end;max-width:100%}.topright .note{text-align:right;line-height:1.3;min-width:0}.topright .btn{flex:none;white-space:nowrap}}
 @media (min-width:1000px){.topbar{min-height:80px}}
+.fbstars button{font-size:24px;color:#c9ccd6;min-width:48px;min-height:48px}.fbstars button.on{color:#C9A24B;background:#fff;border-color:#C9A24B}
+.fbrow{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.fbrow input{flex:1 1 160px;min-width:0}
+.fbform label.fbcheck{flex-direction:row;gap:10px;align-items:flex-start;font-weight:400}.fbform .fbcheck input{width:22px;height:22px;min-height:0;padding:0;flex:none;margin-top:2px}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+.rev{background:#fff;border:1px solid rgba(19,32,63,.14);border-radius:16px;padding:22px}.rev p{margin:8px 0 12px;font-size:17px;line-height:1.5;color:var(--navy)}.revst{color:#C9A24B;font-size:20px;letter-spacing:2px}
