@@ -83,7 +83,7 @@ class _M:
 VIDEO = '''<section id="how" class="sand">
 <div class="wrap">
 <div class="center"><div class="eyebrow">Watch &middot; 25 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
-<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4?v=4" type="video/mp4"></video>
+<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4?v=5" type="video/mp4"></video>
 <p class="center" style="margin:28px 0 0"><a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></p>
 <p class="center" style="margin-top:18px;color:var(--muted)">More cards, more decks and the Jokers are coming. <a href="/waitlist/" data-lead="waitlist"><b>Put me on the waitlist</b></a> and we will tell you first.</p>
 </div>

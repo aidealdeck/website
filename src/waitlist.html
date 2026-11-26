@@ -4,13 +4,29 @@
 <span class="pill">Coming soon</span>
 <h1>More cards. More decks. <em>And the Jokers.</em></h1>
 <p class="sub" style="margin-left:auto;margin-right:auto">Join the waitlist. We will tell you first.</p>
-<form id="wl" class="wlform" novalidate>
-<input type="email" name="email" placeholder="Your email" autocomplete="email" inputmode="email" required aria-label="Your email">
+<div class="wlrow">
+<form id="wl" class="wlbox" novalidate>
+<h2>Join the waitlist</h2>
+<input type="text" name="fname" placeholder="First name" autocomplete="given-name" aria-label="First name">
+<input type="email" name="email" placeholder="Email" autocomplete="email" inputmode="email" required aria-label="Email">
+<input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" inputmode="tel" aria-label="Phone, optional">
+<p class="wlq">Tell me about:</p>
+<label class="wlchk"><input type="checkbox" name="w_cards" checked> <span>New cards</span></label>
+<label class="wlchk"><input type="checkbox" name="w_decks" checked> <span>New decks</span></label>
+<label class="wlchk"><input type="checkbox" name="w_jokers" checked> <span>Jokers (set it up for me)</span></label>
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-<button class="btn" type="submit">Put me on the waitlist</button>
-</form>
+<button class="btn block" type="submit">Put me on the waitlist</button>
 <p id="wlmsg" class="wlmsg" role="status"></p>
-<p class="fine" style="color:#9AA3BC;margin-top:10px">You also get our 2 free cards by email today. Unsubscribe any time. <a href="/privacy/" style="color:var(--cream)">Privacy</a></p>
+<p class="fine">We also email you our 2 free cards today. Unsubscribe any time. <a href="/privacy/">Privacy</a></p>
+</form>
+<div class="wlbox buy">
+<h2>Do not want to wait?</h2>
+<p>Get all 5 cards + 2 bonus cards today.</p>
+<p class="wlprice"><s>$199</s> <b>$49</b></p>
+<a class="btn block" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: $49</a>
+<p class="fine"><span data-sale>Black Friday launch price</span> through Nov 30. Claude helps you set it up.</p>
+</div>
+</div>
 </div></div></section>
 
 <section style="padding:56px 24px 72px"><div class="wrap">
@@ -24,11 +40,17 @@
 </div></section>
 <script>
 (function(){var f=document.getElementById('wl'),m=document.getElementById('wlmsg');if(!f)return;
-f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;m.textContent='Sending...';
-fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname,source:'waitlist'})}).then(function(r){return r.json();}).then(function(j){b.disabled=false;
-if(j&&j.ok){f.hidden=true;m.innerHTML='<b>You are on the list.</b> Check your email for your 2 free cards.';if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Waitlist'});}
-else if(j&&j.error==='email'){m.textContent='That email address does not look right. Please check it.';}
-else{m.innerHTML='We could not add you just now. <a href="mailto:support@aidealdeck.com?subject=Waitlist" style="color:var(--gold)">Email us instead</a>.';}
-}).catch(function(){b.disabled=false;m.innerHTML='We could not add you just now. <a href="mailto:support@aidealdeck.com?subject=Waitlist" style="color:var(--gold)">Email us instead</a>.';});});
+function post(d){return fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify(d)}).then(function(r){return r.json();});}
+function ok(){f.querySelectorAll('input,label,button,.wlq,.fine').forEach(function(x){x.hidden=true;});m.innerHTML='<b>You are on the list.</b> Check your email for your 2 free cards.';if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Waitlist'});}
+function bad(){b.disabled=false;m.innerHTML='We could not add you just now. <a href="mailto:support@aidealdeck.com?subject=Waitlist">Email us instead</a>.';}
+var b=f.querySelector('button');
+f.addEventListener('submit',function(e){e.preventDefault();b.disabled=true;m.textContent='Sending...';
+var want=[];if(f.w_cards.checked)want.push('cards');if(f.w_decks.checked)want.push('decks');if(f.w_jokers.checked)want.push('jokers');
+var base={email:f.email.value.trim(),website:f.website.value,page:location.pathname,source:'waitlist'};
+post({action:'waitlist',email:base.email,website:base.website,page:base.page,name:f.fname.value.trim(),phone:f.phone.value.trim(),want:want.join(',')}).then(function(j){
+if(j&&j.ok){ok();return;}
+if(j&&j.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';return;}
+base.action='free';return post(base).then(function(k){if(k&&k.ok)ok();else if(k&&k.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';}else bad();});
+}).catch(bad);});
 })();
 </script>
