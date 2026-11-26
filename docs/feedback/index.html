@@ -115,6 +115,10 @@ window.addEventListener('pagehide',flush);
 <div class="fbrow"><label>Your first name<input name="rname" maxlength="30" autocomplete="given-name"></label>
 <label>Your job title <span class="fine">Example: Team Leader</span><input name="rwho" maxlength="40"></label></div>
 <label class="fbcheck"><input type="checkbox" name="rshow"> <span>Yes, show my review, first name and job title on aidealdeck.com</span></label>
+<p class="fbhead">5. Know one person who could use this? <span class="fine">Optional.</span></p>
+<p style="margin:0">If they buy, you get the <b>next new card free</b> when it comes out. <span class="fine">We will not email them. You tell them.</span></p>
+<div class="fbrow"><label>Their email <span class="fine">One person.</span><input type="email" name="friend" maxlength="120"></label>
+<label>Your email <span class="fine">The one you bought with.</span><input type="email" name="myemail" maxlength="120" autocomplete="email"></label></div>
 <button class="btn" type="submit">Send and show my 10% code</button>
 <p class="fine" id="fbmsg" aria-live="polite"></p>
 </form>
@@ -132,8 +136,9 @@ var st=document.getElementById('fbstars'),stars=0;for(var j=1;j<=5;j++){(functio
 var qs=new URLSearchParams(location.search),act=qs.get('approve')?'approve':qs.get('hide')?'hide':'';if(act&&qs.get('k')){var o={action:'feedback',k:qs.get('k')};o[act]=qs.get(act);f.hidden=true;msg=document.createElement('p');msg.className='lead center';msg.textContent='Working...';f.parentNode.insertBefore(msg,f);history.replaceState(null,'',location.pathname);fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(o)}).then(function(r){return r.json();}).then(function(j){msg.textContent=j.ok?(j.status==='ok'?'Done. The review now shows on the home page.':'Done. The review is hidden.'):'That link did not work. Tell Claude: approve the review.';}).catch(function(){msg.textContent='That did not go through. Try the link again.';});return;}
 f.heardsel.addEventListener('change',function(){var o=/Other|friend|broker|coach|creator|podcast/.test(f.heardsel.value);ow.hidden=!o;if(!o)f.heardother.value='';});
 f.addEventListener('submit',function(e){e.preventDefault();if(!f.heardsel.value){msg.textContent='Please pick how you heard about us.';return;}if(score===null){msg.textContent='Please tap a number from 0 to 10.';return;}
+if(f.friend.value.trim()&&!f.myemail.value.trim()){msg.textContent='Please add your own email so we know who gets the free card.';return;}
 var heard=f.heardsel.value+(f.heardother.value?': '+f.heardother.value:'');
-var d={action:'feedback',score:score,site:'',stopped:f.stopped.value,setup:'',heard:heard,email:'',stars:stars||0,review:f.review.value,name:f.rname.value,who:f.rwho.value,show:f.rshow.checked?'yes':'no'};
+var d={action:'feedback',score:score,site:'',stopped:f.stopped.value,setup:'',heard:heard,email:f.myemail.value.trim(),friend:f.friend.value.trim(),stars:stars||0,review:f.review.value,name:f.rname.value,who:f.rwho.value,show:f.rshow.checked?'yes':'no'};
 function done(){f.hidden=true;document.getElementById('fbcode').hidden=false;if(window.gtag)gtag('event','feedback_sent',{content_type:'feedback',content_id:f.heardsel.value,value:score});}
 fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).then(done).catch(function(){msg.textContent='That did not send. Please try again, or email support@aidealdeck.com.';});});
 })();
