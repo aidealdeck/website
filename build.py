@@ -193,20 +193,12 @@ def shots_section():
     figs = "".join(shot_fig(k) for k in SHOT_CAPTIONS)
     if not figs:
         return ""  # no placeholders on the live site
-    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="margin:18px 0 0"><a class="btn" href="' + URLS["KPI"] + '" data-buy="Real Estate KPI Tracker" data-value="19">Get the KPI Tracker: <s class="strike sm">$49</s> $19 ' + SNIP.get("ARROW", "") + '</a> <a class="btn" href="/demo/" style="background:transparent;color:var(--navy);border:2px solid var(--gold)">Try the live demo</a></p>'
+    vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center btnrow" style="margin:18px 0 0"><a class="btn" href="' + URLS["KPI"] + '" data-buy="Real Estate KPI Tracker" data-value="19">Get the KPI Tracker: <s class="strike sm">$49</s> $19 ' + SNIP.get("ARROW", "") + '</a> <a class="btn" href="/demo/" style="background:transparent;color:var(--navy);border:2px solid var(--gold)">Try the live demo</a></p>'
     stills = "".join(shot_fig(k) for k in SHOT_CAPTIONS if k != "live")
     stills = re.sub(r"(<figcaption>[^<]*?) \(sample data\)", r"\1", stills).replace("KPI Tracker spreadsheet dashboard</figcaption>", "KPI Tracker spreadsheet</figcaption>")
     return ('<section class="white"><div class="wrap"><div class="center"><div class="eyebrow" style="color:var(--gold-dark)">Watch &middot; 29 seconds</div><h2 class="h2">See it before you buy</h2></div>'
             + vid +
-            '<h3 class="center" style="margin:44px 0 0;font-size:22px">More real screens</h3><div class="shotgrid">' + stills + '</div>'
-            '<p class="center fine" style="margin:14px 0 0">Tap a picture to make it bigger. Sample data shown.</p></div></section>'
-            '<div id="zoom" class="zoom" hidden role="dialog" aria-label="Bigger picture"><img alt=""></div>'
-            '<script>(function(){var z=document.getElementById("zoom");if(!z)return;var zi=z.querySelector("img");'
-            'function shut(){z.hidden=true;zi.removeAttribute("src");document.documentElement.style.overflow="";}'
-            '[].forEach.call(document.querySelectorAll(".shotgrid .shot img"),function(i){i.setAttribute("tabindex","0");i.setAttribute("role","button");'
-            'function open_(){zi.src=i.currentSrc||i.src;zi.alt=i.alt;z.hidden=false;document.documentElement.style.overflow="hidden";}'
-            'i.addEventListener("click",open_);i.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open_();}});});'
-            'z.addEventListener("click",shut);document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!z.hidden)shut();});})();</script>')
+            '</div></section>')
 
 def render(body):
     body = re.sub(r"\{\{CARD:(.+?)\}\}(?=\s*\n)", lambda m: card(m) if "{{" not in m.group(1) else m.group(0), body)
