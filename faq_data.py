@@ -3,6 +3,7 @@ Only facts already stated on the site, the product pages or the Terms. New entri
 (calls, emails and searches on this page that found nothing)."""
 
 P = "(414) 946-6479"
+from sale import SALE
 
 FAQ_LONG = [
     ("The basics", [
@@ -15,6 +16,21 @@ FAQ_LONG = [
         ("Is this made by Anthropic or Claude?", "No. AiDealDeck is an independent product built to work with Claude. It is not made or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.", "affiliated official endorsed"),
         ("Who is behind AiDealDeck?", "AiDealDeck is a brand of The Showing Partner LLC, a Wisconsin company. It is not affiliated with or endorsed by any brokerage, MLS or trade association.", "owner company llc who owns"),
     ]),
+    ("Price and buying", [
+        ("How much does it cost?", ("Through November 30: The AI Agent Deck is $49 and each single card is $19. From December 1 the regular prices are $199 for the Deck and $49 for a single card. The price on the page when you buy is the price you pay." if SALE else "The AI Agent Deck (all five cards plus the two bonus cards) is $199. A single card is $49. The two bonus cards are free on their own. It is a one-time purchase, not a subscription."), "price cost how much sale discount"),
+        (("What happens to the price after November 30?" if SALE else "Did the price change after the launch sale?"), ("The Black Friday launch price ends November 30. From December 1 the regular prices apply: $199 for The AI Agent Deck and $49 for a single card. The two bonus cards stay free. If you buy during the sale you keep the files; nothing changes for you later." if SALE else "The launch sale ended November 30, 2026. The regular prices are $199 for The AI Agent Deck and $49 for a single card. The two bonus cards are still free. Buyers from the sale keep their files; nothing changed for them."), "after sale ends december price increase regular launch"),
+        ("Are there reviews from real estate pros?", "We are new (launched November 2026), so reviews are just coming in. Buyers can leave one on the <a href=\"/feedback/\">feedback page</a>, and the ones who say yes are shown on the homepage with their first name and job title. Until then, judge the work for free: the <a href=\"/demo/\">live demo</a> and the <a href=\"/free/\">two free cards</a>.", "reviews testimonials ratings proof legit scam anyone used track record"),
+        ("Is it a subscription?", "No. You pay once and keep the files. The only ongoing cost is your own Claude plan, paid to Anthropic.", "monthly recurring fee one time"),
+        ("Should I buy one card or the Deck?", "Five single cards cost more than the Deck, and the Deck adds both bonus cards. If you want more than two cards, the Deck costs less.", "which bundle single compare"),
+        ("I bought a single card. Can I upgrade to the Deck?", "The Deck is a separate purchase. At checkout, anyone with a single card in the cart is offered the full Deck in its place. If you already bought and want to move up, email support@aidealdeck.com.", "upgrade credit switch"),
+        ("How do I buy?", "Use any buy button on this site. Checkout is handled by Gumroad. We never take payment by phone.", "pay checkout gumroad payment card apple pay"),
+        ("How do I get my files?", "The download link is emailed to you right after checkout, and it is on your Gumroad receipt page.", "download delivery email link receive"),
+        ("My download link or file is not working. What do I do?", "We are sorry about that. Email support@aidealdeck.com with the email address you used at checkout and what happened, or call " + P + ". We will fix it or send a working copy.", "broken link error not working will not open file zip download problem"),
+        ("I did not get my download email. What do I do?", "Sorry about that. Check your spam folder for an email from Gumroad. If it is not there, email support@aidealdeck.com with the email address you used at checkout and we will send it again.", "missing email not received spam lost"),
+        ("Is sales tax added?", "Gumroad adds sales tax at checkout where it applies.", "tax vat"),
+        ("Can my whole team use one purchase?", "Yes. One purchase covers one buyer: you and the people on your own team. No separate team license is needed. It does not cover a whole company, brokerage or office; each other team needs its own purchase.", "team license share brokerage office multiple users"),
+        ("Can I share, copy or resell the files?", "No. One purchase is for one buyer and that buyer's own team. You may not sell, share, post or pass the files or prompts to anyone outside your team, even for free. Every file carries a license line. See the <a href=\"/terms/\">Terms</a>.", "share copy resell resale license brokerage friend coach course"),
+    ]),
     ("What you need", [
         ("What do I need to use a card?", "The Claude desktop app and a paid Claude plan, both from Anthropic, plus Google Sheets or Excel. A CRM is optional.", "requirements need software"),
         ("Do I need a paid Claude plan?", "Yes. The cards use Claude features that need a paid plan. Claude Pro is currently $20 a month and is sold separately by Anthropic. It is not included in our price.", "free claude subscription cost pro"),
@@ -24,6 +40,8 @@ FAQ_LONG = [
         ("Do I need Google Sheets, or can I use Excel?", "Either one. A free Google account is recommended so your trackers can update on their own, and Excel works too.", "spreadsheet microsoft"),
         ("Will it work with my CRM?", "If Claude has a connector for your CRM, Claude can read it directly. If not, you can export a spreadsheet from your CRM. We cannot promise every CRM works, so check before you buy.", "follow up boss kvcore lofty sierra crm connector integration"),
         ("Do I need to know how to code?", "No. You paste one prompt and answer plain questions.", "technical tech skills programming"),
+        ("Does it work with Follow Up Boss, kvCORE, Lofty or BoomTown?", "We cannot promise any one CRM. If Claude has a connector for your CRM, Claude can read it directly. If not, export a spreadsheet from your CRM (Follow Up Boss, kvCORE, Lofty, BoomTown, Sierra, LionDesk and most others can export one) and Claude works from that. Every card comes with its own workbook, so nothing depends on a connector. Check before you buy.", "follow up boss fub kvcore lofty chime boomtown sierra liondesk wise agent real geeks cinc brivity hubspot salesforce crm export csv integration"),
+        ("What does it cost per month, all in?", "Our cards are a one-time purchase; there is no subscription from us. The ongoing cost is your Claude plan, paid to Anthropic: Claude Pro is currently $20 a month, and heavier use may need a higher plan. Google Sheets is free, and Excel is whatever you already pay for it.", "monthly total cost all in per month budget ongoing"),
     ]),
     ("Setup", [
         ("How long does setup take?", "About 20 minutes for the full Deck, all cards at once. A single card is quicker. The Lead-for-Life System takes another hour or two because you build your follow-up plan in your CRM and write your own emails.", "time minutes long"),
@@ -37,6 +55,7 @@ FAQ_LONG = [
     ]),
     ("The cards", [
         ("What does the Real Estate KPI Tracker do?", "It tracks lead to appointment set, held, signed, under contract and closed, with the real percentage at each step. It works out the weekly number you need for the goal you type in, and shows which lead sources produce closings. <a href=\"/cards/kpi-tracker/\">More about this card</a>.", "kpi numbers conversion funnel"),
+        ("What does the KPI Tracker do that my CRM dashboard does not?", "Most CRM dashboards show activity: calls, emails, tasks. The KPI Tracker shows conversion. It counts lead, appointment set, appointment held, signed, under contract and closed, with the real percentage at each step, works out the one weekly number to hit for the goal you type in, and shows which lead sources turn into closings. If Claude can read your CRM or a spreadsheet export from it, the numbers come across without retyping.", "crm dashboard difference compare already have reports versus"),
         ("What does the Listing Exposure Playbook do?", "It gives every listing the same 14-day launch plan, with fill-in templates and day-7 and day-14 seller reports. <a href=\"/cards/listing-exposure-playbook/\">More about this card</a>.", "listing marketing launch seller report"),
         ("What does the Lead-for-Life System do?", "It lays out a follow-up plan for every new lead until they book, keeps a daily call list, scores how fast leads get a first contact, and includes a TCPA checklist. <a href=\"/cards/lead-for-life-system/\">More about this card</a>.", "lead follow up speed nurture"),
         ("What does the Commission & GCI Ledger do?", "It records every closing with its commission, fees, referral fees and splits, and keeps team totals separate from your own income. It is a tracking tool, not accounting software. <a href=\"/cards/commission-gci-ledger/\">More about this card</a>.", "commission gci income split money"),
@@ -48,23 +67,10 @@ FAQ_LONG = [
         ("Will there be more cards?", "We plan to release more. New cards are separate products, sold separately, and no release dates are promised.", "future new cards 52 roadmap"),
     ]),
     ("What it does not do", [
-        ("Will it text, call or email my leads for me?", "No. It drafts messages for you to review and send. It never texts, calls or emails anyone on its own. If you set up your own automation, you are responsible for consent and for TCPA, CAN-SPAM, do-not-call and your state's rules.", "automatic texting calling dialer autopilot tcpa"),
+        ("Will it text, call or email my leads for me?", "No. It drafts messages for you to review and send. It never texts, calls or emails anyone on its own. If you set up your own automation, you are responsible for consent and for TCPA, CAN-SPAM, do-not-call and your state's rules.", "automatic texting calling dialer autopilot tcpa contact leads reach out message send on its own"),
         ("Will it get me more leads, listings or closings?", "We do not promise more leads, listings, closings or income. It shows you your numbers and what needs your attention. Results depend on your own work.", "guarantee results income more deals roi"),
         ("Is it legal, tax or brokerage advice?", "No. The cards are tools, not professional advice. You are responsible for your license law, brokerage policies, MLS rules and fair housing laws.", "legal tax advice accountant attorney"),
         ("Can AI make mistakes in my numbers?", "Yes. AI can make mistakes. Check what Claude sets up, fills in or drafts, and check important numbers before you rely on them.", "accurate wrong error hallucinate trust"),
-    ]),
-    ("Price and buying", [
-        ("How much does it cost?", "Through November 30: The AI Agent Deck is $49 and each single card is $19. From December 1 the regular prices are $199 for the Deck and $49 for a single card. The price on the page when you buy is the price you pay.", "price cost how much sale discount"),
-        ("Is it a subscription?", "No. You pay once and keep the files. The only ongoing cost is your own Claude plan, paid to Anthropic.", "monthly recurring fee one time"),
-        ("Should I buy one card or the Deck?", "Five single cards cost more than the Deck, and the Deck adds both bonus cards. If you want more than two cards, the Deck costs less.", "which bundle single compare"),
-        ("I bought a single card. Can I upgrade to the Deck?", "The Deck is a separate purchase. At checkout, anyone with a single card in the cart is offered the full Deck in its place. If you already bought and want to move up, email support@aidealdeck.com.", "upgrade credit switch"),
-        ("How do I buy?", "Use any buy button on this site. Checkout is handled by Gumroad. We never take payment by phone.", "pay checkout gumroad payment card apple pay"),
-        ("How do I get my files?", "The download link is emailed to you right after checkout, and it is on your Gumroad receipt page.", "download delivery email link receive"),
-        ("My download link or file is not working. What do I do?", "We are sorry about that. Email support@aidealdeck.com with the email address you used at checkout and what happened, or call " + P + ". We will fix it or send a working copy.", "broken link error not working will not open file zip download problem"),
-        ("I did not get my download email. What do I do?", "Sorry about that. Check your spam folder for an email from Gumroad. If it is not there, email support@aidealdeck.com with the email address you used at checkout and we will send it again.", "missing email not received spam lost"),
-        ("Is sales tax added?", "Gumroad adds sales tax at checkout where it applies.", "tax vat"),
-        ("Can my whole team use one purchase?", "Yes. One purchase covers one buyer: you and the people on your own team. No separate team license is needed. It does not cover a whole company, brokerage or office; each other team needs its own purchase.", "team license share brokerage office multiple users"),
-        ("Can I share, copy or resell the files?", "No. One purchase is for one buyer and that buyer's own team. You may not sell, share, post or pass the files or prompts to anyone outside your team, even for free. Every file carries a license line. See the <a href=\"/terms/\">Terms</a>.", "share copy resell resale license brokerage friend coach course"),
     ]),
     ("Referrals and creator codes", [
         ("Do you reward referrals?", "Yes, both ways. When someone you referred buys a card or the Deck and names you at checkout, you get one free single card of your choice. They get one too, because they bought with a referral. A purchase is required: free downloads do not count.", "refer referral friend reward free card"),
