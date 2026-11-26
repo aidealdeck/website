@@ -257,7 +257,7 @@ def main():
         name = meta["out"]
         ld = extras.ld_script(meta.get("ld") or LD.get(name, []))
         h = (head.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{PATH}}", meta["path"])
-                 .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
+                 .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"] or '<a class="btn sm" href="' + URLS["DECK"] + '" data-buy="The AI Agent Deck" data-value="49">Get the Deck</a>').replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
         tail = extras.chat()
         if SALES(name):
             tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"]) + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
