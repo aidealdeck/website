@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=679ed08b">
+<link rel="stylesheet" href="/assets/site.css?v=1b268193">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for visitors in Europe or the UK until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -150,6 +150,58 @@ var l=e.target.closest('a[data-lead]');if(l){var k=l.getAttribute('data-lead');i
 setTimeout(show,40000);
 window.addEventListener('scroll',function(){var h=document.documentElement;if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.6)show();},{passive:true});
 document.addEventListener('mouseout',function(e){if(!e.relatedTarget&&e.clientY<8)show();});
+})();
+</script><dialog id="pick" aria-label="Pick a card">
+<button type="button" class="px" aria-label="Close">&times;</button>
+<div data-p="email">
+<div class="eyebrow">Welcome</div>
+<h3>Pick a card. Win a prize.</h3>
+<p class="pk-sub">Every card wins: 5%, 10% or 15% off, or 2 free cards.</p>
+<form id="pick-form"><input type="email" name="email" required placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn block" type="submit">Shuffle the deck</button></form>
+<p class="fine" id="pick-msg" role="status"></p>
+<p class="fine">One prize per email. We email it to you once.</p>
+</div>
+<div data-p="cards" hidden>
+<h3 id="pk-h">Shuffling...</h3>
+<div class="pk-row" id="pk-row"><button type="button" class="pk-card" aria-label="Card 1"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54"></span><span class="pk-front"></span></span></button><button type="button" class="pk-card" aria-label="Card 2"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54"></span><span class="pk-front"></span></span></button><button type="button" class="pk-card" aria-label="Card 3"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54"></span><span class="pk-front"></span></span></button><button type="button" class="pk-card" aria-label="Card 4"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54"></span><span class="pk-front"></span></span></button></div>
+</div>
+<div data-p="won" hidden>
+<div class="eyebrow" id="pk-eye">You won</div>
+<h3 id="pk-won"></h3>
+<p class="pk-sub" id="pk-until"></p>
+<a class="btn block" id="pk-go" href="#"></a>
+<p class="fine" id="pk-fine"></p>
+</div>
+</dialog>
+<script>
+(function(){var d=document.getElementById('pick');if(!d||!d.showModal)return;var API='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',FREE='https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses',LS=null;try{LS=window.localStorage;}catch(e){}
+function get(k){try{return LS&&LS.getItem(k);}catch(e){return null;}}function set(k,v){try{LS&&LS.setItem(k,v);}catch(e){}}function del(k){try{LS&&LS.removeItem(k);}catch(e){}}
+function step(n){d.querySelectorAll('[data-p]').forEach(function(s){s.hidden=s.getAttribute('data-p')!==n;});}
+function post(b){return fetch(API,{method:'POST',credentials:'omit',body:JSON.stringify(b)}).then(function(r){return r.json();});}
+function apply(j){if(!j||!j.code)return;document.querySelectorAll('a[href*="shop.aidealdeck.com/l/"]').forEach(function(a){var h=a.getAttribute('href');if(h.indexOf('?wanted=true')>0&&h.indexOf('/'+j.code)<0)a.setAttribute('href',h.replace('?wanted=true','/'+j.code+'?wanted=true'));});
+if(!document.getElementById('pk-bar')){var b=document.createElement('div');b.id='pk-bar';b.textContent='Your prize: '+j.pct+'% off, already added to every buy button. Good until '+j.until+'.';document.body.insertBefore(b,document.body.firstChild);}}
+function deck(){var a=document.querySelector('a[data-buy="The AI Agent Deck"][href*="wanted=true"]');return a?a.getAttribute('href'):'https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true';}
+function won(j){var w=document.getElementById('pk-won'),u=document.getElementById('pk-until'),g=document.getElementById('pk-go'),f=document.getElementById('pk-fine'),e=document.getElementById('pk-eye');
+e.textContent=j.again?'You already picked':'You won';
+if(j.pct>0&&j.code){apply(j);w.textContent=j.pct+'% off anything';u.textContent='Good until '+j.until+'.';g.textContent='Use it on the Deck';g.href=deck();f.textContent='It is already added to every buy button here. We emailed it to you too.';}
+else if(j.pct>0){w.textContent='Your prize has ended';u.textContent='It was good until '+j.until+'.';g.textContent='Keep looking';g.href='#';f.textContent='';}
+else{w.textContent='2 free cards';u.textContent='Listing Watchdog + Morning Brief.';g.textContent='Keep looking';g.href='#';f.textContent='We just emailed them to you.';}
+step('won');}
+var res=null,picked=null,row=document.getElementById('pk-row'),h=document.getElementById('pk-h'),f=document.getElementById('pick-form'),msg=document.getElementById('pick-msg');
+function reveal(){if(!res||!picked)return;picked.querySelector('.pk-front').textContent=res.pct>0?res.pct+'% OFF':'2 FREE CARDS';row.classList.add('done');picked.classList.add('flip');if(window.gtag)gtag('event','pick_won',{value:res.pct,content_id:location.pathname});setTimeout(function(){won(res);},1300);}
+row.addEventListener('click',function(e){var c=e.target.closest('.pk-card');if(!c||picked||!row.classList.contains('ready'))return;picked=c;h.textContent='Good pick...';reveal();});
+f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='';
+post({action:'pick',email:f.email.value,page:location.pathname}).then(function(j){b.disabled=false;
+if(j&&j.ok){res=j;set('pkTok',j.tok);if(window.gtag)gtag('event','generate_lead',{method:'pick_card',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Pick a card'});
+if(j.again){won(j);return;}step('cards');row.classList.add('shuffle');setTimeout(function(){row.classList.remove('shuffle');row.classList.add('ready');h.textContent='Pick one';},1900);}
+else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
+else{msg.innerHTML='We could not shuffle just now. <a href="'+FREE+'">Get the 2 free cards here instead</a>.';}
+}).catch(function(){b.disabled=false;msg.innerHTML='We could not shuffle just now. <a href="'+FREE+'">Get the 2 free cards here instead</a>.';});});
+d.addEventListener('click',function(e){if(e.target.closest('.px')||(e.target.id==='pk-go'&&e.target.getAttribute('href')==='#')){e.preventDefault();d.close();}});
+var m=/[?&]prize=([0-9a-f]{20})/.exec(location.search),tok=m?m[1]:get('pkTok');
+if(tok){if(m)set('pkTok',tok);post({action:'pick',tok:tok}).then(function(j){if(j&&j.ok&&j.code)apply(j);else if(j&&(j.none||j.expired))del('pkTok');}).catch(function(){});return;}
+if(get('pkSeen'))return;
+setTimeout(function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}step('email');d.showModal();if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});},3500);
 })();
 </script><dialog id="offer" aria-labelledby="offer-h">
 <form method="dialog"><button class="x" aria-label="Close">×</button></form>

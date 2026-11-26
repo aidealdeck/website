@@ -194,7 +194,7 @@ def shots_section():
     if not figs:
         return ""  # no placeholders on the live site
     vid = '<video controls playsinline preload="none" poster="/assets/video/kpi-tracker.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/kpi-tracker.mp4" type="video/mp4"></video><p class="center" style="color:var(--muted);margin:0 0 28px">The KPI dashboard Claude helps you build, 29 seconds. Sample data. <a href="/demo/"><b>Play with the live demo</b></a></p><p class="center" style="margin:0 0 8px"><a class="btn" href="' + URLS["KPI"] + '" data-buy="Real Estate KPI Tracker" data-value="19">Get the KPI Tracker: <s class="strike sm">$49</s> $19 ' + SNIP.get("ARROW", "") + '</a></p>'
-    return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2>{vid}<div class="carousel"><button type="button" class="cbtn prev" aria-label="Previous picture">&#8249;</button><div class="shots" id="shots">{figs}</div><button type="button" class="cbtn next" aria-label="Next picture">&#8250;</button></div><script>(function(){{var s=document.getElementById("shots");if(!s)return;function go(d){{s.scrollBy({{left:d*s.clientWidth*0.8,behavior:"smooth"}});}}s.parentNode.querySelector(".prev").onclick=function(){{go(-1);}};s.parentNode.querySelector(".next").onclick=function(){{go(1);}};}})();</script></div></section>'
+    return f'<section class="white"><div class="wrap"><h2 class="h2 center">See it before you buy</h2>{vid}<div class="carousel"><button type="button" class="cbtn prev" aria-label="Previous picture">&#8249;</button><div class="shots" id="shots">{figs}</div><button type="button" class="cbtn next" aria-label="Next picture">&#8250;</button></div><script>(function(){{var s=document.getElementById("shots");if(!s)return;function go(d){{s.scrollBy({{left:d*s.clientWidth,behavior:"smooth"}});}}s.parentNode.querySelector(".prev").onclick=function(){{go(-1);}};s.parentNode.querySelector(".next").onclick=function(){{go(1);}};}})();</script></div></section>'
 
 def render(body):
     body = re.sub(r"\{\{CARD:(.+?)\}\}(?=\s*\n)", lambda m: card(m) if "{{" not in m.group(1) else m.group(0), body)
@@ -260,7 +260,7 @@ def main():
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"]).replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
         tail = extras.chat()
         if SALES(name):
-            tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"]) + extras.after_free(URLS) + extras.chat()
+            tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"]) + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
         page = render(h + body + tail + f)
         page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
