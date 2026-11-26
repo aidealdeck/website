@@ -28,12 +28,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
-<!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for visitors in Europe or the UK until they click Accept) -->
+<!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for every visitor until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var EUV=false,CKV=null;try{EUV=/^(Europe\/|Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe))/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');CKV=localStorage.getItem('ck');}catch(e){}
-window.ADD_NEEDS_CONSENT=EUV&&CKV===null&&!navigator.globalPrivacyControl;
-if(!navigator.globalPrivacyControl&&(!EUV||CKV==='yes')){
+window.ADD_NEEDS_CONSENT=CKV===null&&!navigator.globalPrivacyControl;
+window.ADD_SCRUB=function(t){return String(t||'').replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g,'[email]').replace(/(\+?\d[\d\s().-]{7,}\d)/g,'[phone]');};
+if(!navigator.globalPrivacyControl&&CKV==='yes'){
 (function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-GG42FBV7Z8';document.head.appendChild(g);})();
 gtag('js',new Date());gtag('config','G-GG42FBV7Z8');
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');

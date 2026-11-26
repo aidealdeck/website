@@ -266,7 +266,7 @@ function run(){{var raw=q.value.trim().toLowerCase();var words=raw.split(/[^a-z0
 items.forEach(function(d){{var hit=!words.length||words.some(function(w){{return d._t.indexOf(w.replace(/s$/,''))>-1;}});d.hidden=!hit;if(hit)n++;if(words.length&&hit&&n<=1)d.open=true;}});
 document.querySelectorAll('.faqgroup').forEach(function(g){{g.hidden=!g.querySelector('details:not([hidden])');}});
 miss.hidden=!(raw&&n===0);cnt.textContent=raw?(n+(n===1?' answer':' answers')):'';
-clearTimeout(timer);if(raw.length>2){{timer=setTimeout(function(){{if(raw===last)return;last=raw;if(window.gtag)gtag('event','view_search_results',{{search_term:(n?'':'MISS: ')+raw.slice(0,90),content_type:n?'faq_hit':'faq_miss',value:n}});}},1500);}}}}
+clearTimeout(timer);if(raw.length>2){{timer=setTimeout(function(){{if(raw===last)return;last=raw;if(window.gtag)gtag('event','view_search_results',{{search_term:(n?'':'MISS: ')+(window.ADD_SCRUB?ADD_SCRUB(raw):raw).slice(0,90),content_type:n?'faq_hit':'faq_miss',value:n}});}},1500);}}}}
 q.addEventListener('input',run);
 document.addEventListener('toggle',function(e){{var d=e.target;if(d.tagName==='DETAILS'&&d.open&&d.closest('.faqgroup')&&window.gtag)gtag('event','faq_open',{{content_type:'faq_open',content_id:d.querySelector('summary').textContent.slice(0,90)}});}},true);
 }})();
@@ -331,11 +331,11 @@ else{msg.innerHTML='We could not send it just now. <a href="'+fallback+'">Get th
 def chat():
     """Sarah, the site's AI assistant. Asks the script for an AI answer; if that is off or fails, answers from the FAQ."""
     html = """<button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false"><span class="chatav"><img src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="52" height="52" referrerpolicy="no-referrer" onerror="this.remove()"><i></i><em>1</em></span><span class="chattx"><b>Chat with Sarah</b><small>Hi! I have a Black Friday tip for you.</small></span></button>
-<section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
+<section class="chatbox" id="chatbox" data-clarity-mask="true" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
 <header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for AiDealDeck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
 <div class="chatlog" id="chatlog" aria-live="polite"></div>
 <form id="chatform" autocomplete="off"><input id="chatq" type="text" maxlength="300" placeholder="Type your question" aria-label="Type your question"><button type="submit">Send</button></form>
-<p class="chatfine">Sarah is an AI assistant and can make mistakes. Please do not type private or payment details. <a href="/privacy/">Privacy</a></p>
+<p class="chatfine">Sarah is an AI assistant, not a person. Your messages go to our AI provider (xAI) and are stored to answer you and improve our help. Do not share private or payment details. <a href="/privacy/">Privacy</a></p>
 </section>
 <script>
 (function(){var URL_='__CHAT_URL__';var btn=document.getElementById('chatbtn'),box=document.getElementById('chatbox'),log=document.getElementById('chatlog'),form=document.getElementById('chatform'),inp=document.getElementById('chatq');
@@ -353,7 +353,7 @@ return bs>=2.4?best:null;}
 function loadFaq(){if(faq)return Promise.resolve();return fetch('/faq.json').then(function(r){return r.json();}).then(function(j){faq=j;}).catch(function(){faq=[];});}
 function fallback(q,wait){loadFaq().then(function(){var f=fromFaq(q);log.removeChild(wait);
 if(f){add('s',f.a+' <a href="/faq/">More answers</a>');ev('chat_message',{content_type:'chat',content_id:'faq'});}
-else{add('s','I am not sure about that one. You can call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and we will get you an answer.');ev('view_search_results',{search_term:'MISS: chat: '+q.slice(0,80)});ev('chat_message',{content_type:'chat',content_id:'miss'});}
+else{add('s','I am not sure about that one. You can call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and we will get you an answer.');ev('view_search_results',{search_term:'MISS: chat: '+(window.ADD_SCRUB?ADD_SCRUB(q):q).slice(0,80)});ev('chat_message',{content_type:'chat',content_id:'miss'});}
 busy=false;});}
 form.addEventListener('submit',function(e){e.preventDefault();var q=inp.value.trim();if(!q||busy)return;busy=true;inp.value='';add('u',q,true);var wait=add('s','...',true);
 var done=false,t=setTimeout(function(){if(!done){done=true;fallback(q,wait);}},9000);

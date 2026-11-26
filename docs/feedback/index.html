@@ -28,12 +28,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css?v=5e12922b">
-<!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for visitors in Europe or the UK until they click Accept) -->
+<!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for every visitor until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var EUV=false,CKV=null;try{EUV=/^(Europe\/|Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe))/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');CKV=localStorage.getItem('ck');}catch(e){}
-window.ADD_NEEDS_CONSENT=EUV&&CKV===null&&!navigator.globalPrivacyControl;
-if(!navigator.globalPrivacyControl&&(!EUV||CKV==='yes')){
+window.ADD_NEEDS_CONSENT=CKV===null&&!navigator.globalPrivacyControl;
+window.ADD_SCRUB=function(t){return String(t||'').replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g,'[email]').replace(/(\+?\d[\d\s().-]{7,}\d)/g,'[phone]');};
+if(!navigator.globalPrivacyControl&&CKV==='yes'){
 (function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-GG42FBV7Z8';document.head.appendChild(g);})();
 gtag('js',new Date());gtag('config','G-GG42FBV7Z8');
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -128,11 +129,11 @@ fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZm
 })();
 </script>
 <button type="button" class="chatbtn" id="chatbtn" aria-controls="chatbox" aria-expanded="false"><span class="chatav"><img src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="52" height="52" referrerpolicy="no-referrer" onerror="this.remove()"><i></i><em>1</em></span><span class="chattx"><b>Chat with Sarah</b><small>Hi! I have a Black Friday tip for you.</small></span></button>
-<section class="chatbox" id="chatbox" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
+<section class="chatbox" id="chatbox" data-clarity-mask="true" hidden aria-label="Chat with Sarah, the AiDealDeck AI assistant">
 <header><img class="chathead" src="https://lh3.googleusercontent.com/ogw/AF2bZyhflXcfsmm4LAEI0ZxqU__QFQx6h8rYqx2lFxW2eyMG=s192-c" alt="" width="40" height="40" referrerpolicy="no-referrer" onerror="this.remove()"><div style="flex:1"><b>Sarah Hill</b><span>AI assistant for AiDealDeck</span></div><button type="button" class="cx" id="chatx" aria-label="Close chat">×</button></header>
 <div class="chatlog" id="chatlog" aria-live="polite"></div>
 <form id="chatform" autocomplete="off"><input id="chatq" type="text" maxlength="300" placeholder="Type your question" aria-label="Type your question"><button type="submit">Send</button></form>
-<p class="chatfine">Sarah is an AI assistant and can make mistakes. Please do not type private or payment details. <a href="/privacy/">Privacy</a></p>
+<p class="chatfine">Sarah is an AI assistant, not a person. Your messages go to our AI provider (xAI) and are stored to answer you and improve our help. Do not share private or payment details. <a href="/privacy/">Privacy</a></p>
 </section>
 <script>
 (function(){var URL_='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec';var btn=document.getElementById('chatbtn'),box=document.getElementById('chatbox'),log=document.getElementById('chatlog'),form=document.getElementById('chatform'),inp=document.getElementById('chatq');
@@ -150,7 +151,7 @@ return bs>=2.4?best:null;}
 function loadFaq(){if(faq)return Promise.resolve();return fetch('/faq.json').then(function(r){return r.json();}).then(function(j){faq=j;}).catch(function(){faq=[];});}
 function fallback(q,wait){loadFaq().then(function(){var f=fromFaq(q);log.removeChild(wait);
 if(f){add('s',f.a+' <a href="/faq/">More answers</a>');ev('chat_message',{content_type:'chat',content_id:'faq'});}
-else{add('s','I am not sure about that one. You can call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and we will get you an answer.');ev('view_search_results',{search_term:'MISS: chat: '+q.slice(0,80)});ev('chat_message',{content_type:'chat',content_id:'miss'});}
+else{add('s','I am not sure about that one. You can call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a> or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a> and we will get you an answer.');ev('view_search_results',{search_term:'MISS: chat: '+(window.ADD_SCRUB?ADD_SCRUB(q):q).slice(0,80)});ev('chat_message',{content_type:'chat',content_id:'miss'});}
 busy=false;});}
 form.addEventListener('submit',function(e){e.preventDefault();var q=inp.value.trim();if(!q||busy)return;busy=true;inp.value='';add('u',q,true);var wait=add('s','...',true);
 var done=false,t=setTimeout(function(){if(!done){done=true;fallback(q,wait);}},9000);
@@ -164,13 +165,14 @@ fetch(URL_,{method:'POST',credentials:'omit',body:JSON.stringify({action:'chat',
 <nav aria-label="Legal">
 <a href="/terms/">Terms</a>
 <a href="/privacy/">Privacy</a>
+<a href="#" id="cklink">Cookie settings</a>
 <a href="mailto:support@aidealdeck.com">support@aidealdeck.com</a>
 <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a>
 </nav>
 </div>
 </footer>
-<div id="ckbar" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;color:#13203F;border-top:3px solid #D4AE5C;padding:14px 16px;box-shadow:0 -8px 30px rgba(14,23,48,.3);text-align:center;font-size:15px">We use cookies to count visits and measure our ads. OK? <button type="button" data-ck="yes" style="margin-left:10px;background:#D4AE5C;color:#13203F;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Accept</button> <button type="button" data-ck="no" style="margin-left:6px;background:#fff;color:#13203F;border:1px solid #13203F;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Decline</button> <a href="/privacy/" style="margin-left:8px;color:#5b6477">Privacy</a></div>
-<script>(function(){if(!window.ADD_NEEDS_CONSENT)return;var b=document.getElementById('ckbar');b.hidden=false;b.addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-ck');if(!v)return;try{localStorage.setItem('ck',v);}catch(x){}b.hidden=true;if(v==='yes')location.reload();});})();</script>
+<div id="ckbar" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;color:#13203F;border-top:3px solid #D4AE5C;padding:14px 16px;box-shadow:0 -8px 30px rgba(14,23,48,.3);text-align:center;font-size:15px">We use cookies for analytics, page recordings and ads. Accept to allow them, or Decline to keep them off. <button type="button" data-ck="yes" style="margin-left:10px;background:#D4AE5C;color:#13203F;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Accept</button> <button type="button" data-ck="no" style="margin-left:6px;background:#fff;color:#13203F;border:1px solid #13203F;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer">Decline</button> <a href="/privacy/" style="margin-left:8px;color:#5b6477">Privacy</a></div>
+<script>(function(){var b=document.getElementById('ckbar'),l=document.getElementById('cklink'),was=null;try{was=localStorage.getItem('ck');}catch(x){}if(l)l.addEventListener('click',function(e){e.preventDefault();b.hidden=false;});if(window.ADD_NEEDS_CONSENT)b.hidden=false;b.addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-ck');if(!v)return;try{localStorage.setItem('ck',v);}catch(x){}b.hidden=true;if(v!==was&&(v==='yes'||was==='yes'))location.reload();});})();</script>
 
 <script>(function(){var end=Date.UTC(2026,11,1,6,0,0),ms=end-Date.now();if(ms<=0)return;var d=Math.ceil(ms/864e5),t=d>2?'Ends in '+d+' days (Nov 30).':d===2?'Ends tomorrow night (Nov 30).':'Ends tonight at midnight.';[].forEach.call(document.querySelectorAll('[data-left]'),function(e){e.textContent=t;});})();</script>
 
