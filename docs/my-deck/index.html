@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=8658dd5d">
+<link rel="stylesheet" href="/assets/site.css?v=013a10cc">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for every visitor until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -97,7 +97,8 @@ window.addEventListener('pagehide',flush);
 <span class="pill">Your collection</span>
 <h1>My <em>Deck</em></h1>
 <p class="sub" id="mdsub" style="margin-left:auto;margin-right:auto">See the cards you have collected.</p>
-<form id="mdform" class="wlbox" style="max-width:440px;margin:28px auto 0;text-align:left" novalidate>
+<div class="wlrow" id="mdrow">
+<form id="mdform" class="wlbox" novalidate>
 <h2>Get my link</h2>
 <input type="email" name="email" placeholder="The email you used with us" autocomplete="email" inputmode="email" required aria-label="Email">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
@@ -105,17 +106,18 @@ window.addEventListener('pagehide',flush);
 <p id="mdmsg" class="wlmsg" role="status"></p>
 <p class="fine nb">No password needed.<br>We email you a private link.</p>
 </form>
-<div id="mddeck" hidden>
-<div class="mdgrid" id="mdgrid"></div>
-<p class="sub" id="mdcount" style="margin:26px auto 0"></p>
-<div id="mdextra" class="mdextra"></div>
-</div>
-<div class="wlbox buy" id="mdbuy" style="max-width:440px;margin:22px auto 0">
+<div class="wlbox buy" id="mdbuy">
 <h2><span data-sale>Black Friday</span> sale</h2>
 <p>All 5 cards + 2 bonus cards.</p>
 <p class="wlprice"><s>$199</s> <b>$49</b></p>
 <a class="btn block" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: $49</a>
 <p class="fine nb"><span data-sale>Black Friday launch price</span> through Nov&nbsp;30.<br>Single cards are $19. Plus tax where it applies.</p>
+</div>
+</div>
+<div id="mddeck" hidden>
+<div class="mdgrid" id="mdgrid"></div>
+<p class="sub" id="mdcount" style="margin:26px auto 0"></p>
+<div id="mdextra" class="mdextra"></div>
 </div>
 </div></div></section>
 <script>

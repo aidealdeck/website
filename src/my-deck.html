@@ -4,7 +4,8 @@
 <span class="pill">Your collection</span>
 <h1>My <em>Deck</em></h1>
 <p class="sub" id="mdsub" style="margin-left:auto;margin-right:auto">See the cards you have collected.</p>
-<form id="mdform" class="wlbox" style="max-width:440px;margin:28px auto 0;text-align:left" novalidate>
+<div class="wlrow" id="mdrow">
+<form id="mdform" class="wlbox" novalidate>
 <h2>Get my link</h2>
 <input type="email" name="email" placeholder="The email you used with us" autocomplete="email" inputmode="email" required aria-label="Email">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
@@ -12,17 +13,18 @@
 <p id="mdmsg" class="wlmsg" role="status"></p>
 <p class="fine nb">No password needed.<br>We email you a private link.</p>
 </form>
-<div id="mddeck" hidden>
-<div class="mdgrid" id="mdgrid"></div>
-<p class="sub" id="mdcount" style="margin:26px auto 0"></p>
-<div id="mdextra" class="mdextra"></div>
-</div>
-<div class="wlbox buy" id="mdbuy" style="max-width:440px;margin:22px auto 0">
+<div class="wlbox buy" id="mdbuy">
 <h2><span data-sale>Black Friday</span> sale</h2>
 <p>All 5 cards + 2 bonus cards.</p>
 <p class="wlprice"><s>$199</s> <b>$49</b></p>
 <a class="btn block" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: $49</a>
 <p class="fine nb"><span data-sale>Black Friday launch price</span> through Nov&nbsp;30.<br>Single cards are $19. Plus tax where it applies.</p>
+</div>
+</div>
+<div id="mddeck" hidden>
+<div class="mdgrid" id="mdgrid"></div>
+<p class="sub" id="mdcount" style="margin:26px auto 0"></p>
+<div id="mdextra" class="mdextra"></div>
 </div>
 </div></div></section>
 <script>
