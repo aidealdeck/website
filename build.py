@@ -39,7 +39,7 @@ SNIP = {
 
 FAQ = [
     ("Are these physical cards?", "No. They are digital. Nothing is printed and nothing is mailed. You get a download link by email right after checkout."),
-    ("Is it done for me?", "No. It's a do-it-yourself toolkit. You paste one prompt into Claude, answer simple questions, and approve what it sets up. The full Deck takes about 20 minutes. The Lead-for-Life System takes another hour or two to build your follow-up plan in your CRM and write your own emails."),
+    ("Is it done for me?", "No. It's a do-it-yourself toolkit. You paste one prompt into Claude, answer simple questions, and approve what it sets up. Setup time is different for everyone. The Lead-for-Life System takes the longest to build your follow-up plan in your CRM and write your own emails."),
     ("What else do I need?", "The Claude desktop app and a paid Claude plan (Claude Pro is currently $20/month), sold separately by Anthropic. The more cards you run and the more often they update, the more of your Claude plan they use, so you may need a higher plan as you grow. Google Sheets or Excel. A CRM is optional; if Claude has a connector for it, Claude can read it directly."),
     ("Will it contact my leads for me?", "No. It drafts messages for you to review and send. It never texts, calls or emails anyone on its own."),
     ("Will it get me more deals?", "We don't promise more leads, listings, closings or income. It shows you your numbers and what needs you; results depend on your work."),

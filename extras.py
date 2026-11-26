@@ -36,7 +36,7 @@ CARDS = [
                "Shows how fast you reach new leads", "Has a checklist of the rules for texting and calling (TCPA)"],
          inside=["START HERE guide (PDF)", "Your Lead-for-Life Plan & Call List workbook, blank", "Lead-for-Life System Playbook (PDF)",
                  "Example Plan & Call List filled with sample data", "The copy-and-paste setup prompt for Claude", "Claude Setup Pack", "Terms and disclaimer"],
-         who="Real estate pros who pay for leads or get more inquiries than they can follow up from memory. Claude helps you set it up. Plan an hour or two to build your plan in your CRM and write your own emails."),
+         who="Real estate pros who pay for leads or get more inquiries than they can follow up from memory. Claude helps you set it up. Plan extra time to build your plan in your CRM and write your own emails."),
     dict(slug="commission-gci-ledger", key="GCI", n="4", name="Commission & GCI Ledger",
          short="A commission and GCI tracker for real estate pros: every closing, fee and split in one place, so you can see what you really kept.",
          h1="A commission tracker that shows <em>what you really netted.</em>",
