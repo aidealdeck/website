@@ -34,7 +34,7 @@ SNIP = {
             '<div class="t">The AI<br>Agent Deck</div><div class="bar"></div><div class="s">5 cards + 2 bonus cards</div></div>'
             '<div class="badge"><small><s>$199</s></small><b>$49</b></div></div>'),
     "BUYFINE": ('By buying, you agree to the <a href="/terms/">Terms</a>. Needs the Claude desktop app and a paid Claude plan '
-                '(Claude Pro is currently $20/month), sold separately by Anthropic; heavier use may need a higher plan. Claude helps you set it up; it is do-it-yourself. All sales are final.'),
+                '(Claude Pro is currently $20/month), sold separately by Anthropic; heavier use may need a higher plan. Claude helps you set it up; it is do-it-yourself. All sales are final. Sales tax is added at checkout where it applies.'),
 }
 
 FAQ = [
