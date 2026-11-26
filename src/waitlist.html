@@ -48,7 +48,8 @@
 (function(){var f=document.getElementById('wl'),m=document.getElementById('wlmsg');if(!f)return;
 function post(d){return fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify(d)}).then(function(r){return r.json();});}
 function ok(j){f.querySelectorAll('input,label,button[type=submit],.wlq,.fine').forEach(function(x){x.hidden=true;});
-m.innerHTML=(j&&j.customer?'<b>Welcome back, and thank you for being a customer.</b> You are on the list.':'<b>You are on the list.</b> Check your email for your 2 free cards.');
+m.innerHTML=(j&&j.known?'<b>You are on the list.</b> Check your email.':'<b>You are on the list.</b> Check your email for your 2 free cards.');
+if(j&&j.known){if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});return;}
 var h=document.getElementById('wlheard');h.hidden=false;h.querySelector('.wlq').hidden=false;
 h.addEventListener('click',function(e){var x=e.target.closest('button[data-h]');if(!x)return;h.innerHTML='<p class="wlq">Thank you!</p>';post({action:'waitlist',step:2,email:em,website:'',heard:x.getAttribute('data-h')}).catch(function(){});});
 if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Waitlist'});}
