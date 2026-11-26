@@ -80,7 +80,7 @@ class _M:
     def __init__(self, s): self.s = s
     def group(self, i): return self.s
 
-VIDEO = '''<section id="how">
+VIDEO = '''<section id="how" class="sand">
 <div class="wrap">
 <div class="center"><div class="eyebrow">Watch &middot; 36 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
 <video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
