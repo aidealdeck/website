@@ -110,6 +110,13 @@ window.addEventListener('pagehide',flush);
 <p class="sub" id="mdcount" style="margin:26px auto 0"></p>
 <div id="mdextra" class="mdextra"></div>
 </div>
+<div class="wlbox buy" id="mdbuy" style="max-width:440px;margin:22px auto 0">
+<h2><span data-sale>Black Friday</span> sale</h2>
+<p>All 5 cards + 2 bonus cards.</p>
+<p class="wlprice"><s>$199</s> <b>$49</b></p>
+<a class="btn block" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: $49</a>
+<p class="fine nb"><span data-sale>Black Friday launch price</span> through Nov&nbsp;30.<br>Single cards are $19.</p>
+</div>
 </div></div></section>
 <script>
 (function(){
@@ -129,11 +136,11 @@ document.getElementById('mdgrid').innerHTML=h;
 document.getElementById('mdsub').textContent='Here is your collection.';
 document.getElementById('mdcount').innerHTML='You have <b style="color:var(--gold)">'+n+' of 7</b> cards.'+(n<7?'':' You have them all.');
 var x='';
-if(n<7&&!all)x+='<a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get all 7 cards: the Deck</a>';
+
 x+='<p>Your files: open your Gumroad receipt email and tap the download button.</p>';
 if(j.ref)x+='<p>Your referral link. When a friend buys, you each get a free card:<br><b style="color:var(--gold)">aidealdeck.com/?ref='+esc(j.ref)+'</b></p>';
 x+=j.waitlist?'<p>You are on the waitlist. You get first dibs and a small discount.</p>':'<p><a href="/waitlist/" style="color:var(--gold);font-weight:700">Join the waitlist</a> for first dibs and a small discount.</p>';
-document.getElementById('mdextra').innerHTML=x;document.getElementById('mddeck').hidden=false;
+document.getElementById('mdextra').innerHTML=x;if(n>=7)document.getElementById('mdbuy').hidden=true;document.getElementById('mddeck').hidden=false;
 if(window.gtag)gtag('event','my_deck_view',{cards:n});
 }).catch(function(){f.hidden=false;document.getElementById('mdsub').textContent='We could not load your cards just now. Please try again.';});}
 f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;m.textContent='Sending...';
