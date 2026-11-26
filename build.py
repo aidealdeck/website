@@ -111,7 +111,7 @@ def cardgrid_html():
           'if(!a.dataset.h0){a.dataset.h0=a.getAttribute("href");a.dataset.b0=a.dataset.buy;a.dataset.t0=a.innerHTML;}'
           'if(cb.checked){a.setAttribute("href",a.dataset.h0.replace(/\\/l\\/[^?]+/,"/l/the-ai-agent-deck"));a.dataset.buy="The AI Agent Deck";a.dataset.value="49";a.innerHTML="Get all 5 cards + 2 bonuses: $49";a.classList.add("deckd");}'
           'else{a.setAttribute("href",a.dataset.h0);a.dataset.buy=a.dataset.b0;a.dataset.value="19";a.innerHTML=a.dataset.t0;a.classList.remove("deckd");}});});});})();</script>')
-    return f'{allin}<div class="cards" id="cards">{cards}{deck}</div>{fine}{js}'
+    return f'<div class="cards" id="cards">{cards}{deck}</div>{fine}'
 
 def shop_section():
     return ('<section id="shop"><div class="wrap"><div class="center"><div class="eyebrow">Buy one card or the whole deck</div>'
