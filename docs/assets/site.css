@@ -300,3 +300,4 @@ dialog#offer a.no{display:block;text-align:center;text-decoration:none;box-sizin
 h1,h2,h3,h4,.sub,.lead,.fine,.meta,.eyebrow,.center,figcaption,.alt-buy,.topbar,.nudge b,.nudge span,.btn,.pill,.step b,.pcard h3,.tile h3,.howbuy{text-wrap:balance}
 p,li,.step span,.pcard p,dd,summary,label,small{text-wrap:pretty}
 .center,.fine,.lead,.sub{text-wrap:balance}
+html,body{overflow-x:clip}

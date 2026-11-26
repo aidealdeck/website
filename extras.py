@@ -254,7 +254,7 @@ def faq_page(groups):
 <script>
 (function(){{var q=document.getElementById('faqq'),miss=document.getElementById('faqmiss'),cnt=document.getElementById('faqcount');if(!q)return;
 var items=[].slice.call(document.querySelectorAll('.faqgroup details'));var stop={{the:1,a:1,an:1,is:1,it:1,do:1,does:1,i:1,to:1,of:1,and:1,or:1,can:1,my:1,you:1,what:1,how:1,for:1,with:1,in:1,on:1,me:1,will:1,be:1,this:1,that:1,are:1,if:1,get:1,have:1}};
-items.forEach(function(d){{d._t=(d.textContent+' '+d.getAttribute('data-k')).toLowerCase();}});
+items.forEach(function(d){{d._t=(d.textContent+' '+d.getAttribute('data-k')).toLowerCase().replace(/\s/g,' ');}});
 var timer=null,last='';
 function run(){{var raw=q.value.trim().toLowerCase();var words=raw.split(/[^a-z0-9$]+/).filter(function(w){{return w.length>1&&!stop[w];}});var n=0;
 items.forEach(function(d){{var hit=!words.length||words.some(function(w){{return d._t.indexOf(w.replace(/s$/,''))>-1;}});d.hidden=!hit;if(hit)n++;if(words.length&&hit&&n<=1)d.open=true;}});
