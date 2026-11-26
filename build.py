@@ -82,7 +82,7 @@ class _M:
 
 VIDEO = '''<section id="how" class="sand">
 <div class="wrap">
-<div class="center"><div class="eyebrow">Watch &middot; 24 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
+<div class="center"><div class="eyebrow">Watch &middot; 25 seconds</div><h2 class="h2">How does AiDealDeck work?</h2></div>
 <video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
 <p class="center" style="margin:28px 0 0"><a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a></p>
 <p class="center" style="margin-top:18px;color:var(--muted)">Rather have it set up for you? Done-for-you setup is coming soon. <a href="mailto:support@aidealdeck.com?subject=Done-for-you%20setup%20waitlist&amp;body=Please%20tell%20me%20when%20done-for-you%20setup%20opens." data-lead="dfy">Put me on the waitlist</a> and we will tell you when it opens.</p>
@@ -246,7 +246,7 @@ def main():
                    "pixel": "", "ld": [extras.faq_ld(long_plain)]}, extras.faq_page(faq_data.FAQ_LONG)))
     LD = {
         "index.html": [extras.deck_ld(extras.SITE + "/"), extras.faq_ld(plain_faq),
-                       extras.video_ld("How does AiDealDeck work?", "A 24-second look at how a real estate agent sets up an AiDealDeck card with Claude.", "how-it-works", 24),
+                       extras.video_ld("How does AiDealDeck work?", "A 25-second look at how a real estate agent sets up an AiDealDeck card with Claude.", "how-it-works", 24),
                        extras.video_ld("The KPI dashboard Claude helps you build", "A 29-second look at the live real estate KPI dashboard, with sample data.", "kpi-tracker", 29),
                        extras.video_ld("Watch the cards go to work", "A 28-second look at the five AiDealDeck cards.", "cards-go-to-work", 28)],
         "numbers/index.html": [extras.card_ld(extras.CARDS[0], extras.SITE + "/numbers/"), extras.faq_ld(plain_faq)],
