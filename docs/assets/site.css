@@ -396,3 +396,12 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 @media (max-width:640px){p.center>.btn+.btn{margin-top:12px}.btnrow>.btn+.btn{margin-top:0}}
 /* phones: card links are full-size tap targets */
 @media (max-width:640px){.pcard .single{display:flex;align-items:center;justify-content:center;align-self:stretch;min-height:46px;padding:10px 14px;border-radius:10px;background:var(--gold);color:#13203F;text-decoration:none;font-size:16px;font-weight:700}.pcard .more{display:flex;align-items:center;min-height:44px;margin:0;font-size:15px}}
+.wlform{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px auto 0;max-width:560px}
+.wlform input[type=email]{flex:1 1 240px;min-height:54px;padding:12px 16px;border-radius:10px;border:2px solid var(--gold);font-size:18px;background:#fff;color:#13203F}
+.wlmsg{min-height:24px;margin:14px 0 0;color:#fff;font-size:18px}
+.wlgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.wlcard{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:26px 22px;text-align:center;box-shadow:0 14px 28px rgba(19,32,63,.12)}
+.wlcard.joker{background:var(--navy);border-color:var(--gold)}.wlcard.joker h2{color:var(--gold)}.wlcard.joker p{color:#D8DEEE}
+.wlcard h2{font-size:26px;margin:8px 0 8px}.wlcard p{margin:0;font-size:17px;line-height:1.5;color:var(--muted)}
+.wlicon{font-size:64px;line-height:1;display:block}
+@media (max-width:760px){.wlgrid{grid-template-columns:1fr}.wlform .btn{width:100%}}

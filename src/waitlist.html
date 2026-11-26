@@ -1,0 +1,34 @@
+<!--META {"out":"waitlist/index.html","path":"/waitlist/","title":"Join the waitlist: new cards, new decks and Jokers | AiDealDeck","desc":"More AiDealDeck cards, more decks and Jokers are coming. Join the waitlist and we will tell you first.","topnote":"<span data-sale>Black Friday</span>: all 5 cards + 2 bonus cards for $49, not $199. <b data-left>Ends Nov 30.</b>","topbtn":"<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>","pixel":""} -->
+
+<section class="hero" style="padding-bottom:56px"><div class="wrap"><div class="copy" style="flex-basis:100%;text-align:center">
+<span class="pill">Coming soon</span>
+<h1>More cards. More decks. <em>And the Jokers.</em></h1>
+<p class="sub" style="margin-left:auto;margin-right:auto">Join the waitlist. We will tell you first.</p>
+<form id="wl" class="wlform" novalidate>
+<input type="email" name="email" placeholder="Your email" autocomplete="email" inputmode="email" required aria-label="Your email">
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+<button class="btn" type="submit">Put me on the waitlist</button>
+</form>
+<p id="wlmsg" class="wlmsg" role="status"></p>
+<p class="fine" style="color:#9AA3BC;margin-top:10px">You also get our 2 free cards by email today. Unsubscribe any time. <a href="/privacy/" style="color:var(--cream)">Privacy</a></p>
+</div></div></section>
+
+<section style="padding:56px 24px 72px"><div class="wrap">
+<div class="wlgrid">
+<div class="wlcard"><span class="wlicon" aria-hidden="true">&#127183;</span><h2>New cards</h2><p>More ready-made tools for your business. Each one works with the cards you already have.</p></div>
+<div class="wlcard"><span class="wlicon" aria-hidden="true">&#127924;</span><h2>New decks</h2><p>Whole new sets of cards, built for one job at a time.</p></div>
+<div class="wlcard joker"><span class="wlicon" aria-hidden="true">&#127199;</span><h2>The Jokers</h2><p>Real people who set up AI in your business for you. You deal the card. They do the work.</p></div>
+</div>
+<p class="center fine" style="margin-top:22px">Coming soon. No dates or prices yet. New products are sold separately.</p>
+<p class="center" style="margin-top:28px"><a class="btn" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Start today. Get the Deck: <s class="strike sm">$199</s> $49</a></p>
+</div></section>
+<script>
+(function(){var f=document.getElementById('wl'),m=document.getElementById('wlmsg');if(!f)return;
+f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;m.textContent='Sending...';
+fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify({action:'free',email:f.email.value,website:f.website.value,page:location.pathname,source:'waitlist'})}).then(function(r){return r.json();}).then(function(j){b.disabled=false;
+if(j&&j.ok){f.hidden=true;m.innerHTML='<b>You are on the list.</b> Check your email for your 2 free cards.';if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Waitlist'});}
+else if(j&&j.error==='email'){m.textContent='That email address does not look right. Please check it.';}
+else{m.innerHTML='We could not add you just now. <a href="mailto:support@aidealdeck.com?subject=Waitlist" style="color:var(--gold)">Email us instead</a>.';}
+}).catch(function(){b.disabled=false;m.innerHTML='We could not add you just now. <a href="mailto:support@aidealdeck.com?subject=Waitlist" style="color:var(--gold)">Email us instead</a>.';});});
+})();
+</script>
