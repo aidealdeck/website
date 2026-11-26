@@ -342,3 +342,6 @@ dialog#pick #pk-deck[hidden]{display:none}
 #pk-bar{cursor:pointer}
 dialog#pick .px:focus{outline:none}
 dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
+.topbar .note:empty{display:none}
+@media (min-width:1000px){.topbar .topnav{margin:0 auto}}
+.legal table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}.legal th,.legal td{text-align:left;padding:10px 12px;border:1px solid var(--rule);vertical-align:top;color:#2B3553}.legal th{background:#f5f3ee}
