@@ -62,7 +62,8 @@ FAQ_LONG = [
         ("How do I get my files?", "The download link is emailed to you right after checkout, and it is on your Gumroad receipt page.", "download delivery email link receive"),
         ("I did not get my download email. What do I do?", "Check your spam folder for an email from Gumroad. If it is not there, email support@aidealdeck.com with the email address you used at checkout and we will send it again.", "missing email not received spam lost"),
         ("Is sales tax added?", "Gumroad adds sales tax at checkout where it applies.", "tax vat"),
-        ("Can my whole team use one purchase?", "Your license covers your own business or your own team's business. You may not share, resell or give the files to anyone outside it.", "team license share brokerage office multiple users"),
+        ("Can my whole team use one purchase?", "Yes. One purchase covers one business: you and the people who work in it. No separate team license is needed. Each separate business or team needs its own purchase.", "team license share brokerage office multiple users"),
+        ("Can I share, copy or resell the files?", "No. One purchase is for one business. You may not sell, share, post or pass the files or prompts to anyone outside your business, even for free. Every file carries a license line. See the <a href=\"/terms/\">Terms</a>.", "share copy resell resale license brokerage friend coach course"),
     ]),
     ("Referrals and creator codes", [
         ("Do you reward referrals?", "Yes, both ways. When someone you referred buys a card or the Deck and names you at checkout, you get one free single card of your choice. They get one too, because they bought with a referral. A purchase is required: free downloads do not count.", "refer referral friend reward free card"),
@@ -86,7 +87,7 @@ FAQ_LONG = [
         ("Why do I have to accept the Terms?", "Because the files are delivered instantly and all sales are final, we ask you to confirm you have read the <a href=\"/terms/\">Terms</a> before you pay.", "terms checkbox accept"),
         ("At checkout I was offered the Deck in place of my card. What is that?", "If you have a single card in your cart, checkout offers the full Deck instead. Saying yes replaces the card in your cart with the Deck at the Deck price. Saying no keeps your single card.", "upsell offer replace cart deck"),
         ("I took the free cards and was offered the KPI Tracker. Do I have to buy it?", "No. It is an optional offer. Your free cards are still free.", "free offer upsell kpi"),
-        ("Can I buy it as a gift?", "Yes. Checkout has a \"Give as a gift\" switch. Enter the other person's email and the download goes to them.", "gift someone else"),
+        ("Can I buy it as a gift?", "Yes. Checkout has a \"Give as a gift\" switch. Enter the other person's email and the download goes to them. You pay, and the license belongs to their business. You cannot pass on a copy you bought for yourself.", "gift someone else"),
         ("Can I get a receipt or an invoice?", "Your receipt is emailed right after checkout, and it has a link to generate an invoice.", "invoice receipt business expense"),
         ("I think I was charged twice or charged the wrong price. What do I do?", "Email support@aidealdeck.com with the email you used at checkout, what you were charged and when. We will look into it and reply.", "double charge wrong price billing mistake"),
         ("I typed the wrong email at checkout. How do I get my files?", "Email support@aidealdeck.com from the address you want to use, with the name on the order and the date. We will get the download to you.", "wrong email typo change"),

@@ -268,12 +268,13 @@ def main():
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
         dest = os.path.join(OUT, name)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
+        if name in ("feedback/index.html", "start/index.html", "unsubscribe/index.html"): page = page.replace('content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"', 'content="noindex,follow"')
         open(dest, "w").write(page)
-        sitemap.append(meta["path"])
+        if name not in ("feedback/index.html", "start/index.html", "unsubscribe/index.html"): sitemap.append(meta["path"])
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUT, "assets"))
     open(os.path.join(OUT, "CNAME"), "w").write("aidealdeck.com\n")
     open(os.path.join(OUT, ".nojekyll"), "w").write("")
-    open(os.path.join(OUT, "robots.txt"), "w").write("User-agent: *\nAllow: /\n\nSitemap: https://aidealdeck.com/sitemap.xml\n")
+    open(os.path.join(OUT, "robots.txt"), "w").write("User-agent: *\nAllow: /\n\n# AI search and answer engines are welcome. See /llms.txt for a plain-text summary.\n" + "".join("User-agent: %s\nAllow: /\n\n" % b for b in ("GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot")) + "Sitemap: https://aidealdeck.com/sitemap.xml\n")
     prio = lambda p: "1.0" if p == "/" else ("0.3" if p in ("/terms/", "/privacy/") else "0.8")
     open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"<url><loc>https://aidealdeck.com{p}</loc><lastmod>{BUILD_DATE}</lastmod><priority>{prio(p)}</priority></url>\n" for p in sorted(sitemap)) + "</urlset>\n")
