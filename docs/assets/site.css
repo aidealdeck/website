@@ -351,3 +351,5 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 .cards .pcard{aspect-ratio:auto;min-height:300px}
 .cards{margin-top:28px}
 #cards,#how,#buy,#start-free,#get-claude,#magic{scroll-margin-top:96px}
+
+.presets button{min-height:44px;padding-left:14px;padding-right:14px}

@@ -268,6 +268,13 @@ def main():
             tail = _band + _nudge + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
         page = render(h + body + tail + f)
+        def _lazy(m):
+            tag = m.group(0)
+            if 'loading=' in tag or 'facebook.com/tr' in tag: return tag
+            dims = ''
+            return tag[:-1] + dims + ' loading="lazy" decoding="async">'
+        _hd, _sep, _rest = page.partition('</header>')
+        page = _hd + _sep + re.sub(r'<img\b[^>]*>', _lazy, _rest) if _sep else page
         page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
         leftover = re.findall(r"\{\{[A-Z_:]+.*?\}\}", page)
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
