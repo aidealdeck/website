@@ -105,6 +105,24 @@ def ld_script(items):
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, separators=(",", ":")).replace("</", "<\\/") + "</script>"
 
 
+def kpiband(kpi_url, deck_url):
+    return f'''<section class="leadband" id="start-free">
+<div class="wrap">
+<div class="lb-main">
+<div class="eyebrow gold">Pick one</div>
+<h2 class="h2">One card, or all five.</h2>
+<p class="lead" style="margin-left:0">The link is emailed to you right after checkout.</p>
+<div class="cta-row" style="margin-top:22px"><a class="btn" href="{kpi_url}" data-buy="Real Estate KPI Tracker" data-value="19">KPI Tracker: <s class="strike sm">$49</s> $19</a>
+<a class="btn" href="{deck_url}" data-buy="The AI Agent Deck" data-value="49" style="background:transparent;color:#fff;border:2px solid var(--gold)">Full Deck: <s class="strike sm">$199</s> $49</a></div>
+</div>
+<div class="lb-side">
+<b>Have a question first?</b>
+<p>Call <a href="tel:{PHONE_TEL}" data-lead="call">{PHONE_DISPLAY}</a>. Sarah answers around the clock.</p>
+<p>Or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a>.</p>
+</div>
+</div>
+</section>'''
+
 def leadband(free_url):
     return f'''<section class="leadband" id="start-free">
 <div class="wrap">
@@ -161,6 +179,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
     assert "$199" not in fan and "Agent Deck</div>" not in fan
     _v = os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'video', c['slug'] + '.mp4'))
     vid = (f'<video controls playsinline preload="none" poster="/assets/video/{c["slug"]}.jpg" style=\"display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730\"><source src="/assets/video/{c["slug"]}.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Sample data shown.</p>') if _v else ''
+    howvid = ('<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 8px;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video><p class="center fine" style="margin:0 0 28px">Watch how it works. 36 seconds.</p>') if c["key"] == "KPI" else ""
     demo = '<a class="btn" href="/demo/" style="background:transparent;color:#fff;border:2px solid var(--gold)">Try the live demo first</a>' if c["key"] == "KPI" else ""
     return f'''<section class="hero">
 <div class="wrap">
@@ -196,6 +215,7 @@ def card_page(c, urls, snip, faq_html, shop_html):
 <section class="sand">
 <div class="wrap">
 <div class="center"><div class="eyebrow" style="color:var(--gold-dark)">How setup works</div><h2 class="h2">Claude helps you set it up</h2></div>
+{howvid}
 <div class="steps">
 <div class="step"><div class="n">1</div><div><b>Download the card</b><span>The link is emailed to you right after checkout.</span></div></div>
 <div class="step"><div class="n">2</div><div><b>Paste one prompt into Claude</b><span>Claude reads the Setup Pack and asks you simple questions.</span></div></div>

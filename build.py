@@ -260,7 +260,12 @@ def main():
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"] or '<a class="btn sm" href="' + URLS["DECK"] + '" data-buy="The AI Agent Deck" data-value="49">Get the Deck</a>').replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
         tail = extras.nudge(URLS["FREE"], bar=False) + extras.after_free(URLS) + extras.chat()
         if SALES(name):
-            tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"]) + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
+            _kpi = name == "cards/kpi-tracker/index.html"
+            _band = "" if name == "free/index.html" else (extras.kpiband(URLS["KPI"], URLS["DECK"]) if _kpi else extras.leadband(URLS["FREE"]))
+            _nudge = extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"])
+            if _kpi:
+                _nudge = re.sub(r'<a href="[^"]*" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a>', '<a href="' + URLS["KPI"] + '" data-buy="Real Estate KPI Tracker" data-value="19" class="mfree">KPI Tracker: $19</a>', _nudge)
+            tail = _band + _nudge + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
         page = render(h + body + tail + f)
         page = page.replace(' data-upsell="single"', '').replace(' data-upsell="free"', '')
