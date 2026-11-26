@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=08b70e80">
+<link rel="stylesheet" href="/assets/site.css?v=679ed08b">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal, and for visitors in Europe or the UK until they click Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -193,7 +193,7 @@ fetch(URL_,{method:'POST',credentials:'omit',body:JSON.stringify({action:'chat',
 
 <script>
 /* Never leave 1-3 words alone on a last line: glue the last four words together. */
-(function(){function fix(root){var els=root.querySelectorAll('h1,h2,h3,h4,p,li,figcaption,summary,dd,small,label,td,.meta,.step span,.step b,.nudge span,.topbar');for(var i=0;i<els.length;i++){var el=els[i];if(el.getAttribute('data-nw'))continue;if(el.querySelector('p,li,ul,ol,div,h1,h2,h3,table,section,figure,video,input,select,textarea,button'))continue;el.setAttribute('data-nw','1');var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n,nodes=[];while(n=tw.nextNode())nodes.push(n);var done=0,chars=0,seenWord=false;for(var k=nodes.length-1;k>=0&&done<3;k--){var t=nodes[k].nodeValue,out='';for(var j=t.length-1;j>=0;j--){var c=t.charAt(j);if(/\s/.test(c)){var e=j;while(j>0&&/\s/.test(t.charAt(j-1)))j--;if(seenWord&&done<3&&chars<=26&&(j>0||k>0)){out='\u00a0'+out;done++;}else out=t.substring(j,e+1)+out;}else{seenWord=true;if(done<3)chars++;out=c+out;}}nodes[k].nodeValue=out;}}}
+(function(){function fix(root){var els=root.querySelectorAll('h1,h2,h3,h4,p,li,figcaption,summary,dd,small,label,td,.meta,.step span,.step b,.nudge span,.topbar');for(var i=0;i<els.length;i++){var el=els[i];if(el.getAttribute('data-nw'))continue;if(el.querySelector('p,li,ul,ol,div,h1,h2,h3,table,section,figure,video,input,select,textarea,button'))continue;el.setAttribute('data-nw','1');var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n,nodes=[];while(n=tw.nextNode())nodes.push(n);var done=0,chars=0,seenWord=false;for(var k=nodes.length-1;k>=0&&done<3;k--){var t=nodes[k].nodeValue,out='';for(var j=t.length-1;j>=0;j--){var c=t.charAt(j);if(/\s/.test(c)){var e=j;while(j>0&&/\s/.test(t.charAt(j-1)))j--;if(seenWord&&done<3&&chars<=40&&(j>0||k>0)){out='\u00a0'+out;done++;}else out=t.substring(j,e+1)+out;}else{seenWord=true;if(done<3)chars++;out=c+out;}}nodes[k].nodeValue=out;}}}
 if(document.readyState!=='loading')fix(document);else document.addEventListener('DOMContentLoaded',function(){fix(document);});window.__nowidow=fix;})();
 </script>
 </body>
