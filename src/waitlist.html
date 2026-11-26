@@ -3,7 +3,7 @@
 <section class="hero" style="padding-bottom:56px"><div class="wrap"><div class="copy" style="flex-basis:100%;text-align:center">
 <span class="pill">Coming soon</span>
 <h1>More cards. More decks. <em>And the Jokers.</em></h1>
-<p class="sub" style="margin-left:auto;margin-right:auto">Join the waitlist. We will tell you first.</p>
+<p class="sub" style="margin-left:auto;margin-right:auto">Waitlist members get first dibs and a small discount.</p>
 <div class="wlrow">
 <form id="wl" class="wlbox" novalidate>
 <h2>Join the waitlist</h2>
@@ -17,6 +17,10 @@
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
 <button class="btn block" type="submit">Put me on the waitlist</button>
 <p id="wlmsg" class="wlmsg" role="status"></p>
+<div id="wlheard" hidden>
+<p class="wlq">One quick question: where did you hear about us?</p>
+<div class="wlopts"><button type="button" data-h="Facebook">Facebook</button><button type="button" data-h="A friend or coworker">A friend</button><button type="button" data-h="Google">Google</button><button type="button" data-h="YouTube">YouTube</button><button type="button" data-h="An ad">An ad</button><button type="button" data-h="Other">Other</button></div>
+</div>
 <p class="fine nb">We also email you 2 free cards today.<br>Unsubscribe any time. <a href="/privacy/">Privacy</a></p>
 </form>
 <div class="wlbox buy">
@@ -35,22 +39,26 @@
 <div class="wlcard"><svg class="wlicon" viewBox="0 0 96 96" width="84" height="84" aria-hidden="true"><rect x="14" y="20" width="40" height="58" rx="6" fill="#1A2854" stroke="#D4AE5C" stroke-width="3" transform="rotate(-14 34 49)"/><rect x="28" y="16" width="40" height="58" rx="6" fill="#1A2854" stroke="#D4AE5C" stroke-width="3"/><rect x="42" y="20" width="40" height="58" rx="6" fill="#1A2854" stroke="#D4AE5C" stroke-width="3" transform="rotate(14 62 49)"/></svg><h2>New decks</h2><p>Whole new sets of cards for more parts of your business.</p></div>
 <div class="wlcard joker"><svg class="wlicon" viewBox="0 0 96 96" width="84" height="84" aria-hidden="true"><rect x="26" y="10" width="44" height="64" rx="7" fill="#D4AE5C" stroke="#fff" stroke-width="3" transform="rotate(6 48 42)"/><g transform="rotate(6 48 42)"><path d="M33 46l5-18 10 10 10-10 5 18z" fill="#13203F"/><circle cx="38" cy="26" r="3.5" fill="#13203F"/><circle cx="48" cy="36" r="0" /><circle cx="58" cy="26" r="3.5" fill="#13203F"/><rect x="33" y="48" width="30" height="5" rx="2.5" fill="#13203F"/><text x="48" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="#13203F" letter-spacing="1">JOKER</text></g></svg><h2>The Jokers</h2><p>Our done-for-me service. Real people set up AI in your business for you.</p></div>
 </div>
-<p class="center fine" style="margin-top:22px">Coming soon. No dates or prices yet. New products are sold separately.</p>
+<p class="center fine" style="margin-top:22px">Coming soon. No dates or prices yet. New products are sold separately.<br>Waitlist members hear first and get a small discount when each one opens.</p>
 <p class="center" style="margin-top:28px"><a class="btn" href="{{DECK}}" data-buy="The AI Agent Deck" data-value="49">Start today. Get the Deck: <s class="strike sm">$199</s> $49</a></p>
 </div></section>
 <script>
 (function(){var f=document.getElementById('wl'),m=document.getElementById('wlmsg');if(!f)return;
 function post(d){return fetch('https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',{method:'POST',credentials:'omit',body:JSON.stringify(d)}).then(function(r){return r.json();});}
-function ok(){f.querySelectorAll('input,label,button,.wlq,.fine').forEach(function(x){x.hidden=true;});m.innerHTML='<b>You are on the list.</b> Check your email for your 2 free cards.';if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Waitlist'});}
+function ok(j){f.querySelectorAll('input,label,button[type=submit],.wlq,.fine').forEach(function(x){x.hidden=true;});
+m.innerHTML=(j&&j.customer?'<b>Welcome back, and thank you for being a customer.</b> You are on the list.':'<b>You are on the list.</b> Check your email for your 2 free cards.');
+var h=document.getElementById('wlheard');h.hidden=false;h.querySelector('.wlq').hidden=false;
+h.addEventListener('click',function(e){var x=e.target.closest('button[data-h]');if(!x)return;h.innerHTML='<p class="wlq">Thank you!</p>';post({action:'waitlist',step:2,email:em,website:'',heard:x.getAttribute('data-h')}).catch(function(){});});
+if(window.gtag)gtag('event','generate_lead',{method:'waitlist',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Waitlist'});}
 function bad(){b.disabled=false;m.innerHTML='We could not add you just now. <a href="mailto:support@aidealdeck.com?subject=Waitlist">Email us instead</a>.';}
-var b=f.querySelector('button');
+var b=f.querySelector('button[type=submit]'),em='';
 f.addEventListener('submit',function(e){e.preventDefault();b.disabled=true;m.textContent='Sending...';
 var want=[];if(f.w_cards.checked)want.push('cards');if(f.w_decks.checked)want.push('decks');if(f.w_jokers.checked)want.push('jokers');
-var base={email:f.email.value.trim(),website:f.website.value,page:location.pathname,source:'waitlist'};
+em=f.email.value.trim();var base={email:em,website:f.website.value,page:location.pathname,source:'waitlist'};
 post({action:'waitlist',email:base.email,website:base.website,page:base.page,name:f.fname.value.trim(),phone:f.phone.value.trim(),want:want.join(',')}).then(function(j){
-if(j&&j.ok){ok();return;}
+if(j&&j.ok){ok(j);return;}
 if(j&&j.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';return;}
-base.action='free';return post(base).then(function(k){if(k&&k.ok)ok();else if(k&&k.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';}else bad();});
+base.action='free';return post(base).then(function(k){if(k&&k.ok)ok(k);else if(k&&k.error==='email'){b.disabled=false;m.textContent='That email address does not look right. Please check it.';}else bad();});
 }).catch(bad);});
 })();
 </script>
