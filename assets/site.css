@@ -417,7 +417,7 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 @media (max-width:760px){.wlgrid,.wlrow{grid-template-columns:1fr}}
 h1,h2,h3,.sub,.lead,p.center,.meta,.fine{text-wrap:balance}
 .fine.nb{text-wrap:wrap}
-p,li{text-wrap:pretty}
+p,li,span,small,.pcard p,.node span{text-wrap:balance}
 .wlopts{display:flex;flex-wrap:wrap;gap:10px}
 .wlopts button{min-height:46px;padding:8px 16px;border-radius:999px;border:2px solid #13203F;background:#fff;color:#13203F;font-size:16px;font-weight:600;cursor:pointer}
 .wlopts button:hover{background:#13203F;color:#fff}
