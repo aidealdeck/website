@@ -109,8 +109,8 @@ def leadband(free_url):
     return f'''<section class="leadband" id="start-free">
 <div class="wrap">
 <div class="lb-main">
-<div class="eyebrow gold">Not ready to buy today?</div>
-<h2 class="h2">Start with two cards, free.</h2>
+<div class="eyebrow gold">Not ready?</div>
+<h2 class="h2">Take the 2 free cards.</h2>
 <p class="lead" style="margin-left:0">Listing Watchdog and Morning Brief. No payment card needed. Enter your email at checkout and the download is sent to you right away.</p>
 <a class="btn" style="margin-top:22px" href="{free_url}" data-buy="Free bonus cards" data-value="0">Send me the free cards</a>
 </div>
@@ -124,8 +124,9 @@ def leadband(free_url):
 </section>'''
 
 
-def nudge(free_url):
+def nudge(free_url, bar=True):
     """Small slide-in offer of the free cards, shown once per visit to people who have not clicked a buy or free button."""
+    mbar = '<div class="mbar" id="mbar"><a href="' + free_url + '" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="__DECK__" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>' if bar else ''
     return f'''<aside class="nudge" id="nudge" hidden aria-label="Free cards offer">
 <button type="button" class="nx" aria-label="Close">×</button>
 <b>2 free cards</b>
@@ -133,7 +134,7 @@ def nudge(free_url):
 <a class="btn sm" href="{free_url}" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
 <a class="freepill" id="freepill" href="{free_url}" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
-<div class="mbar" id="mbar"><a href="{free_url}" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="__DECK__" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
+{mbar}
 <script>
 (function(){{var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
 try{{done=sessionStorage.getItem('nudge')==='1';}}catch(e){{}}
@@ -141,9 +142,7 @@ function show(){{if(done)return;done=true;try{{sessionStorage.setItem('nudge','1
 function stop(){{done=true;try{{sessionStorage.setItem('nudge','1');}}catch(e){{}}}}
 document.addEventListener('click',function(e){{if(e.target.closest('.nx')){{n.hidden=true;pill.hidden=false;return;}}if(e.target.closest('a[data-buy]'))stop();
 var l=e.target.closest('a[data-lead]');if(l){{var k=l.getAttribute('data-lead');if(window.gtag)gtag('event','generate_lead',{{method:k,page:location.pathname}});if(window.fbq)fbq('track','Contact',{{method:k}});}}}});
-setTimeout(show,40000);
-window.addEventListener('scroll',function(){{var h=document.documentElement;if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.6)show();}},{{passive:true}});
-document.addEventListener('mouseout',function(e){{if(!e.relatedTarget&&e.clientY<8)show();}});
+/* The slide-in is off (owner, Nov 25): the deck shuffle is the only pop-up. The round free-cards button stays. */
 }})();
 </script>'''
 

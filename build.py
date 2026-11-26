@@ -258,7 +258,7 @@ def main():
         ld = extras.ld_script(meta.get("ld") or LD.get(name, []))
         h = (head.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{PATH}}", meta["path"])
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"] or '<a class="btn sm" href="' + URLS["DECK"] + '" data-buy="The AI Agent Deck" data-value="49">Get the Deck</a>').replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
-        tail = extras.chat()
+        tail = extras.nudge(URLS["FREE"], bar=False) + extras.after_free(URLS) + extras.chat()
         if SALES(name):
             tail = (extras.leadband(URLS["FREE"]) if name != "free/index.html" else "") + extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"]) + extras.pick().replace("__FREE__", URLS["FREE"]) + extras.after_free(URLS) + extras.chat()
         f = foot.replace("{{PHONE_TEL}}", extras.PHONE_TEL).replace("{{PHONE}}", extras.PHONE_DISPLAY)
@@ -268,9 +268,9 @@ def main():
         assert not leftover, f"{name}: unreplaced {leftover[:3]}"
         dest = os.path.join(OUT, name)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
-        if name in ("feedback/index.html", "start/index.html", "unsubscribe/index.html"): page = page.replace('content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"', 'content="noindex,follow"')
+        if name in ("feedback/index.html", "start/index.html", "unsubscribe/index.html", "numbers/index.html"): page = page.replace('content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"', 'content="noindex,follow"')
         open(dest, "w").write(page)
-        if name not in ("feedback/index.html", "start/index.html", "unsubscribe/index.html"): sitemap.append(meta["path"])
+        if name not in ("feedback/index.html", "start/index.html", "unsubscribe/index.html", "numbers/index.html"): sitemap.append(meta["path"])
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUT, "assets"))
     open(os.path.join(OUT, "CNAME"), "w").write("aidealdeck.com\n")
     open(os.path.join(OUT, ".nojekyll"), "w").write("")
