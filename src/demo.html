@@ -89,3 +89,8 @@ function draw(){
 var LB=[['Jordan Lee',38,3,2,0,0],['Alex Rivera',27,2,1,1,0],['Sam Patel',22,1,1,0,0]];function lb(){var tg=+$('i-pt').value;$('o-pt').textContent=tg;var tb=$('d-lb');tb.innerHTML='';LB.forEach(function(r){var p=r[1]+r[2]*5+r[3]*10+r[4]*25+r[5]*50;var tr=document.createElement('tr');[r[0],r[1],r[2],r[3],p,tg,p>=tg?'Yes':'Behind'].forEach(function(v,k){var td=document.createElement('td');td.textContent=v;td.style.padding='6px 4px';if(k>0&&k<6)td.style.textAlign='right';if(k===6)td.style.fontWeight='700';tr.appendChild(td);});tb.appendChild(tr);});}$('i-pt').addEventListener('input',lb);lb();['i-goal','i-avg','i-wk'].forEach(function(i){$(i).addEventListener('input',draw)});document.querySelectorAll('[data-goal]').forEach(function(b){b.addEventListener('click',function(){$('i-goal').value=b.getAttribute('data-goal');draw();if(window.gtag)gtag('event','demo_goal',{content_type:'demo',content_id:b.textContent});})}); draw();
 })();
 </script>
+<section class="sand"><div class="wrap">
+<div class="center"><div class="eyebrow">Watch &middot; 24 seconds</div><h2 class="h2">How it works</h2></div>
+<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
+<p class="center" style="margin:26px 0 0"><a class="btn" href="{{KPI}}" data-buy="Real Estate KPI Tracker" data-value="19">Get the KPI Tracker: <s class="strike sm">$49</s> $19 {{ARROW}}</a></p>
+</div></section>

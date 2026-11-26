@@ -260,7 +260,7 @@ def main():
                  .replace("{{TOPNOTE}}", meta["topnote"]).replace("{{TOPBTN}}", meta["topbtn"] or '<a class="btn sm" href="' + URLS["DECK"] + '" data-buy="The AI Agent Deck" data-value="49">Get the Deck</a>').replace("{{PIXEL_EXTRA}}", meta["pixel"]).replace("{{LD}}", ld))
         tail = extras.nudge(URLS["FREE"], bar=False) + extras.after_free(URLS) + extras.chat()
         if SALES(name):
-            _kpi = name == "cards/kpi-tracker/index.html"
+            _kpi = name in ("cards/kpi-tracker/index.html", "demo/index.html")
             _band = "" if name == "free/index.html" else (extras.kpiband(URLS["KPI"], URLS["DECK"]) if _kpi else extras.leadband(URLS["FREE"]))
             _nudge = extras.nudge(URLS["FREE"]).replace("__DECK__", URLS["DECK"])
             if _kpi:

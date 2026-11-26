@@ -181,19 +181,24 @@ function draw(){
 var LB=[['Jordan Lee',38,3,2,0,0],['Alex Rivera',27,2,1,1,0],['Sam Patel',22,1,1,0,0]];function lb(){var tg=+$('i-pt').value;$('o-pt').textContent=tg;var tb=$('d-lb');tb.innerHTML='';LB.forEach(function(r){var p=r[1]+r[2]*5+r[3]*10+r[4]*25+r[5]*50;var tr=document.createElement('tr');[r[0],r[1],r[2],r[3],p,tg,p>=tg?'Yes':'Behind'].forEach(function(v,k){var td=document.createElement('td');td.textContent=v;td.style.padding='6px 4px';if(k>0&&k<6)td.style.textAlign='right';if(k===6)td.style.fontWeight='700';tr.appendChild(td);});tb.appendChild(tr);});}$('i-pt').addEventListener('input',lb);lb();['i-goal','i-avg','i-wk'].forEach(function(i){$(i).addEventListener('input',draw)});document.querySelectorAll('[data-goal]').forEach(function(b){b.addEventListener('click',function(){$('i-goal').value=b.getAttribute('data-goal');draw();if(window.gtag)gtag('event','demo_goal',{content_type:'demo',content_id:b.textContent});})}); draw();
 })();
 </script>
+<section class="sand"><div class="wrap">
+<div class="center"><div class="eyebrow">Watch &middot; 24 seconds</div><h2 class="h2">How it works</h2></div>
+<video controls playsinline preload="none" poster="/assets/video/how-it-works.jpg" style="display:block;width:100%;max-width:960px;aspect-ratio:16/9;margin:28px auto 0;border-radius:16px;border:1px solid rgba(212,175,90,.55);background:#0E1730"><source src="/assets/video/how-it-works.mp4" type="video/mp4"></video>
+<p class="center" style="margin:26px 0 0"><a class="btn" href="https://shop.aidealdeck.com/l/real-estate-kpi-tracker?wanted=true" data-buy="Real Estate KPI Tracker" data-value="19">Get the KPI Tracker: <s class="strike sm">$49</s> $19 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+</div></section>
 <section class="leadband" id="start-free">
 <div class="wrap">
 <div class="lb-main">
-<div class="eyebrow gold">Not ready?</div>
-<h2 class="h2">Take the 2 free cards.</h2>
-<p class="lead" style="margin-left:0">Listing Watchdog and Morning Brief. No payment card needed. Enter your email at checkout and the download is sent to you right away.</p>
-<a class="btn" style="margin-top:22px" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0">Send me the free cards</a>
+<div class="eyebrow gold">Pick one</div>
+<h2 class="h2">One card, or all five.</h2>
+<p class="lead" style="margin-left:0">The link is emailed to you right after checkout.</p>
+<div class="cta-row" style="margin-top:22px"><a class="btn" href="https://shop.aidealdeck.com/l/real-estate-kpi-tracker?wanted=true" data-buy="Real Estate KPI Tracker" data-value="19">KPI Tracker: <s class="strike sm">$49</s> $19</a>
+<a class="btn" href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49" style="background:transparent;color:#fff;border:2px solid var(--gold)">Full Deck: <s class="strike sm">$199</s> $49</a></div>
 </div>
 <div class="lb-side">
 <b>Have a question first?</b>
 <p>Call <a href="tel:+14149466479" data-lead="call">(414) 946-6479</a>. Sarah answers around the clock.</p>
 <p>Or email <a href="mailto:support@aidealdeck.com" data-lead="email">support@aidealdeck.com</a>.</p>
-<p>Just want news about new cards and sales? <a href="https://shop.aidealdeck.com/subscribe" data-lead="subscribe">Leave your email here</a>.</p>
 </div>
 </div>
 </section><aside class="nudge" id="nudge" hidden aria-label="Free cards offer">
@@ -203,7 +208,7 @@ var LB=[['Jordan Lee',38,3,2,0,0],['Alex Rivera',27,2,1,1,0],['Sam Patel',22,1,1
 <a class="btn sm" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
 <a class="freepill" id="freepill" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
-<div class="mbar" id="mbar"><a href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
+<div class="mbar" id="mbar"><a href="https://shop.aidealdeck.com/l/real-estate-kpi-tracker?wanted=true" data-buy="Real Estate KPI Tracker" data-value="19" class="mfree">KPI Tracker: $19</a><a href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
 <script>
 (function(){var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
 try{done=sessionStorage.getItem('nudge')==='1';}catch(e){}
