@@ -235,7 +235,7 @@ def main():
     for c in extras.CARDS:
         meta = {"out": f"cards/{c['slug']}/index.html", "path": f"/cards/{c['slug']}/",
                 "title": f"{c['name']} for real estate pros | AiDealDeck".replace("&", "&amp;"),
-                "desc": (c["short"] + " Launch price $19 through Nov 30.").replace("&", "&amp;"),
+                "desc": (c["short"] + " Black Friday launch price $19 through Nov 30.").replace("&", "&amp;"),
                 "topnote": "<span data-sale>Black Friday</span>: this card is $19, not $49. <b data-left>Ends Nov 30.</b>",
                 "topbtn": "<a class=\"btn sm\" href=\"{{DECK}}\" data-buy=\"The AI Agent Deck\" data-value=\"49\">Get the Deck</a>",
                 "pixel": "fbq('track','ViewContent',{content_name:'" + c["name"].replace("&", "and") + "',value:19,currency:'USD'});",

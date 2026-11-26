@@ -252,9 +252,9 @@ def llms_txt(cards, faq):
              "The buyer pastes the prompt into Claude (Anthropic's AI assistant) and Claude helps them set the tool up, with the option of a live dashboard built inside Claude.", "",
              "AiDealDeck is a brand of The Showing Partner LLC (Wisconsin, USA). It is independent and is not made or endorsed by Anthropic.", "",
              "## Products", "",
-             f"- [The AI Agent Deck]({SITE}/): all five cards plus two bonus cards. Launch price $49 through November 30, 2026; regular price $199 from December 1, 2026."]
+             f"- [The AI Agent Deck]({SITE}/): all five cards plus two bonus cards. Black Friday launch price $49 through November 30, 2026; regular price $199 from December 1, 2026."]
     for c in cards:
-        lines.append(f"- [{c['name']}]({SITE}/cards/{c['slug']}/): {c['short']} Launch price $19 through November 30, 2026; regular price $49.")
+        lines.append(f"- [{c['name']}]({SITE}/cards/{c['slug']}/): {c['short']} Black Friday launch price $19 through November 30, 2026; regular price $49.")
     lines += [f"- [Free cards: Listing Watchdog and Morning Brief]({SITE}/free/): free download. Listing Watchdog tells an agent when a past client or lead they are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
               f"- [Live demo]({SITE}/demo/): a playable sample of the KPI dashboard, with sample data.", "",
               "## What buyers need", "",

@@ -6,12 +6,12 @@ AiDealDeck is a brand of The Showing Partner LLC (Wisconsin, USA). It is indepen
 
 ## Products
 
-- [The AI Agent Deck](https://aidealdeck.com/): all five cards plus two bonus cards. Launch price $49 through November 30, 2026; regular price $199 from December 1, 2026.
-- [Real Estate KPI Tracker](https://aidealdeck.com/cards/kpi-tracker/): A KPI tracker for real estate pros. It shows how many leads turn into closings at each step, and the one number to hit each week. Launch price $19 through November 30, 2026; regular price $49.
-- [Listing Exposure Playbook](https://aidealdeck.com/cards/listing-exposure-playbook/): A 14-day listing launch plan for real estate pros, with fill-in templates and seller reports on day 7 and day 14. Launch price $19 through November 30, 2026; regular price $49.
-- [Lead-for-Life System](https://aidealdeck.com/cards/lead-for-life-system/): A lead follow-up system for real estate pros: call fast, follow a set plan until they book, and track how fast you call. Launch price $19 through November 30, 2026; regular price $49.
-- [Commission & GCI Ledger](https://aidealdeck.com/cards/commission-gci-ledger/): A commission and GCI tracker for real estate pros: every closing, fee and split in one place, so you can see what you really kept. Launch price $19 through November 30, 2026; regular price $49.
-- [VA Playbook & Scorecard](https://aidealdeck.com/cards/va-playbook-scorecard/): A playbook for your real estate assistant: three clear jobs, a daily routine, a report each night and a score each week. Launch price $19 through November 30, 2026; regular price $49.
+- [The AI Agent Deck](https://aidealdeck.com/): all five cards plus two bonus cards. Black Friday launch price $49 through November 30, 2026; regular price $199 from December 1, 2026.
+- [Real Estate KPI Tracker](https://aidealdeck.com/cards/kpi-tracker/): A KPI tracker for real estate pros. It shows how many leads turn into closings at each step, and the one number to hit each week. Black Friday launch price $19 through November 30, 2026; regular price $49.
+- [Listing Exposure Playbook](https://aidealdeck.com/cards/listing-exposure-playbook/): A 14-day listing launch plan for real estate pros, with fill-in templates and seller reports on day 7 and day 14. Black Friday launch price $19 through November 30, 2026; regular price $49.
+- [Lead-for-Life System](https://aidealdeck.com/cards/lead-for-life-system/): A lead follow-up system for real estate pros: call fast, follow a set plan until they book, and track how fast you call. Black Friday launch price $19 through November 30, 2026; regular price $49.
+- [Commission & GCI Ledger](https://aidealdeck.com/cards/commission-gci-ledger/): A commission and GCI tracker for real estate pros: every closing, fee and split in one place, so you can see what you really kept. Black Friday launch price $19 through November 30, 2026; regular price $49.
+- [VA Playbook & Scorecard](https://aidealdeck.com/cards/va-playbook-scorecard/): A playbook for your real estate assistant: three clear jobs, a daily routine, a report each night and a score each week. Black Friday launch price $19 through November 30, 2026; regular price $49.
 - [Free cards: Listing Watchdog and Morning Brief](https://aidealdeck.com/free/): free download. Listing Watchdog tells an agent when a past client or lead they are watching lists with another agent. Morning Brief is one short summary from Claude each morning.
 - [Live demo](https://aidealdeck.com/demo/): a playable sample of the KPI dashboard, with sample data.
 
