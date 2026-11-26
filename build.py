@@ -154,7 +154,7 @@ def stack_html():
 <div class="eyebrow gold">This is your starting hand</div>
 <h2 class="h2">Start with seven cards. Add more later.</h2>
 <p class="lead" style="margin-left:0">The Deck gives you seven cards today. When we make new cards, each one works with the cards you already have.</p>
-<p class="lead" style="margin-left:0">Get all seven now at the $49 launch price.</p>
+<p class="lead" style="margin-left:0">Get all seven now at the $49 Black Friday launch price.</p>
 <a class="btn" style="margin-top:28px" href="{URLS["DECK"]}" data-buy="The AI Agent Deck" data-value="49">Get the Deck: <s class="strike sm">$199</s> $49</a>
 <p style="margin-top:18px;color:#fff">Want to know when a new card comes out? <a href="/waitlist/" data-lead="waitlist" style="color:var(--gold);font-weight:700">Put me on the waitlist</a>.</p>
 <p class="fine" style="margin-top:14px">Future cards are separate products, sold separately when released. No release dates are promised.</p>

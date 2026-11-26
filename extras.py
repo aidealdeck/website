@@ -336,7 +336,7 @@ def after_free(urls):
 <p class="lead" style="font-size:16px">Pick the one that helps you most.</p>
 __CARDS__
 <button type="button" class="no" data-next style="margin-top:18px;border-style:dashed">No thanks, I am all set</button>
-<p class="fine" style="margin-top:10px">$19 is the launch price through Nov 30. $49 is the regular price, starting Dec 1.</p>
+<p class="fine" style="margin-top:10px">$19 is the Black Friday launch price through Nov 30. $49 is the regular price, starting Dec 1.</p>
 </div>
 </dialog>
 <script>
