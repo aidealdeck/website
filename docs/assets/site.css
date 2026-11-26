@@ -413,7 +413,7 @@ dialog#pick .px:focus-visible{outline:2px solid var(--gold)}
 .wlcard{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:26px 22px;text-align:center;box-shadow:0 14px 28px rgba(19,32,63,.12)}
 .wlcard.joker{background:var(--navy);border-color:var(--gold)}.wlcard.joker h2{color:var(--gold)}.wlcard.joker p{color:#D8DEEE}
 .wlcard h2{font-size:26px;margin:8px 0 8px}.wlcard p{margin:0;font-size:17px;line-height:1.5;color:var(--muted)}
-.wlicon{font-size:64px;line-height:1;display:block}
+.wlicon{display:block;margin:0 auto}
 @media (max-width:760px){.wlgrid,.wlrow{grid-template-columns:1fr}}
 h1,h2,h3,.sub,.lead,p.center,.meta,.fine{text-wrap:balance}
 .fine.nb{text-wrap:wrap}
