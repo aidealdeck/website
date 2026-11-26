@@ -99,7 +99,7 @@ FAQ_LONG = [
         ("Can I buy it as a gift?", "Yes. Checkout has a \"Give as a gift\" switch. Enter the other person's email and the download goes to them. You pay, and the license belongs to their business. You cannot pass on a copy you bought for yourself.", "gift someone else"),
         ("Can I get a receipt or an invoice?", "Your receipt is emailed right after checkout, and it has a link to generate an invoice.", "invoice receipt business expense"),
         ("I think I was charged twice or charged the wrong price. What do I do?", "Email support@aidealdeck.com with the email you used at checkout, what you were charged and when. We will look into it and reply.", "double charge wrong price billing mistake"),
-        ("I typed the wrong email at checkout. How do I get my files?", "Email support@aidealdeck.com from the address you want to use, with the name on the order and the date. We will get the download to you.", "wrong email typo change"),
+        ("I typed the wrong email at checkout. How do I get my files?", "Email support@aidealdeck.com with the name on the order, the date and the email you typed. We look up the order first. Once we find it, Gumroad sends the receipt and download to the right address.", "wrong email typo change"),
     ]),
     ("Refunds and support", [
         ("I just bought. What do I do next?", "Watch the 1-minute video at <a href=\"/start/\">aidealdeck.com/start</a>. Open the email from AiDealDeck, click View content and Download, open the Claude desktop app, click + and add your Downloads folder, then paste in the COPY THIS PROMPT file and press Enter.", "next steps after buying start setup video what now download email"),
