@@ -299,6 +299,15 @@ def main():
         + "".join(f"<url><loc>https://aidealdeck.com{p}</loc><lastmod>{BUILD_DATE}</lastmod><priority>{prio(p)}</priority></url>\n" for p in sorted(sitemap)) + "</urlset>\n")
     import json as _json
     open(os.path.join(OUT, "faq.json"), "w").write(_json.dumps([{"q": q, "a": a_, "k": k} for q, a_, k, _c in faq_data.flat()]))
+    # One brain for Sarah (phone, email, chat). sarah_rules.txt is the single source of how she sells and talks.
+    # The email script and the phone agent both read these two files, so a change here reaches all three.
+    import re as _re
+    _rules = open(os.path.join(ROOT, "sarah_rules.txt")).read().strip() if os.path.exists(os.path.join(ROOT, "sarah_rules.txt")) else ""
+    _call = ("ON A CALL: these are the current house rules, shared with email and chat. Say them in your own short spoken words. "
+             "Do not read a link out loud: say aidealdeck dot com, or offer to email the link. First the one card that fits, then in your next turn its price and the whole Deck with its price. "
+             "Only after both, close with: Just let me know how you would like to proceed, I am right here. Never put a question after that closing line.")
+    open(os.path.join(OUT, "sarah-rules.json"), "w").write(_json.dumps({"house_rules": _rules, "on_a_call": _call}))
+    open(os.path.join(OUT, "sarah-facts.json"), "w").write(_json.dumps({"facts": [{"q": q, "a": _re.sub(r"<[^>]+>", "", a_)} for q, a_, k, _c in faq_data.flat()]}))
     open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, long_plain))
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
 
