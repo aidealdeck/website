@@ -303,10 +303,14 @@ def main():
     # The email script and the phone agent both read these two files, so a change here reaches all three.
     import re as _re
     _rules = open(os.path.join(ROOT, "sarah_rules.txt")).read().strip() if os.path.exists(os.path.join(ROOT, "sarah_rules.txt")) else ""
-    _call = ("ON A CALL: these are the current house rules, shared with email and chat. Say them in your own short spoken words. "
-             "Do not read a link out loud: say aidealdeck dot com, or offer to email the link. First the one card that fits, then in your next turn its price and the whole Deck with its price. "
-             "Only after both, close with: Just let me know how you would like to proceed, I am right here. Never put a question after that closing line.")
-    open(os.path.join(OUT, "sarah-rules.json"), "w").write(_json.dumps({"house_rules": _rules, "on_a_call": _call}))
+    _call = ("YOU ARE ON A PHONE CALL. These call rules come first and replace rules 5 and 6 of the house rules below, which are written for email. "
+             "(1) Never say a web address out loud except aidealdeck dot com. Never read a longer link. Offer to email the link instead. "
+             "(2) Turn one: the one card that fits and why, in a sentence or two, then one easy question. Do not use the closing line yet. "
+             "(3) When they ask the price or show interest: give that card's price, then say or you can get the whole Deck, the full AI package, with its price. "
+             "(4) Only after you have given both prices, close with: Just let me know how you would like to proceed, I am right here. Never put a question after it. Never say that line before both prices. "
+             "(5) If they ask something you are not sure of, call get_facts before you answer. "
+             "Everything else in the house rules applies on a call: talk to the one person, open softly, no flat no, never ask about money or other private details.")
+    open(os.path.join(OUT, "sarah-rules.json"), "w").write(_json.dumps({"on_a_call_read_this_first": _call, "house_rules": _rules}))
     open(os.path.join(OUT, "sarah-facts.json"), "w").write(_json.dumps({"facts": [{"q": q, "a": _re.sub(r"<[^>]+>", "", a_)} for q, a_, k, _c in faq_data.flat()]}))
     open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, long_plain))
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
