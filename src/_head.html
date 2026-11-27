@@ -32,9 +32,11 @@
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var EUV=false,CKV=null;try{EUV=/^(Europe\/|Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe))/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');CKV=localStorage.getItem('ck');}catch(e){}
+var TEAM=false;try{var tq=/[?&]team=(on|off)\b/.exec(location.search);if(tq){if(tq[1]==='on')localStorage.setItem('add_team','1');else localStorage.removeItem('add_team');}TEAM=localStorage.getItem('add_team')==='1';}catch(e){}
+if(TEAM)document.addEventListener('DOMContentLoaded',function(){var d=document.createElement('div');d.textContent='Team view: this device is not counted as a visitor.';d.style.cssText='background:#D4AE5C;color:#13203F;font:600 12px/1.4 Arial,sans-serif;text-align:center;padding:4px 8px';document.body.insertBefore(d,document.body.firstChild);});
 window.ADD_NEEDS_CONSENT=CKV===null&&!navigator.globalPrivacyControl;
 window.ADD_SCRUB=function(t){return String(t||'').replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g,'[email]').replace(/(\+?\d[\d\s().-]{7,}\d)/g,'[phone]');};
-if(!navigator.globalPrivacyControl&&CKV==='yes'){
+if(!TEAM&&!navigator.globalPrivacyControl&&CKV==='yes'){
 (function(){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-GG42FBV7Z8';document.head.appendChild(g);})();
 gtag('js',new Date());gtag('config','G-GG42FBV7Z8');
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
