@@ -165,7 +165,7 @@ base.action='free';return post(base).then(function(k){if(k&&k.ok)ok(k);else if(k
 <div class="eyebrow gold">Not ready?</div>
 <h2 class="h2">Take the 2 free cards.</h2>
 <p class="lead" style="margin-left:0">Listing Watchdog and Morning Brief. No payment card needed. Enter your email at checkout and the download is sent to you right away.</p>
-<a class="btn" style="margin-top:22px" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0">Send me the free cards</a>
+<a class="btn" style="margin-top:22px" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses?wanted=true" data-buy="Free bonus cards" data-value="0">Send me the free cards</a>
 </div>
 <div class="lb-side">
 <b>Have a question first?</b>
@@ -178,10 +178,10 @@ base.action='free';return post(base).then(function(k){if(k&&k.ok)ok(k);else if(k
 <button type="button" class="nx" aria-label="Close">×</button>
 <b>2 free cards</b>
 <span>Listing Watchdog + Morning Brief</span>
-<a class="btn sm" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
+<a class="btn sm" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses?wanted=true" data-buy="Free bonus cards" data-value="0">Get the free cards</a>
 </aside>
-<a class="freepill" id="freepill" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
-<div class="mbar" id="mbar"><a href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
+<a class="freepill" id="freepill" href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses?wanted=true" data-buy="Free bonus cards" data-value="0"><span class="fpic">FREE<i>1</i></span><span><b>Get 2 free cards</b><small>Listing Watchdog + Morning Brief. No payment card.</small></span></a>
+<div class="mbar" id="mbar"><a href="https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses?wanted=true" data-buy="Free bonus cards" data-value="0" class="mfree">2 free cards</a><a href="https://shop.aidealdeck.com/l/the-ai-agent-deck?wanted=true" data-buy="The AI Agent Deck" data-value="49" class="mbuy">Get the Deck: $49</a></div>
 <script>
 (function(){var n=document.getElementById('nudge'),pill=document.getElementById('freepill');if(!n)return;var done=false;
 try{done=sessionStorage.getItem('nudge')==='1';}catch(e){}
@@ -215,7 +215,7 @@ var l=e.target.closest('a[data-lead]');if(l){var k=l.getAttribute('data-lead');i
 </div>
 </dialog>
 <script>
-(function(){var d=document.getElementById('pick');if(!d||!d.showModal)return;var API='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',FREE='https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses',LS=null;try{LS=window.localStorage;}catch(e){}
+(function(){var d=document.getElementById('pick');if(!d||!d.showModal)return;var API='https://script.google.com/macros/s/AKfycbxgjN_RQJlPgyL2hd6ZNf9QPRy020qsZmSF9f0kVub5vX9DwiadjtiLUhGkQRXyIXw/exec',FREE='https://shop.aidealdeck.com/l/free-ai-agent-deck-bonuses?wanted=true',LS=null;try{LS=window.localStorage;}catch(e){}
 function get(k){try{return LS&&LS.getItem(k);}catch(e){return null;}}function set(k,v){try{LS&&LS.setItem(k,v);}catch(e){}}function del(k){try{LS&&LS.removeItem(k);}catch(e){}}
 function step(n){d.querySelectorAll('[data-p]').forEach(function(s){s.hidden=s.getAttribute('data-p')!==n;});}
 function post(b){return fetch(API,{method:'POST',credentials:'omit',body:JSON.stringify(b)}).then(function(r){return r.json();});}
