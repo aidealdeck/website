@@ -412,7 +412,7 @@ if(TIP_RE.test(q)&&!DL_RE.test(q))return TIP+FREE_LINE;
 if(LEAD_RE.test(q)&&!DL_RE.test(q))return 'Happy to. What is your email? I will send the two free cards (Listing Watchdog and Morning Brief) right now, and you will hear from us before the sale ends on Nov 30. One click unsubscribes.';
 var parts=[];
 if(CRMVS_RE.test(q))parts.push('Most CRM dashboards show activity: calls, emails, tasks. The KPI Tracker shows conversion. It counts lead, appointment set, appointment held, signed, under contract and closed, with the real percentage at each step. Then it works out the one weekly number to hit for the goal you type in, and shows which lead sources turn into closings. If Claude can read your CRM or a spreadsheet export from it, the numbers come across without retyping.');
-else if((m=CRM_RE.exec(q)))parts.push('I cannot promise '+m[0]+' works, so please check before you buy. Here is how it goes: if Claude has a connector for your CRM, Claude can read it directly. If not, export a spreadsheet from '+m[0]+' and Claude works from that; every card comes with a workbook anyway.');
+else if((m=CRM_RE.exec(q)))parts.push('Yes, you keep '+m[0]+'. If Claude has a connector for it, Claude reads it directly. If not, you export a spreadsheet from '+m[0]+' and Claude works from that. Every card comes with its own workbook too.');
 if(REV_RE.test(q))parts.push('We are new (launched November 2026), so reviews are just coming in. The first ones will show on the homepage as buyers send them, with their OK. Until then you can judge the work for free: play with the live dashboard demo at aidealdeck.com/demo and take the two free cards.');
 if(parts.length)return parts.join(' ')+FREE_LINE;
 return null;}
