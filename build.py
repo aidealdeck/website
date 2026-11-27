@@ -312,6 +312,8 @@ def main():
              "Everything else in the house rules applies on a call: talk to the one person, open softly, no flat no, never ask about money or other private details.")
     open(os.path.join(OUT, "sarah-rules.json"), "w").write(_json.dumps({"on_a_call_read_this_first": _call, "house_rules": _rules}))
     open(os.path.join(OUT, "sarah-facts.json"), "w").write(_json.dumps({"facts": [{"q": q, "a": _re.sub(r"<[^>]+>", "", a_)} for q, a_, k, _c in faq_data.flat()]}))
+    # IndexNow key file: lets Bing and other search engines accept our "this page changed" pings.
+    open(os.path.join(OUT, "e935e37b8d26a045d5adb4feab17fc3d.txt"), "w").write("e935e37b8d26a045d5adb4feab17fc3d")
     open(os.path.join(OUT, "llms.txt"), "w").write(extras.llms_txt(extras.CARDS, long_plain))
     print("built:", sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs))
 
