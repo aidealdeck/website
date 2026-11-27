@@ -6,6 +6,18 @@ PHONE_DISPLAY = "(414) 946-6479"
 PHONE_TEL = "+14149466479"
 SUBSCRIBE = "https://shop.aidealdeck.com/subscribe"
 SALE_ENDS = "2026-11-30"
+# Google merchant listing fields: digital download, emailed at once, all sales final.
+OFFER_EXTRA = {
+    "validFrom": "2026-11-24",
+    "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "US",
+                                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"},
+    "shippingDetails": {"@type": "OfferShippingDetails",
+                        "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
+                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"},
+                        "deliveryTime": {"@type": "ShippingDeliveryTime",
+                                         "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+                                         "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}}},
+}
 
 CARDS = [
     dict(slug="kpi-tracker", key="KPI", n="1", name="Real Estate KPI Tracker",
@@ -73,7 +85,7 @@ def org_ld():
 
 def offer(price, url):
     return {"@type": "Offer", "price": str(price), "priceCurrency": "USD", "availability": "https://schema.org/InStock",
-            "priceValidUntil": SALE_ENDS, "url": url, "seller": {"@id": SITE + "/#org"}}
+            "priceValidUntil": SALE_ENDS, "url": url, "seller": {"@id": SITE + "/#org"}, **OFFER_EXTRA}
 
 
 def deck_ld(url):

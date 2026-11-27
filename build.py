@@ -256,7 +256,7 @@ def main():
         "free/index.html": [{"@type": "Product", "name": "Free cards: Listing Watchdog and Morning Brief", "brand": {"@type": "Brand", "name": "AiDealDeck"},
                              "image": extras.SITE + "/assets/og.png",
                              "description": "Two free AiDealDeck cards for real estate pros. Listing Watchdog tells you when someone you are watching lists with another agent. Morning Brief is one short summary from Claude each morning.",
-                             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": extras.SITE + "/free/"}}],
+                             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": extras.SITE + "/free/", **extras.OFFER_EXTRA}}],
     }
     SALES = lambda out: out not in ("terms/index.html", "privacy/index.html", "feedback/index.html", "start/index.html", "unsubscribe/index.html")
     sitemap = []
