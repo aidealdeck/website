@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20bafb7c">
+<link rel="stylesheet" href="/assets/site.css?v=f48c7863">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal or the visitor clicked Decline; in Europe and the UK they load only after Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -168,6 +168,7 @@ var l=e.target.closest('a[data-lead]');if(l){var k=l.getAttribute('data-lead');i
 <script>
 (function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var i=0,steps=['email','deck','card'],fallback='',f=document.getElementById('offer-form'),msg=document.getElementById('offer-msg');
 function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i];});}
+window.ADD_offerFrom=function(n){i=n;show();if(!d.open)d.showModal();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_pick',content_id:location.pathname});};
 document.addEventListener('click',function(e){
 var a=e.target.closest('a[data-buy="Free bonus cards"]');
 if(a&&!d.open){e.preventDefault();fallback=a.href;i=0;show();msg.textContent='';d.showModal();f.email.focus();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});return;}

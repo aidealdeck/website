@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20bafb7c">
+<link rel="stylesheet" href="/assets/site.css?v=f48c7863">
 <!-- Google Analytics + Meta Pixel + Microsoft Clarity (all skipped when the browser sends a Global Privacy Control signal or the visitor clicked Decline; in Europe and the UK they load only after Accept) -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -197,9 +197,9 @@ var l=e.target.closest('a[data-lead]');if(l){var k=l.getAttribute('data-lead');i
 <div data-p="play">
 <div class="eyebrow">Free to play</div>
 <h3 id="pk-h">Pick a card. Win a prize.</h3>
-<p class="pk-sub" id="pk-sub">Every card wins. Tap one.</p>
+<p class="pk-sub" id="pk-sub">Every card wins. Type your email and we shuffle.</p>
 <div class="pk-row" id="pk-row"><button type="button" class="pk-card" aria-label="Card 1"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54" loading="lazy" decoding="async"></span><span class="pk-front"></span></span></button><button type="button" class="pk-card" aria-label="Card 2"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54" loading="lazy" decoding="async"></span><span class="pk-front"></span></span></button><button type="button" class="pk-card" aria-label="Card 3"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54" loading="lazy" decoding="async"></span><span class="pk-front"></span></span></button><button type="button" class="pk-card" aria-label="Card 4"><span class="pk-in"><span class="pk-back"><img src="/assets/brand/mark-gold.svg" alt="" width="54" height="54" loading="lazy" decoding="async"></span><span class="pk-front"></span></span></button></div>
-<form id="pick-form" hidden><input type="email" name="email" required inputmode="email" placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn block" type="submit">Flip my card</button></form>
+<form id="pick-form" novalidate><input type="email" name="email" inputmode="email" placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn block" type="submit">Shuffle the deck</button></form>
 <p class="fine" id="pick-msg" role="status"></p>
 <p class="fine">Prizes: up to 20% off, or 2 free cards. One prize per email. We email it to you once.</p>
 </div>
@@ -209,6 +209,7 @@ var l=e.target.closest('a[data-lead]');if(l){var k=l.getAttribute('data-lead');i
 <p class="pk-sub" id="pk-until"></p>
 <a class="btn block" id="pk-go" href="#"></a>
 <a class="btn block" id="pk-deck" href="#" data-buy="The AI Agent Deck" hidden></a>
+<button type="button" class="pk-no" id="pk-no">No thanks</button>
 <p class="fine" id="pk-fine"></p>
 </div>
 </dialog>
@@ -227,25 +228,27 @@ e.textContent=quiet?'Your prize':j.again?'You already picked':'You won';
 if(j.pct>0&&j.code){apply(j);w.textContent=(j.label||j.pct+'% off')+' anything';u.textContent='Good until '+j.until+'.';g.textContent='Use it on the Deck';g.href=deck();f.textContent='Your code is '+j.code+'. It is already added to every buy button here, so you do not need to type it.';}
 else if(j.pct>0){w.textContent='Your prize has ended';u.textContent='It was good until '+j.until+'.';g.textContent='Keep looking';g.href='#';f.textContent='';}
 else{w.textContent='2 free cards';u.textContent='Listing Watchdog + Morning Brief.';g.textContent='Keep looking';g.href='#';f.textContent='We just emailed them to you.';}
+g.hidden=!(j.pct>0);
 var k=document.getElementById('pk-deck'),da=document.querySelector('a[data-buy="The AI Agent Deck"][data-value]'),pv=da?da.getAttribute('data-value'):'';if(j.pct>0&&j.code){k.hidden=true;}else{k.hidden=false;k.href=deck();k.textContent='Get the full Deck'+(pv?': $'+pv:'');}
 step('won');}
 var res=null,picked=null,row=document.getElementById('pk-row'),h=document.getElementById('pk-h'),f=document.getElementById('pick-form'),msg=document.getElementById('pick-msg');
 function reveal(){if(!res||!picked)return;picked.querySelector('.pk-front').textContent=(res.label||(res.pct>0?res.pct+'% off':'2 free cards')).toUpperCase();row.classList.add('done');picked.classList.add('flip');if(window.gtag)gtag('event','pick_won',{value:res.pct,content_id:location.pathname});setTimeout(function(){won(res);},1300);}
-var sub=document.getElementById('pk-sub');row.addEventListener('click',function(e){var c=e.target.closest('.pk-card');if(!c||res||!row.classList.contains('ready'))return;if(picked)picked.classList.remove('sel');picked=c;c.classList.add('sel');row.classList.add('picked');h.textContent='Good pick!';sub.textContent='Where do we send your prize?';f.hidden=false;try{f.email.focus();}catch(x){}if(window.gtag)gtag('event','pick_tap',{content_id:location.pathname});});
-f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='';
+var sub=document.getElementById('pk-sub');function need(t){msg.textContent=t;f.email.classList.remove('pk-shake');void f.email.offsetWidth;f.email.classList.add('pk-shake');try{f.email.focus();}catch(x){}}
+row.addEventListener('click',function(e){var c=e.target.closest('.pk-card');if(!c||picked)return;if(!res||!row.classList.contains('ready')){if(!res)need('Type your email first. Then we shuffle.');return;}picked=c;h.textContent='Good pick...';if(window.gtag)gtag('event','pick_tap',{content_id:location.pathname});reveal();});
+f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(f.email.value.trim())){need(f.email.value.trim()?'That email address does not look right. Please check it.':'Type your email first. Then we shuffle.');return;}b.disabled=true;msg.textContent='';
 post({action:'pick',email:f.email.value,page:location.pathname}).then(function(j){b.disabled=false;
 if(j&&j.ok){res=j;set('pkTok',j.tok);if(!j.again)j.exp=Date.now()+1728e5;keep(j);if(window.gtag)gtag('event','generate_lead',{method:'pick_card',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Pick a card'});
-if(j.again){won(j);return;}f.hidden=true;sub.textContent='';h.textContent='Here it comes...';picked.classList.remove('sel');reveal();}
+if(j.again){won(j);return;}f.hidden=true;sub.textContent='';h.textContent='Shuffling...';row.classList.remove('idle');row.classList.add('shuffle');setTimeout(function(){row.classList.remove('shuffle');row.classList.add('ready');h.textContent='Pick one';},2600);}
 else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
 else{msg.innerHTML='We could not shuffle just now. <a href="'+FREE+'">Get the 2 free cards here instead</a>.';}
 }).catch(function(){b.disabled=false;msg.innerHTML='We could not shuffle just now. <a href="'+FREE+'">Get the 2 free cards here instead</a>.';});});
-d.addEventListener('click',function(e){if(e.target.closest('.px')||(e.target.id==='pk-go'&&e.target.getAttribute('href')==='#')){e.preventDefault();d.close();}});
+d.addEventListener('click',function(e){if(e.target.id==='pk-no'){d.close();if(window.ADD_offerFrom)window.ADD_offerFrom(2);return;}if(e.target.closest('.px')||(e.target.id==='pk-go'&&e.target.getAttribute('href')==='#')){e.preventDefault();d.close();}});
 var m=/[?&]prize=([0-9a-f]{20})/.exec(location.search),tok=m?m[1]:get('pkTok');
 var saved=null;try{saved=JSON.parse(get('pkPrize')||'null');}catch(e){}
 if(saved&&saved.code&&(!m||saved.tok===m[1])&&(!saved.exp||saved.exp>Date.now()))apply(saved);else if(saved&&saved.exp&&saved.exp<=Date.now()){del('pkPrize');saved=null;}
 if(tok){if(m)set('pkTok',tok);post({action:'pick',tok:tok}).then(function(j){if(j&&j.ok&&j.code){if(saved&&saved.exp)j.exp=saved.exp;keep(j);apply(j);}else if(j&&(j.none||j.expired)){del('pkTok');del('pkPrize');unapply();}}).catch(function(){});return;}
 if(get('pkSeen')||(saved&&saved.code))return;
-var shown=false,fire=function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('play');d.showModal();row.classList.add('shuffle');setTimeout(function(){row.classList.remove('shuffle');row.classList.add('ready');},1900);if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});};
+var shown=false,fire=function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('play');d.showModal();row.classList.add('idle');if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});};
 function go(){if(shown)return;shown=true;window.removeEventListener('scroll',onS);document.removeEventListener('mouseout',onX);fire();}
 function onS(){var e=document.documentElement;if((e.scrollTop+window.innerHeight)/e.scrollHeight>0.35)go();}
 function onX(e){if(!e.relatedTarget&&e.clientY<=0)go();}
@@ -283,6 +286,7 @@ window.addEventListener('scroll',onS,{passive:true});document.addEventListener('
 <script>
 (function(){var d=document.getElementById('offer');if(!d||!d.showModal)return;var i=0,steps=['email','deck','card'],fallback='',f=document.getElementById('offer-form'),msg=document.getElementById('offer-msg');
 function show(){d.querySelectorAll('[data-step]').forEach(function(s){s.hidden=s.getAttribute('data-step')!==steps[i];});}
+window.ADD_offerFrom=function(n){i=n;show();if(!d.open)d.showModal();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_pick',content_id:location.pathname});};
 document.addEventListener('click',function(e){
 var a=e.target.closest('a[data-buy="Free bonus cards"]');
 if(a&&!d.open){e.preventDefault();fallback=a.href;i=0;show();msg.textContent='';d.showModal();f.email.focus();if(window.gtag)gtag('event','free_offer_shown',{content_type:'after_free',content_id:location.pathname});return;}

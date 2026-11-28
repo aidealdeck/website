@@ -327,16 +327,20 @@ dialog#pick .fine{margin:10px 0 0}
 @keyframes pkGlow{0%,100%{box-shadow:0 0 0 0 rgba(212,174,92,.7),0 8px 18px rgba(19,32,63,.3)}50%{box-shadow:0 0 0 9px rgba(212,174,92,0),0 8px 18px rgba(19,32,63,.3)}}
 dialog#pick form[hidden]{display:none}
 dialog#pick .pk-row{margin:14px 0 16px}
-.pk-row.shuffle .pk-card:nth-child(1){animation:pkA .62s ease-in-out 3}
-.pk-row.shuffle .pk-card:nth-child(2){animation:pkB .62s ease-in-out 3}
-.pk-row.shuffle .pk-card:nth-child(3){animation:pkC .62s ease-in-out 3}
-.pk-row.shuffle .pk-card:nth-child(4){animation:pkD .62s ease-in-out 3}
-@keyframes pkA{50%{transform:translateX(160%) rotate(8deg)}}
-@keyframes pkB{50%{transform:translateX(55%) translateY(-14px) rotate(-6deg)}}
-@keyframes pkC{50%{transform:translateX(-55%) translateY(14px) rotate(6deg)}}
-@keyframes pkD{50%{transform:translateX(-160%) rotate(-8deg)}}
+.pk-card:nth-child(1){--cx:calc(150% + 18px);--sx:-48%;--r:-10deg}
+.pk-card:nth-child(2){--cx:calc(50% + 6px);--sx:48%;--r:9deg}
+.pk-card:nth-child(3){--cx:calc(-50% - 6px);--sx:-48%;--r:-8deg}
+.pk-card:nth-child(4){--cx:calc(-150% - 18px);--sx:48%;--r:10deg}
+.pk-row.shuffle .pk-card{animation:pkShuf 2.5s cubic-bezier(.5,.05,.4,1) 1}
+.pk-row.shuffle .pk-card:nth-child(2),.pk-row.shuffle .pk-card:nth-child(4){z-index:2}
+@keyframes pkShuf{0%{transform:translate(0,0) rotate(0)}14%{transform:translate(var(--cx),0) rotate(0)}24%{transform:translate(calc(var(--cx) + var(--sx)),-12px) rotate(var(--r))}34%{transform:translate(var(--cx),0) rotate(0)}44%{transform:translate(calc(var(--cx) - var(--sx)),10px) rotate(calc(var(--r) * -1))}54%{transform:translate(var(--cx),0) rotate(0)}64%{transform:translate(calc(var(--cx) + var(--sx)),-8px) rotate(var(--r))}74%{transform:translate(var(--cx),0) rotate(0)}82%{transform:translate(var(--cx),-6px) rotate(0) scale(1.06)}100%{transform:translate(0,0) rotate(0)}}
+.pk-row.idle .pk-card{animation:pkBob 2.6s ease-in-out infinite}
+.pk-row.idle .pk-card:nth-child(2){animation-delay:.25s}.pk-row.idle .pk-card:nth-child(3){animation-delay:.5s}.pk-row.idle .pk-card:nth-child(4){animation-delay:.75s}
+@keyframes pkBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(var(--r))}}
+dialog#pick input.pk-shake{animation:pkShake .4s 1;border-color:#C0392B}
+@keyframes pkShake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 #pk-bar{background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;text-align:center;padding:8px 14px;text-wrap:balance}
-@media (prefers-reduced-motion:reduce){.pk-row.shuffle .pk-card{animation:none}.pk-in{transition:none}}
+@media (prefers-reduced-motion:reduce){.pk-row.shuffle .pk-card,.pk-row.idle .pk-card{animation:none}.pk-in{transition:none}}
 .shots{scrollbar-width:none}.shots::-webkit-scrollbar{display:none}
 .shots .shot{flex:0 0 100%}
 .shots .shot img{aspect-ratio:16/10;object-fit:contain;object-position:center;background:#fff}
@@ -444,3 +448,6 @@ p,li,span,small,.pcard p,.node span{text-wrap:balance}
 #mdrow:has(#mdform[hidden]){grid-template-columns:minmax(0,440px);justify-content:center}
 .nw{white-space:nowrap}
 .was{text-wrap:balance}
+
+dialog#pick .pk-no{display:block;width:100%;margin-top:10px;background:none;border:1px solid var(--rule);border-radius:10px;padding:13px;font:inherit;font-weight:600;color:var(--navy);cursor:pointer;min-height:48px}
+dialog#pick a.btn[hidden]{display:none}
