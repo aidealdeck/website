@@ -248,7 +248,11 @@ var saved=null;try{saved=JSON.parse(get('pkPrize')||'null');}catch(e){}
 if(saved&&saved.code&&(!m||saved.tok===m[1])&&(!saved.exp||saved.exp>Date.now()))apply(saved);else if(saved&&saved.exp&&saved.exp<=Date.now()){del('pkPrize');saved=null;}
 if(tok){if(m)set('pkTok',tok);post({action:'pick',tok:tok}).then(function(j){if(j&&j.ok&&j.code){if(saved&&saved.exp)j.exp=saved.exp;keep(j);apply(j);}else if(j&&(j.none||j.expired)){del('pkTok');del('pkPrize');unapply();}}).catch(function(){});return;}
 if(get('pkSeen')||(saved&&saved.code))return;
-setTimeout(function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('email');d.showModal();try{f.email.focus();}catch(e){}if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});},3500);
+var shown=false,fire=function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('email');d.showModal();try{f.email.focus();}catch(e){}if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});};
+function go(){if(shown)return;shown=true;window.removeEventListener('scroll',onS);document.removeEventListener('mouseout',onX);fire();}
+function onS(){var e=document.documentElement;if((e.scrollTop+window.innerHeight)/e.scrollHeight>0.35)go();}
+function onX(e){if(!e.relatedTarget&&e.clientY<=0)go();}
+window.addEventListener('scroll',onS,{passive:true});document.addEventListener('mouseout',onX);setTimeout(go,15000);
 })();
 </script><dialog id="offer" aria-labelledby="offer-h">
 <form method="dialog"><button class="x" aria-label="Close">×</button></form>
