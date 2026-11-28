@@ -442,17 +442,14 @@ def pick():
 
 PICK_HTML = r"""<dialog id="pick" aria-label="Pick a card">
 <button type="button" class="px" aria-label="Close">&times;</button>
-<div data-p="email">
-<div class="eyebrow">Welcome</div>
-<h3>Pick a card. Win a prize.</h3>
-<p class="pk-sub">Type your email. Shuffle. Pick one.</p>
-<form id="pick-form"><input type="email" name="email" required placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn block" type="submit">Shuffle the deck</button></form>
-<p class="fine" id="pick-msg" role="status"></p>
-<p class="fine">One prize per email. We email it to you once.</p>
-</div>
-<div data-p="cards" hidden>
-<h3 id="pk-h">Shuffling...</h3>
+<div data-p="play">
+<div class="eyebrow">Free to play</div>
+<h3 id="pk-h">Pick a card. Win a prize.</h3>
+<p class="pk-sub" id="pk-sub">Every card wins. Tap one.</p>
 <div class="pk-row" id="pk-row">__CARDS__</div>
+<form id="pick-form" hidden><input type="email" name="email" required inputmode="email" placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn block" type="submit">Flip my card</button></form>
+<p class="fine" id="pick-msg" role="status"></p>
+<p class="fine">Prizes: up to 20% off, or 2 free cards. One prize per email. We email it to you once.</p>
 </div>
 <div data-p="won" hidden>
 <div class="eyebrow" id="pk-eye">You won</div>
@@ -482,11 +479,11 @@ var k=document.getElementById('pk-deck'),da=document.querySelector('a[data-buy="
 step('won');}
 var res=null,picked=null,row=document.getElementById('pk-row'),h=document.getElementById('pk-h'),f=document.getElementById('pick-form'),msg=document.getElementById('pick-msg');
 function reveal(){if(!res||!picked)return;picked.querySelector('.pk-front').textContent=(res.label||(res.pct>0?res.pct+'% off':'2 free cards')).toUpperCase();row.classList.add('done');picked.classList.add('flip');if(window.gtag)gtag('event','pick_won',{value:res.pct,content_id:location.pathname});setTimeout(function(){won(res);},1300);}
-row.addEventListener('click',function(e){var c=e.target.closest('.pk-card');if(!c||picked||!row.classList.contains('ready'))return;picked=c;h.textContent='Good pick...';reveal();});
+var sub=document.getElementById('pk-sub');row.addEventListener('click',function(e){var c=e.target.closest('.pk-card');if(!c||res||!row.classList.contains('ready'))return;if(picked)picked.classList.remove('sel');picked=c;c.classList.add('sel');row.classList.add('picked');h.textContent='Good pick!';sub.textContent='Where do we send your prize?';f.hidden=false;try{f.email.focus();}catch(x){}if(window.gtag)gtag('event','pick_tap',{content_id:location.pathname});});
 f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;msg.textContent='';
 post({action:'pick',email:f.email.value,page:location.pathname}).then(function(j){b.disabled=false;
 if(j&&j.ok){res=j;set('pkTok',j.tok);if(!j.again)j.exp=Date.now()+1728e5;keep(j);if(window.gtag)gtag('event','generate_lead',{method:'pick_card',page:location.pathname});if(window.fbq)fbq('track','Lead',{content_name:'Pick a card'});
-if(j.again){won(j);return;}step('cards');row.classList.add('shuffle');setTimeout(function(){row.classList.remove('shuffle');row.classList.add('ready');h.textContent='Pick one';},1900);}
+if(j.again){won(j);return;}f.hidden=true;sub.textContent='';h.textContent='Here it comes...';picked.classList.remove('sel');reveal();}
 else if(j&&j.error==='email'){msg.textContent='That email address does not look right. Please check it.';}
 else{msg.innerHTML='We could not shuffle just now. <a href="'+FREE+'">Get the 2 free cards here instead</a>.';}
 }).catch(function(){b.disabled=false;msg.innerHTML='We could not shuffle just now. <a href="'+FREE+'">Get the 2 free cards here instead</a>.';});});
@@ -496,7 +493,7 @@ var saved=null;try{saved=JSON.parse(get('pkPrize')||'null');}catch(e){}
 if(saved&&saved.code&&(!m||saved.tok===m[1])&&(!saved.exp||saved.exp>Date.now()))apply(saved);else if(saved&&saved.exp&&saved.exp<=Date.now()){del('pkPrize');saved=null;}
 if(tok){if(m)set('pkTok',tok);post({action:'pick',tok:tok}).then(function(j){if(j&&j.ok&&j.code){if(saved&&saved.exp)j.exp=saved.exp;keep(j);apply(j);}else if(j&&(j.none||j.expired)){del('pkTok');del('pkPrize');unapply();}}).catch(function(){});return;}
 if(get('pkSeen')||(saved&&saved.code))return;
-var shown=false,fire=function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('email');d.showModal();try{f.email.focus();}catch(e){}if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});};
+var shown=false,fire=function(){if(document.querySelector('dialog[open]'))return;set('pkSeen','1');try{sessionStorage.setItem('nudge','1');}catch(e){}var nn=document.getElementById('nudge');if(nn)nn.style.display='none';step('play');d.showModal();row.classList.add('shuffle');setTimeout(function(){row.classList.remove('shuffle');row.classList.add('ready');},1900);if(window.gtag)gtag('event','pick_shown',{content_id:location.pathname});};
 function go(){if(shown)return;shown=true;window.removeEventListener('scroll',onS);document.removeEventListener('mouseout',onX);fire();}
 function onS(){var e=document.documentElement;if((e.scrollTop+window.innerHeight)/e.scrollHeight>0.35)go();}
 function onX(e){if(!e.relatedTarget&&e.clientY<=0)go();}

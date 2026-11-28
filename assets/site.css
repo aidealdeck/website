@@ -321,6 +321,12 @@ dialog#pick .fine{margin:10px 0 0}
 .pk-card.flip{transform:translateY(-10px) scale(1.12)}
 .pk-card.flip .pk-in{transform:rotateY(180deg)}
 .pk-row.done .pk-card:not(.flip){opacity:.25}
+.pk-card.sel{transform:translateY(-12px) scale(1.12)}
+.pk-card.sel .pk-back{animation:pkGlow 1s ease-in-out infinite}
+.pk-row.picked .pk-card:not(.sel):not(.flip){opacity:.45}
+@keyframes pkGlow{0%,100%{box-shadow:0 0 0 0 rgba(212,174,92,.7),0 8px 18px rgba(19,32,63,.3)}50%{box-shadow:0 0 0 9px rgba(212,174,92,0),0 8px 18px rgba(19,32,63,.3)}}
+dialog#pick form[hidden]{display:none}
+dialog#pick .pk-row{margin:14px 0 16px}
 .pk-row.shuffle .pk-card:nth-child(1){animation:pkA .62s ease-in-out 3}
 .pk-row.shuffle .pk-card:nth-child(2){animation:pkB .62s ease-in-out 3}
 .pk-row.shuffle .pk-card:nth-child(3){animation:pkC .62s ease-in-out 3}
